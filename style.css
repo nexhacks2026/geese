@@ -1,0 +1,145 @@
+:root {
+    --bg-color: #202124;
+    --text-color: #e8eaed;
+    --link-color: #8ab4f8;
+    --link-visited: #c58af9;
+    --border-color: #5f6368;
+    --sidebar-bg: #2e2f31; /* Slightly lighter than main bg */
+    --content-bg: #202124;
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 176px; /* Standard Wiki width */
+    background-color: var(--sidebar-bg);
+    padding: 1rem;
+    height: 100vh;
+    box-sizing: border-box;
+    position: fixed;
+    border-right: 1px solid var(--border-color);
+}
+
+.sidebar h3 {
+    font-size: 0.85rem;
+    color: #9aa0a6;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.25rem;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar li {
+    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+}
+
+.sidebar a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+.sidebar a:hover {
+    text-decoration: underline;
+}
+
+/* Main Content */
+.main-content {
+    margin-left: 176px;
+    padding: 2rem;
+    max-width: 960px;
+    flex-grow: 1;
+}
+
+h1 {
+    font-family: 'Linux Libertine', 'Georgia', Times, serif;
+    font-size: 2rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    font-weight: normal;
+}
+
+h2 {
+    font-family: 'Linux Libertine', 'Georgia', Times, serif;
+    font-size: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.25rem;
+    margin-top: 2rem;
+    font-weight: normal;
+}
+
+p {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+a:visited {
+    color: var(--link-visited);
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Infobox mimic */
+.infobox {
+    float: right;
+    background-color: var(--sidebar-bg);
+    border: 1px solid var(--border-color);
+    padding: 0.5rem;
+    margin-left: 1rem;
+    width: 300px;
+    font-size: 0.9rem;
+}
+
+.infobox img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 0.5rem;
+    background-color: #ccc; /* Placeholder for image */
+    min-height: 200px;
+}
+
+.infobox table {
+    width: 100%;
+}
+
+.infobox th {
+    text-align: left;
+    padding: 0.25rem;
+}
+
+.infobox td {
+    text-align: right;
+    padding: 0.25rem;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    display: block;
+    color: var(--text-color);
+    text-align: center;
+}
