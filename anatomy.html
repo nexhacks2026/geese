@@ -77,21 +77,27 @@
 
     <script>
         (function() {
+            // Theme Management
+            const themeToggle = document.querySelector('.theme-toggle');
+            const body = document.body;
             let intervalId = null;
-            
+
+            // Apply saved theme on load
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'evil') {
+                body.classList.add('evil-mode');
+            }
+
             function createGeese() {
-                // CLEAR INTERVAL TO PREVENT MEMORY LEAK
+                // Clear logic
                 if (intervalId) {
                     clearInterval(intervalId);
                     intervalId = null;
                 }
+                const existing = document.getElementById('geese-container');
+                if (existing) existing.remove();
 
-                // Remove existing geese if any
-                const existingContainer = document.getElementById('geese-container');
-                if (existingContainer) {
-                    existingContainer.remove();
-                }
-
+                // Setup container
                 const container = document.createElement('div');
                 container.id = 'geese-container';
                 container.style.position = 'fixed';
@@ -103,44 +109,82 @@
                 container.style.zIndex = '-1';
                 document.body.appendChild(container);
 
+                const isEvil = body.classList.contains('evil-mode');
+                
+                // Spawn Logic
+                const count = isEvil ? 300 : 60;
+                
                 const geese = [];
-                for(let i = 0; i < 500; i++) {
-                    const goose = document.createElement('div');
-                    goose.textContent = '🪿';
-                    goose.style.position = 'absolute';
-                    goose.style.left = Math.random() * 100 + 'vw';
-                    goose.style.top = Math.random() * 100 + 'vh';
-                    goose.style.opacity = '0.2';
+                for(let i = 0; i < count; i++) {
+                    const el = document.createElement('div');
+                    el.textContent = isEvil ? '🔥' : '🪿';
+                    el.style.position = 'absolute';
+                    el.style.transition = 'transform 0.2s';
                     
-                    container.appendChild(goose);
+                    // Random Position
+                    let x = Math.random() * 100;
+                    let y = Math.random() * 100;
+                    
+                    el.style.left = x + 'vw';
+                    el.style.top = y + 'vh';
+                    
+                    // Visuals
+                    el.style.fontSize = isEvil ? (Math.random() * 3 + 1) + 'rem' : '1.2rem';
+                    el.style.opacity = isEvil ? '0.6' : '0.25';
+                    if (isEvil) el.style.filter = 'hue-rotate(-45deg)';
+
+                    container.appendChild(el);
+                    
+                    // Velocity
+                    const angle = Math.random() * Math.PI * 2;
+                    const speed = isEvil ? (Math.random() * 3 + 1) : (Math.random() * 0.5 + 0.5);
+                    
                     geese.push({
-                        el: goose,
-                        dx: (Math.random() - 0.5) * 2,
-                        dy: (Math.random() - 0.5) * 2
+                        el,
+                        x, y,
+                        vx: Math.cos(angle) * speed,
+                        vy: Math.sin(angle) * speed
                     });
                 }
 
+                // Animation
                 intervalId = setInterval(() => {
                     geese.forEach(g => {
-                        let x = parseFloat(g.el.style.left);
-                        let y = parseFloat(g.el.style.top);
-                        x += g.dx;
-                        y += g.dy;
+                        g.x += g.vx;
+                        g.y += g.vy;
                         
-                        if (x < -5) x = 105;
-                        if (x > 105) x = -5;
-                        if (y < -5) y = 105;
-                        if (y > 105) y = -5;
+                        // Wrap
+                        if (g.x < -10) g.x = 110;
+                        if (g.x > 110) g.x = -10;
+                        if (g.y < -10) g.y = 110;
+                        if (g.y > 110) g.y = -10;
                         
-                        g.el.style.left = x + 'vw';
-                        g.el.style.top = y + 'vh';
+                        g.el.style.left = g.x + 'vw';
+                        g.el.style.top = g.y + 'vh';
+                        
+                        // Flip direction face
+                        if (g.vx > 0) {
+                            g.el.style.transform = 'scaleX(1)';
+                        } else {
+                            g.el.style.transform = 'scaleX(-1)';
+                        }
                     });
                 }, 50);
             }
 
-            createGeese();
+            // Bind Event
+            if (themeToggle) {
+                themeToggle.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    body.classList.toggle('evil-mode');
+                    const isEvil = body.classList.contains('evil-mode');
+                    localStorage.setItem('theme', isEvil ? 'evil' : 'normal');
+                    createGeese();
+                });
+            }
 
-            // Expose for theme changes to safely restart
+            // Init
+            createGeese();
             window.createGeese = createGeese;
         })();
     </script>
