@@ -10,55 +10,63 @@
 
 <body>
 
-    <div class="sidebar">
-        <a href="index.html" class="logo">Goosepedia</a>
-
-        <h3>Navigation</h3>
-        <ul>
-            <li><a href="index.html">Main page</a></li>
-            <li><a href="anatomy.html">Anatomy</a></li>
-            <li><a href="diet.html">Diet & Feeding</a></li>
-            <li><a href="#">Random Goose</a></li>
+    <!-- Modern Navbar -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">🪿 Goosepedia</a>
+        <ul class="nav-menu">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="anatomy.html" class="nav-link">Anatomy</a></li>
+            <li><a href="diet.html" class="nav-link">Diet</a></li>
+            
+            <!-- Settings Dropdown -->
+            <li class="settings-dropdown">
+                 <span class="nav-link">Modes ▾</span>
+                 <div class="dropdown-content">
+                     <!-- Mode toggles would go here, managed by JS -->
+                     <div class="dropdown-item" id="toggle-dark">Dark Mode</div>
+                     <div class="dropdown-item" id="toggle-evil">Evil Mode</div>
+                     <div class="dropdown-item" id="toggle-tj">TJ Mode</div>
+                     <div class="dropdown-item" id="toggle-fast">Fast Mode</div>
+                 </div>
+            </li>
         </ul>
+    </nav>
 
-        <h3>Interaction</h3>
-        <ul>
-            <li><a href="#" id="help-link">Help</a></li>
-            <li><a href="#">About Goosepedia</a></li>
-            <li><a href="#">Community portal</a></li>
-        </ul>
-    </div>
-
-    <div class="main-content">
-        <h1>Goose Anatomy</h1>
-        <div class="site-sub">From Goosepedia, the exhaustive encyclopedia of sorrow</div>
-
-        <p>Geese have very specific anatomical structures that make them excellent swimmers and flyers. Their physiology is adapted for both long-distance migration and efficient foraging on land and water, wandering forever.</p>
-
-        <h2>The Bill</h2>
-        <p>The goose bill is distinctively marked by "lamellae," which are comb-like structures used for filter-feeding.
-            They essentially function like teeth to grasp slippery grass and aquatic weeds. This serrated edge allows them to graze on short grass very efficiently, keeping lawns trimmed.</p>
-
-        <h2>Eyes and Vision</h2>
-        <p>Geese have excellent eyesight, which aids them in spotting predators and selecting food. Their eyes are positioned on the sides of their head, providing a wide field of view (monocular vision). They can see UV light, which helps them identify healthy vegetation—seeing the world in colors we cannot imagine.</p>
-
-        <h2>The Neck</h2>
-        <p>Their long necks are not just for elegance; they allow geese to reach underwater vegetation without diving. This adaptation lets them upend (tip forward) to feed on submerged plants while keeping an eye out for danger above water.</p>
-
-        <h2>Feathers</h2>
-        <p>Geese have waterproof feathers. A gland near their tail, called the uropygial gland, produces oil which they spread over their feathers while preening. This waterproofing is essential for buoyancy and insulation against cold water, protecting them from the freezing depths.</p>
-
-        <h2>Wings</h2>
-        <p>Goose wings are powerful and broad, capable of sustaining flight for thousands of miles during migration. The flight feathers (remiges) are stiff and strong to provide lift, while the coverts smooth airflow over the wing.</p>
-
-        <h2>Feet</h2>
-        <p>Their webbed feet are designed for paddling efficiently through water. They are also capable of walking on
-            land, though they perform a characteristic waddle. The webbing connects the three front toes, acting as a paddle, while the small hind toe helps with balance on uneven ground.</p>
+    <div class="main-wrapper">
         
-        <h2>Goose Abundance</h2>
-        <p>Recent studies indicate that the anatomy of a document can support significantly more geese than previously thought. The darkness grows.</p>
+        <!-- Main Content -->
+        <main class="content-area">
+            <h1>Goose Anatomy</h1>
+            <div class="subtitle">From Goosepedia, the exhaustive encyclopedia of sorrow</div>
 
-        <div class="ascii-art">
+            <div class="card-box" style="margin-bottom: 2rem;">
+                 <p style="margin-bottom:0">Geese have very specific anatomical structures that make them excellent swimmers and flyers. Their physiology is adapted for both long-distance migration and efficient foraging on land and water, wandering forever.</p>
+            </div>
+
+            <h2>The Bill</h2>
+            <p>The goose bill is distinctively marked by "lamellae," which are comb-like structures used for filter-feeding.
+                They essentially function like teeth to grasp slippery grass and aquatic weeds. This serrated edge allows them to graze on short grass very efficiently, keeping lawns trimmed.</p>
+
+            <h2>Eyes and Vision</h2>
+            <p>Geese have excellent eyesight, which aids them in spotting predators and selecting food. Their eyes are positioned on the sides of their head, providing a wide field of view (monocular vision). They can see UV light, which helps them identify healthy vegetation—seeing the world in colors we cannot imagine.</p>
+
+            <h2>The Neck</h2>
+            <p>Their long necks are not just for elegance; they allow geese to reach underwater vegetation without diving. This adaptation lets them upend (tip forward) to feed on submerged plants while keeping an eye out for danger above water.</p>
+
+            <h2>Feathers</h2>
+            <p>Geese have waterproof feathers. A gland near their tail, called the uropygial gland, produces oil which they spread over their feathers while preening. This waterproofing is essential for buoyancy and insulation against cold water, protecting them from the freezing depths.</p>
+
+            <h2>Wings</h2>
+            <p>Goose wings are powerful and broad, capable of sustaining flight for thousands of miles during migration. The flight feathers (remiges) are stiff and strong to provide lift, while the coverts smooth airflow over the wing.</p>
+
+            <h2>Feet</h2>
+            <p>Their webbed feet are designed for paddling efficiently through water. They are also capable of walking on
+                land, though they perform a characteristic waddle. The webbing connects the three front toes, acting as a paddle, while the small hind toe helps with balance on uneven ground.</p>
+            
+            <h2>Goose Abundance</h2>
+            <p>Recent studies indicate that the anatomy of a document can support significantly more geese than previously thought. The darkness grows.</p>
+
+            <div class="ascii-display">
               __         __         __         __ 
           __( o)>    __( o)>    __( o)>    __( o)> 
           \___)      \___)      \___)      \___)  
@@ -66,10 +74,40 @@
               __         __         __         __ 
           __( o)>    __( o)>    __( o)>    __( o)> 
           \___)      \___)      \___)      \___)  
-        </div>
+            </div>
 
-        <p><a href="index.html">Return to Main Page</a></p>
+            <div class="magic-btn-container">
+                 <p><a href="index.html" class="nav-link" style="color:var(--primary-color);">Return to Main Page</a></p>
+            </div>
+            
+        </main>
+
+        <!-- Right Sidebar Area -->
+        <aside class="sidebar-area">
+             <div class="card-box">
+                <h3>Navigation</h3>
+                <ul style="list-style: none;">
+                    <li style="margin-bottom: 0.5rem;"><a href="index.html">Main page</a></li>
+                    <li style="margin-bottom: 0.5rem;"><a href="anatomy.html">Anatomy</a></li>
+                    <li style="margin-bottom: 0.5rem;"><a href="diet.html">Diet & Feeding</a></li>
+                    <li style="margin-bottom: 0.5rem;"><a href="#">Random Goose</a></li>
+                </ul>
+            </div>
+
+             <div class="card-box">
+                <h3>Interaction</h3>
+                <ul style="list-style: none;">
+                    <li style="margin-bottom: 0.5rem;"><a href="#" id="help-link">Help Portal</a></li>
+                    <li style="margin-bottom: 0.5rem;"><a href="#">About Goosepedia</a></li>
+                    <li style="margin-bottom: 0.5rem;"><a href="#">Community portal</a></li>
+                </ul>
+            </div>
+        </aside>
     </div>
+
+    <footer>
+        Goosepedia &copy; 2026. All rights reserved. Beware of the birds.
+    </footer>
 
     <!-- Help Modal -->
     <div id="help-modal" class="modal">
@@ -77,7 +115,7 @@
             <span class="close-button">&times;</span>
             <h2>Magical Help Menu</h2>
             <p>Welcome to the help menu. Currently, the only help we offer is this magical button. It counts, it shines, it is everything.</p>
-            <div class="magic-area">
+            <div class="magic-area" style="margin: 2rem 0;">
                 <button id="magic-button" class="magic-btn">Click me: 0</button>
             </div>
             <p><i>Keep clicking to find the meaning of goose.</i></p>
@@ -88,6 +126,7 @@
         // Script to add hundreds of emo geese
         document.addEventListener('DOMContentLoaded', () => {
             // Apply saved theme
+            const body = document.body;
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'dark') {
                 document.body.classList.add('dark-mode');
@@ -95,6 +134,30 @@
                 document.body.classList.add('evil-mode');
             } else if (savedTheme === 'tj') {
                 document.body.classList.add('mode-tj');
+            }
+
+            // Mode toggles
+            const toggleDark = document.getElementById('toggle-dark');
+            const toggleEvil = document.getElementById('toggle-evil');
+            const toggleTj = document.getElementById('toggle-tj');
+            const toggleFast = document.getElementById('toggle-fast');
+
+            if (toggleDark) toggleDark.addEventListener('click', () => setTheme('dark'));
+            if (toggleEvil) toggleEvil.addEventListener('click', () => setTheme('evil'));
+            if (toggleTj) toggleTj.addEventListener('click', () => setTheme('tj'));
+            if (toggleFast) toggleFast.addEventListener('click', () => setTheme('fast'));
+
+            function setTheme(mode) {
+                if (body.classList.contains('mode-' + mode) || (mode === 'dark' && body.classList.contains('dark-mode')) || (mode === 'evil' && body.classList.contains('evil-mode'))) {
+                    body.className = ''; 
+                    localStorage.setItem('theme', 'default');
+                } else {
+                    body.className = ''; // clear others
+                    if (mode === 'dark') body.classList.add('dark-mode');
+                    else if (mode === 'evil') body.classList.add('evil-mode');
+                    else body.classList.add('mode-' + mode);
+                    localStorage.setItem('theme', mode);
+                }
             }
 
             const container = document.createElement('div');
@@ -105,7 +168,7 @@
             container.style.width = '100vw';
             container.style.height = '100vh';
             container.style.pointerEvents = 'none';
-            container.style.zIndex = '10000';
+            container.style.zIndex = '1';
             container.style.overflow = 'hidden';
             
             document.body.appendChild(container);
