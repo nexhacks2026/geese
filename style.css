@@ -306,7 +306,8 @@ h3 {
     padding: 2.5rem;
     border: 1px solid var(--border);
     border-radius: 12px;
-    width: 90%;\n    max-width: 500px;
+    width: 90%;
+    max-width: 500px;
     position: relative;
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
     text-align: center;
@@ -374,7 +375,8 @@ h3 {
 }
 
 @keyframes sparkle-anim {
-    0% { transform: translate(0, 0) scale(0); opacity: 1; }\n    100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
+    0% { transform: translate(0, 0) scale(0); opacity: 1; }
+    100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
 }
 
 @keyframes creature-pop {
@@ -542,6 +544,7 @@ body.mode-moon .main-content {
         margin: 1.5rem 0;
     }
     
-    h1 {\n        font-size: 2rem;
+    h1 {
+        font-size: 2rem;
     }
 }
