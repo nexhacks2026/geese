@@ -12,6 +12,12 @@ Goosepedia is a simple, informational website exploring the anatomy, diet, and s
 - **Responsive Design**: Works on mobile and desktop.
 - **Anatomy & Diet**: Detailed pages about goose biology.
 
+## CI/CD Pipeline
+
+The project uses a modernized CI/CD pipeline:
+- **GitHub Actions**: Handles continuous integration tasks such as code quality checks.
+- **Harness**: Manages continuous delivery and deployment workflows.
+
 ## Structure
 
 - `index.html`: The main landing page.
