@@ -77,13 +77,13 @@
 
     <script nonce="8IBTHwOdqNKAWeKl7plt8g==">
         (function() {
-            let intervalId = null;
+            let animationId = null;
             
             function createGeese() {
-                // CLEAR INTERVAL TO PREVENT MEMORY LEAK
-                if (intervalId) {
-                    clearInterval(intervalId);
-                    intervalId = null;
+                // STOP ANIMATION IF RUNNING
+                if (animationId) {
+                    cancelAnimationFrame(animationId);
+                    animationId = null;
                 }
 
                 // Remove existing geese if any
@@ -98,6 +98,8 @@
                 document.body.appendChild(container);
 
                 const geese = [];
+                const speedFactor = 0.3; // Adjust speed for 60fps refresh rate
+
                 for(let i = 0; i < 500; i++) {
                     const goose = document.createElement('div');
                     goose.textContent = '🪿';
@@ -121,7 +123,7 @@
                     });
                 }
 
-                intervalId = setInterval(() => {
+                function animate() {
                     geese.forEach(g => {
                         // Update position
                         g.x += g.dx;
@@ -137,7 +139,11 @@
                         g.el.style.setProperty('--x', g.x + 'vw');
                         g.el.style.setProperty('--y', g.y + 'vh');
                     });
-                }, 50);
+                    
+                    animationId = requestAnimationFrame(animate);
+                }
+                
+                animate();
             }
 
             createGeese();
