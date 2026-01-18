@@ -18,3 +18,12 @@ Goosepedia is a simple, informational website exploring the anatomy, diet, and s
 - `anatomy.html`: Detailed breakdown of goose physiology.
 - `diet.html`: Information on feeding habits.
 - `style.css`: The core stylesheet.
+
+## Development
+
+### Testing
+Client-side test suites are included in each HTML page to verify the developer environment.
+To run the tests:
+1. Open the page in a web browser.
+2. Open the Developer Console (F12).
+3. Run `window.runTests()`.
