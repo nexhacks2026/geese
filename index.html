@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Goosepedia - The definitive archive associated with the waterfowl: The Goose.">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'nonce-8IBTHwOdqNKAWeKl7plt8g=='; style-src 'self';">
     <title>Goose - Goosepedia</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -19,6 +19,7 @@
             <li><a href="index.html" class="nav-link">Home</a></li>
             <li><a href="anatomy.html" class="nav-link">Anatomy</a></li>
             <li><a href="diet.html" class="nav-link">Diet</a></li>
+            <li><button id="openHelpModal" class="nav-link">Help</button></li>
             <li class="settings-dropdown">
                 <span class="nav-link" aria-haspopup="true">Settings ▾</span>
                 <div class="dropdown-content">
@@ -155,8 +156,9 @@
         </div>
     </div>
 
-    <script>
+    <script nonce="8IBTHwOdqNKAWeKl7plt8g==">
         document.addEventListener('DOMContentLoaded', () => {
+
             const modal = document.getElementById('helpModal');
             const openBtn = document.getElementById('openHelpModal');
             const closeBtn = document.getElementById('closeHelpModal');
@@ -222,6 +224,7 @@
                 }
             });
             
+            // Global Escape listener
             // Global Escape key support
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && modal.classList.contains('open')) {
@@ -230,7 +233,7 @@
             });
         });
     </script>
-    <script>
+    <script nonce="8IBTHwOdqNKAWeKl7plt8g==">
         (function() {
             let intervalId = null;
             
