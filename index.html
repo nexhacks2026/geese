@@ -223,7 +223,7 @@
                 }
             });
             
-            // Global Escape listener for good measure (though modal listener handles it when focused)
+            // Global Escape listener
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && modal.classList.contains('open')) {
                     closeModal();
