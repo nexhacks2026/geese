@@ -296,10 +296,10 @@
 
                 const geese = [];
                 // CRANK UP THE SPEED AND COUNT FOR MAXIMUM CHAOS
-                const speedFactor = 2.0; 
+                const speedFactor = 5.0; 
 
                 // MORE GEESE
-                for(let i = 0; i < 1500; i++) {
+                for(let i = 0; i < 3000; i++) {
                     const goose = document.createElement('div');
                     goose.textContent = '🪿';
                     goose.classList.add('goose');
@@ -326,7 +326,7 @@
                         r: r,
                         dx: (Math.random() - 0.5) * 3 * speedFactor,
                         dy: (Math.random() - 0.5) * 3 * speedFactor,
-                        dr: (Math.random() - 0.5) * 15
+                        dr: (Math.random() - 0.5) * 30
                     });
                 }
 
