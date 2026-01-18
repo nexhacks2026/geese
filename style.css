@@ -77,7 +77,8 @@ body {
     padding: 2rem;
     max-width: 960px;
     flex-grow: 1;
-    background-color: var(--content-bg);\n    min-height: 100vh;
+    background-color: var(--content-bg);
+    min-height: 100vh;
     box-shadow: -2px 0 5px rgba(0,0,0,0.5);
     z-index: 10;
     position: relative;
@@ -132,7 +133,8 @@ a:hover {
     background-color: #222;
     border: 1px solid var(--border-color);
     padding: 0.5rem;
-    margin-left: 1rem;\n    width: 300px;
+    margin-left: 1rem;
+    width: 300px;
     font-size: 0.9rem;
     box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
     color: var(--text-color);
@@ -243,7 +245,8 @@ body.dark-mode .sidebar {
 }
 
 body.dark-mode .welcome-box, 
-body.dark-mode .ascii-art,\nbody.dark-mode .infobox {
+body.dark-mode .ascii-art,
+body.dark-mode .infobox {
     background-color: #263238;
     border-color: #455a64;
     color: #eceff1;
@@ -280,7 +283,9 @@ body.evil-mode .sidebar {
     border-right-color: #8b0000;
 }
 
-body.evil-mode .welcome-box,\nbody.evil-mode .ascii-art,\nbody.evil-mode .infobox {
+body.evil-mode .welcome-box,
+body.evil-mode .ascii-art,
+body.evil-mode .infobox {
     background-color: #3e0a0a;
     border-color: #b71c1c;
     color: #ff8a80;
@@ -326,7 +331,9 @@ body.mode-tj {
 
 /* Add CSS Geese everywhere */
 body.mode-tj h1::before, 
-body.mode-tj h2::before,\nbody.mode-tj h3::before,\nbody.mode-tj li::before {
+body.mode-tj h2::before,
+body.mode-tj h3::before,
+body.mode-tj li::before {
     content: "🪿";
     display: inline-block;
     filter: sepia(100%) hue-rotate(180deg); /* Blue geese */
@@ -398,7 +405,8 @@ body.mode-tj .main-content {
     cursor: pointer;
 }
 
-.close-button:hover,\n.close-button:focus {
+.close-button:hover,
+.close-button:focus {
     color: var(--goose-orange);
     text-decoration: none;
     cursor: pointer;
