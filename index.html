@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Goosepedia - The definitive archive associated with the waterfowl: The Goose.">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'none'; style-src 'self';">
     <title>Goose - Goosepedia</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -19,10 +20,17 @@
             <li><a href="anatomy.html" class="nav-link">Anatomy</a></li>
             <li><a href="diet.html" class="nav-link">Diet</a></li>
             <li><button id="help-link" class="nav-link">Help</button></li>
+            <li class="settings-dropdown">
+                <span class="nav-link" aria-haspopup="true">Settings ▾</span>
+                <div class="dropdown-content">
+                    <a href="#" class="theme-toggle">Switch Theme</a>
+                </div>
+            </li>
+            <li><button id="openHelpModal" class="nav-link" style="background:none; border:none; cursor:pointer; font-family:inherit; font-size:inherit;">Help</button></li>
         </ul>
     </nav>
 
-    <main class="main-content">
+    <main class="main-content" id="mainContent">
         <!-- Welcome Section -->
         <header class="welcome-box">
             <h2>Welcome to Goosepedia</h2>
@@ -34,7 +42,7 @@
 
         <aside class="infobox">
             <div class="placeholder">
-                <pre class="ascii-art" style="margin: 0; border: none; font-size: 0.7rem; background-color: transparent; padding: 0;">
+                <pre class="ascii-art">
       __
   __( o)>
   \___)
@@ -142,61 +150,89 @@
                 <li>Links are underlined when hovered or focused.</li>
             </ul>
             <button id="close-modal" class="close-btn">Close Help</button>
+    <!-- Accessible Modal -->
+    <div id="helpModal" class="modal" role="dialog" aria-labelledby="modalTitle" aria-modal="true" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Help & Accessibility</h2>
+                <button id="closeHelpModal" class="close-button" aria-label="Close help dialog">&times;</button>
+            </div>
+            <p>Welcome to Goosepedia! Use the navigation links to explore different sections.</p>
+            <p><strong>Keyboard Shortcuts:</strong></p>
+            <ul>
+                <li><strong>Tab:</strong> Navigate through links and interactive elements.</li>
+                <li><strong>Enter/Space:</strong> Activate buttons or links.</li>
+                <li><strong>Esc:</strong> Close this dialog.</li>
+            </ul>
         </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const helpLink = document.getElementById('help-link');
-            const modal = document.getElementById('help-modal');
-            const closeBtn = document.getElementById('close-modal');
-
-            // Open Modal
-            helpLink.addEventListener('click', (e) => {
-                e.preventDefault();
-                modal.removeAttribute('hidden');
-                closeBtn.focus(); // Move focus to modal
-            });
-
-            // Close Modal Function
-            const closeModal = () => {
-                modal.setAttribute('hidden', '');
-                helpLink.focus(); // Return focus to trigger
-            };
-
-            // Close on button click
-            closeBtn.addEventListener('click', closeModal);
 
             // Close on Escape key
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && !modal.hasAttribute('hidden')) {
+            const modal = document.getElementById('helpModal');
+            const openBtn = document.getElementById('openHelpModal');
+            const closeBtn = document.getElementById('closeHelpModal');
+            let lastFocusedElement;
+
+            function openModal() {
+                lastFocusedElement = document.activeElement;
+                modal.classList.add('open');
+                modal.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+                
+                // Focus on the close button initially
+                closeBtn.focus();
+            }
+
+            function closeModal() {
+                modal.classList.remove('open');
+                modal.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = ''; // Restore scrolling
+                
+                if (lastFocusedElement) {
+                    lastFocusedElement.focus();
+                }
+            }
+
+            if (openBtn) {
+                openBtn.addEventListener('click', openModal);
+            }
+
+            if (closeBtn) {
+                closeBtn.addEventListener('click', closeModal);
+            }
+
+            // Close on outside click
+            window.addEventListener('click', (event) => {
+                if (event.target === modal) {
                     closeModal();
                 }
             });
 
-            // Close on clicking outside modal content
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    closeModal();
-                }
-            });
-
-            // Trap Focus
+            // Keyboard navigation
             modal.addEventListener('keydown', (e) => {
-                if (e.key === 'Tab' && !modal.hasAttribute('hidden')) {
+                if (e.key === 'Escape') {
+                    closeModal();
+                }
+
+                if (e.key === 'Tab') {
                     const focusableElements = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
                     const firstElement = focusableElements[0];
                     const lastElement = focusableElements[focusableElements.length - 1];
 
-                    if (e.shiftKey) { // Shift + Tab
+                    if (e.shiftKey) { /* shift + tab */
                         if (document.activeElement === firstElement) {
-                            e.preventDefault();
                             lastElement.focus();
-                        }
-                    } else { // Tab
-                        if (document.activeElement === lastElement) {
                             e.preventDefault();
+                        }
+                    } else { /* tab */
+                        if (document.activeElement === lastElement) {
                             firstElement.focus();
+                            e.preventDefault();
                         }
                     }
                 }
