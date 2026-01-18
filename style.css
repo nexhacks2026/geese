@@ -152,7 +152,8 @@ a:hover {
 
 h3 {
     font-size: 1.4rem;
-    color: var(--secondary-color);\n    margin: 2rem 0 1rem;
+    color: var(--secondary-color);
+    margin: 2rem 0 1rem;
 }
 
 .sidebar li a:hover {
@@ -216,7 +217,8 @@ h3 {
 
 .ascii-display {
     font-family: var(--font-mono);
-    background: #000;\n    color: var(--primary-color);
+    background: #000;
+    color: var(--primary-color);
     padding: 2rem;
     border-radius: var(--radius);
     overflow-x: auto;
@@ -247,7 +249,8 @@ h3 {
 }
 
 .magic-btn:hover {
-    transform: translateY(-3px);\n    box-shadow: 0 8px 25px rgba(255,85,85,0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255,85,85,0.4);
 }
 
 /* ASCII Art */
@@ -285,7 +288,8 @@ h3 {
     z-index: 2000;
     left: 0;
     top: 0;
-    width: 100%;\n    height: 100%;
+    width: 100%;
+    height: 100%;
     background-color: rgba(0,0,0,0.8);
     backdrop-filter: blur(5px);
     align-items: center;
@@ -403,6 +407,14 @@ h3 {
 @keyframes goose-waddle {
     0% { transform: rotate(-10deg) translateY(0); }
     100% { transform: rotate(10deg) translateY(-10px); }
+}
+
+@keyframes goose-float {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(10px, -10px) rotate(2deg); }
+    50% { transform: translate(0, -20px) rotate(0deg); }
+    75% { transform: translate(-10px, -10px) rotate(-2deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
 }
 
 /* --- THEME MODES (Legacy Support) --- */
