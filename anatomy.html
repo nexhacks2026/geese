@@ -24,23 +24,22 @@
 
     <div class="main-content">
         <h1>Goose Anatomy</h1>
-        <div class="site-sub">From Goosepedia, the free encyclopedia</div>
+        <div class="site-sub">From Goosepedia, the exhaustive encyclopedia of sorrow</div>
 
-        <p>Geese have very specific anatomical structures that make them excellent swimmers and flyers. Their physiology is adapted for both long-distance migration and efficient foraging on land and water.
-        </p>
+        <p>Geese have very specific anatomical structures that make them excellent swimmers and flyers. Their physiology is adapted for both long-distance migration and efficient foraging on land and water, wandering forever.</p>
 
         <h2>The Bill</h2>
         <p>The goose bill is distinctively marked by "lamellae," which are comb-like structures used for filter-feeding.
             They essentially function like teeth to grasp slippery grass and aquatic weeds. This serrated edge allows them to graze on short grass very efficiently, keeping lawns trimmed.</p>
 
         <h2>Eyes and Vision</h2>
-        <p>Geese have excellent eyesight, which aids them in spotting predators and selecting food. Their eyes are positioned on the sides of their head, providing a wide field of view (monocular vision). They can see UV light, which helps them identify healthy vegetation.</p>
+        <p>Geese have excellent eyesight, which aids them in spotting predators and selecting food. Their eyes are positioned on the sides of their head, providing a wide field of view (monocular vision). They can see UV light, which helps them identify healthy vegetation—seeing the world in colors we cannot imagine.</p>
 
         <h2>The Neck</h2>
         <p>Their long necks are not just for elegance; they allow geese to reach underwater vegetation without diving. This adaptation lets them upend (tip forward) to feed on submerged plants while keeping an eye out for danger above water.</p>
 
         <h2>Feathers</h2>
-        <p>Geese have waterproof feathers. A gland near their tail, called the uropygial gland, produces oil which they spread over their feathers while preening. This waterproofing is essential for buoyancy and insulation against cold water.</p>
+        <p>Geese have waterproof feathers. A gland near their tail, called the uropygial gland, produces oil which they spread over their feathers while preening. This waterproofing is essential for buoyancy and insulation against cold water, protecting them from the freezing depths.</p>
 
         <h2>Wings</h2>
         <p>Goose wings are powerful and broad, capable of sustaining flight for thousands of miles during migration. The flight feathers (remiges) are stiff and strong to provide lift, while the coverts smooth airflow over the wing.</p>
@@ -50,7 +49,7 @@
             land, though they perform a characteristic waddle. The webbing connects the three front toes, acting as a paddle, while the small hind toe helps with balance on uneven ground.</p>
         
         <h2>Goose Abundance</h2>
-        <p>Recent studies indicate that the anatomy of a document can support significantly more geese than previously thought.</p>
+        <p>Recent studies indicate that the anatomy of a document can support significantly more geese than previously thought. The darkness grows.</p>
 
         <div class="ascii-art">
               __         __         __         __ 
@@ -66,7 +65,7 @@
     </div>
 
     <script>
-        // Script to add hundreds of fat geese
+        // Script to add hundreds of emo geese
         document.addEventListener('DOMContentLoaded', () => {
             const container = document.createElement('div');
             container.id = 'geese-overlay';
@@ -88,13 +87,15 @@
                 goose.style.left = Math.random() * 100 + 'vw';
                 goose.style.top = Math.random() * 100 + 'vh';
                 
-                // Make them fat
-                const scaleX = 1.5 + Math.random() * 2.5; 
-                const scaleY = 0.8 + Math.random() * 0.4;
-                goose.style.transform = `scale(${scaleX}, ${scaleY})`;
+                // Keep them normal sized but varied
+                const scale = 0.8 + Math.random() * 0.4;
+                goose.style.transform = `scale(${scale})`;
+                
+                // Dark filter
+                goose.style.filter = 'grayscale(100%) contrast(120%) brightness(50%)';
                 
                 goose.style.fontSize = (20 + Math.random() * 40) + 'px';
-                goose.style.opacity = '0.5';
+                goose.style.opacity = '0.3';
                 
                 container.appendChild(goose);
             }
