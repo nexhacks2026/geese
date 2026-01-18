@@ -103,9 +103,9 @@
                 document.body.appendChild(container);
 
                 const geese = [];
-                const speedFactor = 0.3; // Adjust speed for 60fps refresh rate
+                const speedFactor = 0.1; 
 
-                for(let i = 0; i < 1000; i++) {
+                for(let i = 0; i < 15; i++) {
                     const goose = document.createElement('div');
                     goose.textContent = '😊🪿';
                     goose.classList.add('goose');
@@ -123,8 +123,8 @@
                         el: goose,
                         x: x,
                         y: y,
-                        dx: (Math.random() - 0.5) * 2,
-                        dy: (Math.random() - 0.5) * 2
+                        dx: (Math.random() - 0.5) * speedFactor,
+                        dy: (Math.random() - 0.5) * speedFactor
                     });
                 }
 
@@ -135,10 +135,10 @@
                         g.y += g.dy;
                         
                         // Wrap around screen
-                        if (g.x < -5) g.x = 105;
-                        if (g.x > 105) g.x = -5;
-                        if (g.y < -5) g.y = 105;
-                        if (g.y > 105) g.y = -5;
+                        if (g.x < -10) g.x = 110;
+                        if (g.x > 110) g.x = -10;
+                        if (g.y < -10) g.y = 110;
+                        if (g.y > 110) g.y = -10;
                         
                         // Update CSS variables
                         g.el.style.setProperty('--x', g.x + 'vw');
