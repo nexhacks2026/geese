@@ -29,7 +29,6 @@
                      <div class="dropdown-item" id="toggle-tj">TJ Mode</div>
                      <div class="dropdown-item" id="toggle-fast">Fast Mode</div>
                      <div class="dropdown-item" id="toggle-chicken">Chicken Mode</div>
-                     <div class="dropdown-item" id="toggle-moon">Moon Mode</div>
                  </div>
             </li>
             <!-- DevOps Link -->
@@ -128,8 +127,6 @@
                 document.body.classList.add('mode-tj');
             } else if (savedTheme === 'chicken') {
                 document.body.classList.add('mode-chicken');
-            } else if (savedTheme === 'moon') {
-                document.body.classList.add('mode-moon');
             }
 
             // Mode toggles
@@ -138,14 +135,12 @@
             const toggleTj = document.getElementById('toggle-tj');
             const toggleFast = document.getElementById('toggle-fast');
             const toggleChicken = document.getElementById('toggle-chicken');
-            const toggleMoon = document.getElementById('toggle-moon');
 
             if (toggleDark) toggleDark.addEventListener('click', () => setTheme('dark'));
             if (toggleEvil) toggleEvil.addEventListener('click', () => setTheme('evil'));
             if (toggleTj) toggleTj.addEventListener('click', () => setTheme('tj'));
             if (toggleFast) toggleFast.addEventListener('click', () => setTheme('fast'));
             if (toggleChicken) toggleChicken.addEventListener('click', () => setTheme('chicken'));
-            if (toggleMoon) toggleMoon.addEventListener('click', () => setTheme('moon'));
 
             function setTheme(mode) {
                 if (body.classList.contains('mode-' + mode) || (mode === 'dark' && body.classList.contains('dark-mode')) || (mode === 'evil' && body.classList.contains('evil-mode'))) {
@@ -189,17 +184,6 @@
                 
                 goose.style.fontSize = (20 + Math.random() * 40) + 'px';
                 goose.style.opacity = '0.3';
-                
-                // Moon mode gravity
-                if (savedTheme === 'moon') {
-                   // Random floating animation
-                   goose.style.transition = 'transform 10s ease-in-out';
-                   setInterval(() => {
-                       const tx = Math.random() * 50 - 25;
-                       const ty = Math.random() * 50 - 25;
-                       goose.style.transform = `scale(${scale}) translate(${tx}px, ${ty}px)`;
-                   }, 5000 + Math.random() * 5000);
-                }
                 
                 container.appendChild(goose);
             }

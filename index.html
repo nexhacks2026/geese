@@ -28,7 +28,6 @@
                      <div class="dropdown-item" id="toggle-tj">TJ Mode</div>
                      <div class="dropdown-item" id="toggle-fast">Fast Mode</div>
                      <div class="dropdown-item" id="toggle-chicken">Chicken Mode</div>
-                     <div class="dropdown-item" id="toggle-moon">Moon Mode</div>
                  </div>
             </li>
             <!-- DevOps Link -->
@@ -319,7 +318,6 @@
             const toggleTj = document.getElementById('toggle-tj');
             const toggleFast = document.getElementById('toggle-fast');
             const toggleChicken = document.getElementById('toggle-chicken');
-            const toggleMoon = document.getElementById('toggle-moon');
             const body = document.body;
 
             // Load saved state
@@ -335,8 +333,6 @@
                 body.classList.add('mode-fast');
             } else if (savedTheme === 'chicken') {
                 body.classList.add('mode-chicken');
-            } else if (savedTheme === 'moon') {
-                body.classList.add('mode-moon');
             }
 
             // Help Modal Logic
@@ -502,22 +498,8 @@
                 });
             }
 
-            if (toggleMoon) {
-                toggleMoon.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    if (body.classList.contains('mode-moon')) {
-                        body.classList.remove('mode-moon');
-                        localStorage.setItem('theme', 'default');
-                    } else {
-                        resetModes();
-                        body.classList.add('mode-moon');
-                        localStorage.setItem('theme', 'moon');
-                    }
-                });
-            }
-
             function resetModes() {
-                body.classList.remove('dark-mode', 'evil-mode', 'mode-tj', 'mode-fast', 'mode-chicken', 'mode-moon');
+                body.classList.remove('dark-mode', 'evil-mode', 'mode-tj', 'mode-fast', 'mode-chicken');
                 deactivateEvilMode();
             }
 
@@ -534,7 +516,7 @@
             }
 
             function spawnEvilGooseHandler(e) {
-                if (e.target.closest('a') || e.target.closest('.dropdown-content') || e.target.closest('.modal-content') || e.target.closest('button')) return;
+                if (e.target.closest('a') || e.target.closest('.dropdown-content') || e.target.closest('.modal-content')) return;
                 spawnEvilGoose(e.clientX, e.clientY);
             }
 
@@ -652,12 +634,6 @@
                 
                 const bottom = Math.random() * 50; 
                 walker.style.bottom = `${bottom}px`;
-
-                // If Moon Mode, gravity is weird -> make them float up a bit or bounce high
-                if (document.body.classList.contains('mode-moon')) {
-                    inner.style.animation = 'goose-float 4s infinite ease-in-out';
-                    walker.style.bottom = (50 + Math.random() * 200) + 'px';
-                }
                 
                 setTimeout(() => {
                     walker.remove();
