@@ -77,7 +77,8 @@ body {
     padding: 2rem;
     max-width: 960px;
     flex-grow: 1;
-    background-color: var(--content-bg);\n    min-height: 100vh;
+    background-color: var(--content-bg);
+    min-height: 100vh;
     box-shadow: -2px 0 5px rgba(0,0,0,0.5);
     z-index: 10;
     position: relative;
@@ -146,7 +147,8 @@ a:hover {
     color: var(--text-color);
     font-weight: bold;
     background-color: #333;
-    border: 1px solid #555;\n    margin-bottom: 10px;
+    border: 1px solid #555;
+    margin-bottom: 10px;
     padding: 10px;
 }
 
@@ -269,7 +271,8 @@ body.evil-mode {
     --link-visited: #d50000;
     --border-color: #b71c1c;
     --sidebar-bg: #3e0a0a;
-    --content-bg: #4a0d0d;\n    --goose-orange: #ff3d00;
+    --content-bg: #4a0d0d;
+    --goose-orange: #ff3d00;
     --goose-green: #dd2c00;
     --goose-blue: #bf360c;
     --goose-grey: #5d4037;
@@ -291,6 +294,7 @@ body.evil-mode .infobox {
 body.evil-mode .infobox {
     background-color: #3e0a0a;
     border-color: #b71c1c;
+    color: #ff8a80;
 }
 
 body.evil-mode .infobox .placeholder {
