@@ -312,6 +312,61 @@ footer a {
     will-change: transform;
 }
 
+/* Simulator Styles */
+.simulator-box {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 2rem;
+    text-align: center;
+    margin-top: 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.sim-display {
+    font-size: 5rem;
+    margin: 1rem 0;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: default;
+}
+
+.sim-display:hover {
+    transform: scale(1.1);
+}
+
+.sim-controls button {
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin: 0.5rem;
+    transition: background-color 0.2s;
+}
+
+.sim-controls button:hover {
+    background-color: var(--accent-hover);
+}
+
+.sim-controls button:disabled {
+    background-color: var(--text-muted);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.sim-stats {
+    color: var(--text-muted);
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+#sim-status {
+    color: var(--accent);
+    margin: 0.5rem 0;
+}
+
 /* Mobile */
 @media (max-width: 700px) {
     .infobox {
