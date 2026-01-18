@@ -16,6 +16,32 @@
     --max-width: 900px;
 }
 
+/* Evil Mode Theme */
+body.evil-mode {
+    --bg-body: #1a0505;
+    --bg-header: #2d0a0a;
+    --bg-card: #2d0a0a;
+    --text-main: #ffcccc;
+    --text-muted: #cc8888;
+    --border: #5c1e1e;
+    --accent: #ff4444;
+    --accent-hover: #cc0000;
+}
+
+body.evil-mode .welcome-box {
+    background-color: #4a1010;
+    border-color: #ff0000;
+}
+
+body.evil-mode .goose-header {
+    background-color: #4a1010;
+    color: #ffcccc !important;
+}
+
+body.evil-mode footer {
+    background-color: #200505;
+}
+
 *, *::before, *::after {
     box-sizing: border-box;
 }
@@ -169,14 +195,12 @@ a:hover {
     background-color: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: 6px;
-    padding: 1rem;
-    margin: 0 0 1rem 2rem;
+    padding: 1rem;\n    margin: 0 0 1rem 2rem;
     box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 
 .infobox table {
-    width: 100%;
-    border-collapse: collapse;
+    width: 100%;\n    border-collapse: collapse;
     font-size: 0.9rem;
 }
 
@@ -248,8 +272,7 @@ footer {
 .modal-content {
     background-color: var(--bg-card);
     margin: auto;
-    padding: 2rem;
-    border: 1px solid var(--border);
+    padding: 2rem;\n    border: 1px solid var(--border);
     border-radius: 8px;
     width: 90%;
     max-width: 500px;
@@ -281,8 +304,7 @@ footer {
     line-height: 1;
 }
 
-.close-button:hover,
-.close-button:focus {
+.close-button:hover,\n.close-button:focus {
     color: var(--text-main);
 }
 
