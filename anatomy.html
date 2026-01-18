@@ -81,6 +81,36 @@
     </footer>
 
     <script nonce="8IBTHwOdqNKAWeKl7plt8g==">
+        document.addEventListener('DOMContentLoaded', () => {
+            // Developer Environment: Client-side Test Suite
+            window.runTests = () => {
+                console.group('Goosepedia Anatomy Tests');
+                const tests = [
+                    { description: 'Navbar should be present', condition: !!document.querySelector('.navbar') },
+                    { description: 'Anatomy Title should exist', condition: !!document.getElementById('anatomy-title') },
+                    { description: 'Main Content area should exist', condition: !!document.querySelector('.main-content') },
+                    { description: 'Footer should exist', condition: !!document.querySelector('footer') },
+                    { description: 'Title should be correct', condition: document.title.includes('Goose Anatomy') }
+                ];
+
+                let allPassed = true;
+                tests.forEach(test => {
+                    const status = test.condition ? 'PASS' : 'FAIL';
+                    const style = test.condition ? 'color: green' : 'color: red; font-weight: bold';
+                    console.log(`%c[${status}] ${test.description}`, style);
+                    if (!test.condition) allPassed = false;
+                });
+                console.groupEnd();
+                
+                if (allPassed) console.log('%c✓ All Anatomy tests passed', 'color: green; font-weight: bold');
+                else console.warn('%c⚠ Some Anatomy tests failed', 'color: red; font-weight: bold');
+                
+                return allPassed;
+            };
+            console.log("Dev Env: Run window.runTests() to verify application state.");
+        });
+    </script>
+    <script nonce="8IBTHwOdqNKAWeKl7plt8g==">
         (function() {
             let animationId = null;
             
