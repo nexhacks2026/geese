@@ -11,303 +11,55 @@
 
 <body>
 
-    <!-- Modern Navbar -->
+    <!-- Simple Navbar -->
     <nav class="navbar">
         <a href="index.html" class="logo">🪿 Goosepedia</a>
         <ul class="nav-menu">
             <li><a href="index.html" class="nav-link">Home</a></li>
             <li><a href="anatomy.html" class="nav-link">Anatomy</a></li>
             <li><a href="diet.html" class="nav-link">Diet</a></li>
-            
-            <!-- Settings Dropdown -->
-            <li class="settings-dropdown">
-                 <span class="nav-link">Modes ▾</span>
-                 <div class="dropdown-content">
-                     <div class="dropdown-item" id="toggle-dark">Dark Mode</div>
-                     <div class="dropdown-item" id="toggle-evil">Evil Mode</div>
-                     <div class="dropdown-item" id="toggle-tj">TJ Mode</div>
-                     <div class="dropdown-item" id="toggle-fast">Fast Mode</div>
-                     <div class="dropdown-item" id="toggle-chicken">Chicken Mode</div>
-                     <div class="dropdown-item" id="toggle-moon">Moon Mode</div>
-                     <div class="dropdown-item" id="toggle-mars">Mars Mode</div>
-                 </div>
-            </li>
-            <!-- Rabbit Museum Link -->
-            <li><a href="index.html?page=rabbits" class="nav-link" target="_blank" title="Rabbit Museum">🐇</a></li>
         </ul>
     </nav>
 
     <main class="main-content">
         <h1>Diet and Feeding</h1>
-        <div class="site-sub">From Goosepedia, the exhaustive encyclopedia of sorrow</div>
+        <div class="site-sub">From Goosepedia, the free encyclopedia</div>
 
         <section>
-            <p>Geese are primarily herbivorous, consuming the life force of plants found in and around water bodies, as well as in fields of desolation.</p>
-            
-            <div class="ascii-art">
-               (  (  (  o  )  )  )
-                \               /
-                 \   SAD GOOSE /
-                  \___________/
-            </div>
+            <p>Geese are primarily herbivorous, consuming plants found in and around water bodies, as well as in fields.</p>
         </section>
 
         <section>
             <h2>Grazing</h2>
-            <p>Unlike ducks, which largely feed in water, geese spend much of their time grazing on land. They eat grass, shoots, stems, and seeds. Their bills are adapted for shearing short grasses, stripping the earth bare.</p>
+            <p>Unlike ducks, which largely feed in water, geese spend much of their time grazing on land. They eat grass, shoots, stems, and seeds. Their bills are adapted for shearing short grasses.</p>
         </section>
 
         <section>
             <h2>Seasonal Variations</h2>
-            <p>Their diet changes with the seasons, a cycle of eternal recurrence. In spring and summer, they focus on nutrient-rich grasses and sedges. In autumn and winter, they scavenge for waste grain left in harvested fields, such as corn, wheat, and barley, surviving on the scraps of what once was.</p>
+            <p>Their diet changes with the seasons. In spring and summer, they focus on nutrient-rich grasses and sedges. In autumn and winter, they often scavenge for waste grain left in harvested fields, such as corn, wheat, and barley.</p>
         </section>
 
         <section>
             <h2>Aquatic Plants</h2>
-            <p>They also consume rhizomes and bulbs of aquatic plants, digging them out of the murky mud with their powerful bills. This behavior often happens in shallow waters where they can reach the bottom without diving into the abyss.</p>
+            <p>They also consume rhizomes and bulbs of aquatic plants, digging them out of the mud with their powerful bills. This behavior often happens in shallow waters where they can reach the bottom without diving.</p>
         </section>
 
         <section>
             <h2>Gosling Diet</h2>
-            <p>Young goslings need high protein for rapid growth. While adults are largely herbivorous, goslings may consume small insects and aquatic invertebrates, learning the cruelty of consumption early in life.</p>
+            <p>Young goslings need high protein for rapid growth. While adults are largely herbivorous, goslings may consume small insects and aquatic invertebrates.</p>
         </section>
 
         <section>
             <h2>Human Interference</h2>
-            <p>While often fed by humans, items like white bread are actually harmful to their health, causing a condition known as "angel wing." This nutritional deficiency causes the wings to develop incorrectly, preventing the bird from flying—grounding them forever in this world. Safe alternatives for feeding geese include cracked corn, oats, or chopped lettuce.</p>
+            <p>While often fed by humans, items like white bread are actually harmful to their health, causing a condition known as "angel wing." This nutritional deficiency causes the wings to develop incorrectly, preventing the bird from flying. Safe alternatives for feeding geese include cracked corn, oats, or chopped lettuce.</p>
             
-            <h3>Optimum Melancholy</h3>
-            <p>For a goose to be truly understood, one must acknowledge the immense weight of its existence.</p>
-
             <p><a href="index.html">Return to Main Page</a></p>
         </section>
     </main>
 
     <footer>
-        Goosepedia &copy; 2026. All rights reserved. Beware of the birds.
+        Goosepedia &copy; 2026. All rights reserved.
     </footer>
 
-    <div id="goose-container" class="fat-goose-bg"></div>
-
-    <!-- Help Modal -->
-    <div id="help-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <h2>Magical Help Menu</h2>
-            <p>Welcome to the help menu. Currently, the only help we offer is this magical button. It counts, it shines, it is everything.</p>
-            <div class="magic-area" style="margin: 2rem 0;">
-                <button id="magic-button" class="magic-btn">Click me: 0</button>
-            </div>
-            <p><i>Keep clicking to find the meaning of goose.</i></p>
-        </div>
-    </div>
-
-    <script>
-        // Script to add even more dark geese to the diet page
-        document.addEventListener('DOMContentLoaded', () => {
-            // Apply saved theme
-            const body = document.body;
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme) {
-                if (savedTheme === 'dark') body.classList.add('dark-mode');
-                else if (savedTheme === 'evil') body.classList.add('evil-mode');
-                else if (savedTheme === 'tj') body.classList.add('mode-tj');
-                else if (savedTheme === 'fast') body.classList.add('mode-fast');
-                else if (savedTheme === 'chicken') body.classList.add('mode-chicken');
-                else if (savedTheme === 'moon') body.classList.add('mode-moon');
-                else if (savedTheme === 'mars') body.classList.add('mode-mars');
-            }
-
-            // Mode toggles
-            const toggleDark = document.getElementById('toggle-dark');
-            const toggleEvil = document.getElementById('toggle-evil');
-            const toggleTj = document.getElementById('toggle-tj');
-            const toggleFast = document.getElementById('toggle-fast');
-            const toggleChicken = document.getElementById('toggle-chicken');
-            const toggleMoon = document.getElementById('toggle-moon');
-            const toggleMars = document.getElementById('toggle-mars');
-
-            function setTheme(mode) {
-               body.classList.remove('dark-mode', 'evil-mode', 'mode-tj', 'mode-fast', 'mode-chicken', 'mode-moon', 'mode-mars');
-               if (mode !== 'default') body.classList.add('mode-' + mode);
-               // Handle special class names for backwards compat/specificity
-               if (mode === 'dark') body.classList.add('dark-mode');
-               if (mode === 'evil') body.classList.add('evil-mode');
-               localStorage.setItem('theme', mode);
-            }
-
-            if (toggleDark) toggleDark.addEventListener('click', () => {
-                if(body.classList.contains('dark-mode')) setTheme('default');
-                else setTheme('dark');
-            });
-            if (toggleEvil) toggleEvil.addEventListener('click', () => {
-                if(body.classList.contains('evil-mode')) setTheme('default');
-                else setTheme('evil');
-            });
-            if (toggleTj) toggleTj.addEventListener('click', () => {
-                if(body.classList.contains('mode-tj')) setTheme('default');
-                else setTheme('tj');
-            });
-             if (toggleFast) toggleFast.addEventListener('click', () => {
-                if(body.classList.contains('mode-fast')) setTheme('default');
-                else setTheme('fast');
-            });
-             if (toggleChicken) toggleChicken.addEventListener('click', () => {
-                if(body.classList.contains('mode-chicken')) setTheme('default');
-                else setTheme('chicken');
-            });
-            if (toggleMoon) toggleMoon.addEventListener('click', () => {
-                if(body.classList.contains('mode-moon')) setTheme('default');
-                else setTheme('moon');
-            });
-            if (toggleMars) toggleMars.addEventListener('click', () => {
-                if(body.classList.contains('mode-mars')) setTheme('default');
-                else setTheme('mars');
-            });
-
-            const container = document.getElementById('goose-container');
-            const emoji = '🪿';
-            
-            // Add 600 geese
-            for (let i = 0; i < 600; i++) {
-                const el = document.createElement('div');
-                el.innerText = emoji;
-                el.style.position = 'absolute';
-                el.style.left = Math.random() * 100 + 'vw';
-                el.style.top = Math.random() * 100 + 'vh';
-                
-                // Normal proportions but varied size
-                const scale = 0.5 + Math.random() * 1.5; 
-                el.style.transform = `scale(${scale})`; // Standard aspect ratio
-
-                // Dark mode filter
-                el.style.filter = 'grayscale(100%) brightness(40%) sepia(20%) hue-rotate(240deg)';
-                
-                el.style.fontSize = (15 + Math.random() * 30) + 'px';
-                el.style.opacity = Math.random() * 0.4 + 0.1; // Ghostly opacity
-                
-                // Moon mode floatiness
-                if (savedTheme === 'moon') {
-                    // Make them float upwards
-                    el.style.transition = 'top 10s linear';
-                    setInterval(() => {
-                        let currentTop = parseFloat(el.style.top);
-                        if (currentTop < -50) el.style.top = '105vh'; // Reset to bottom
-                        else el.style.top = (currentTop - (Math.random() * 5)) + 'px';
-                    }, 500);
-                }
-                
-                // Mars mode floatiness/filter
-                if (savedTheme === 'mars') {
-                    // Reddish tint
-                    el.style.filter = 'sepia(100%) saturate(300%) hue-rotate(-50deg) contrast(120%)';
-                    // Slower float
-                    el.style.transition = 'top 10s linear';
-                     setInterval(() => {
-                        let currentTop = parseFloat(el.style.top);
-                        if (currentTop < -50) el.style.top = '105vh'; 
-                        else el.style.top = (currentTop - (Math.random() * 2)) + 'px'; // Slower rise
-                    }, 500);
-                }
-
-                container.appendChild(el);
-            }
-
-            // Help Modal Logic
-            const helpLink = document.getElementById('help-link');
-            const helpModal = document.getElementById('help-modal');
-            const closeButton = document.querySelector('.close-button');
-            const magicButton = document.getElementById('magic-button');
-            let magicCount = 0;
-
-            const creatures = ['🪿', '🦢', '🦆', '✨', '⭐', '🌟', '🦄', '🐲', '👼', '👹', '👻', '💀'];
-
-            if (helpLink) {
-                helpLink.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    helpModal.classList.add('show');
-                });
-            }
-
-            if (closeButton) {
-                closeButton.addEventListener('click', () => {
-                    helpModal.classList.remove('show');
-                });
-            }
-
-            window.addEventListener('click', (e) => {
-                if (e.target === helpModal) {
-                    helpModal.classList.remove('show');
-                }
-            });
-
-            if (magicButton) {
-                magicButton.addEventListener('click', (e) => {
-                    magicCount++;
-                    magicButton.textContent = `Click me: ${magicCount}`;
-                    
-                    // Create sparkles
-                    for(let i=0; i<5; i++) {
-                        createSparkle(e.clientX, e.clientY);
-                    }
-
-                    // Create creatures
-                    for(let i=0; i<3; i++) {
-                        createCreature(e.clientX, e.clientY);
-                    }
-                });
-            }
-
-            function createSparkle(x, y) {
-                const sparkle = document.createElement('div');
-                sparkle.textContent = '✨';
-                sparkle.className = 'magic-sparkle';
-                sparkle.style.left = x + 'px';
-                sparkle.style.top = y + 'px';
-                
-                // Random direction
-                const angle = Math.random() * Math.PI * 2;
-                const velocity = 50 + Math.random() * 100;
-                const tx = Math.cos(angle) * velocity;
-                const ty = Math.sin(angle) * velocity;
-                
-                sparkle.style.setProperty('--tx', `${tx}px`);
-                sparkle.style.setProperty('--ty', `${ty}px`);
-                
-                document.body.appendChild(sparkle);
-                
-                setTimeout(() => {
-                    sparkle.remove();
-                }, 1000);
-            }
-
-            function createCreature(x, y) {
-                const creature = document.createElement('div');
-                creature.textContent = creatures[Math.floor(Math.random() * creatures.length)];
-                creature.className = 'magic-creature';
-                creature.style.left = x + 'px';
-                creature.style.top = y + 'px';
-                
-                // Random direction and distance
-                const angle = Math.random() * Math.PI * 2;
-                const velocity = 100 + Math.random() * 200; // Fly further
-                const tx = Math.cos(angle) * velocity;
-                const ty = Math.sin(angle) * velocity;
-                
-                // Random rotation
-                const rot = -360 + Math.random() * 720;
-                
-                creature.style.setProperty('--tx', `${tx}px`);
-                creature.style.setProperty('--ty', `${ty}px`);
-                creature.style.setProperty('--rot', `${rot}deg`);
-                
-                document.body.appendChild(creature);
-                
-                setTimeout(() => {
-                    creature.remove();
-                }, 1500); // Matches animation duration
-            }
-        });
-    </script>
 </body>
 </html>
