@@ -76,6 +76,10 @@
         </section>
     </main>
 
+    <footer>
+        Goosepedia &copy; 2026. All rights reserved. Beware of the birds.
+    </footer>
+
     <div id="goose-container" class="fat-goose-bg"></div>
 
     <!-- Help Modal -->
@@ -84,7 +88,7 @@
             <span class="close-button">&times;</span>
             <h2>Magical Help Menu</h2>
             <p>Welcome to the help menu. Currently, the only help we offer is this magical button. It counts, it shines, it is everything.</p>
-            <div class="magic-area">
+            <div class="magic-area" style="margin: 2rem 0;">
                 <button id="magic-button" class="magic-btn">Click me: 0</button>
             </div>
             <p><i>Keep clicking to find the meaning of goose.</i></p>
@@ -95,14 +99,46 @@
         // Script to add even more dark geese to the diet page
         document.addEventListener('DOMContentLoaded', () => {
             // Apply saved theme
+            const body = document.body;
             const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark') {
-                document.body.classList.add('dark-mode');
-            } else if (savedTheme === 'evil') {
-                document.body.classList.add('evil-mode');
-            } else if (savedTheme === 'tj') {
-                document.body.classList.add('mode-tj');
+            if (savedTheme) {
+                if (savedTheme === 'dark') body.classList.add('dark-mode');
+                else if (savedTheme === 'evil') body.classList.add('evil-mode');
+                else if (savedTheme === 'tj') body.classList.add('mode-tj');
+                else if (savedTheme === 'fast') body.classList.add('mode-fast');
             }
+
+            // Mode toggles
+            const toggleDark = document.getElementById('toggle-dark');
+            const toggleEvil = document.getElementById('toggle-evil');
+            const toggleTj = document.getElementById('toggle-tj');
+            const toggleFast = document.getElementById('toggle-fast');
+
+            function setTheme(mode) {
+               body.classList.remove('dark-mode', 'evil-mode', 'mode-tj', 'mode-fast');
+               if (mode !== 'default') body.classList.add('mode-' + mode);
+               // Handle special class names for backwards compat/specificity
+               if (mode === 'dark') body.classList.add('dark-mode');
+               if (mode === 'evil') body.classList.add('evil-mode');
+               localStorage.setItem('theme', mode);
+            }
+
+            if (toggleDark) toggleDark.addEventListener('click', () => {
+                if(body.classList.contains('dark-mode')) setTheme('default');
+                else setTheme('dark');
+            });
+            if (toggleEvil) toggleEvil.addEventListener('click', () => {
+                if(body.classList.contains('evil-mode')) setTheme('default');
+                else setTheme('evil');
+            });
+            if (toggleTj) toggleTj.addEventListener('click', () => {
+                if(body.classList.contains('mode-tj')) setTheme('default');
+                else setTheme('tj');
+            });
+             if (toggleFast) toggleFast.addEventListener('click', () => {
+                if(body.classList.contains('mode-fast')) setTheme('default');
+                else setTheme('fast');
+            });
 
             const container = document.getElementById('goose-container');
             const emoji = '🪿';

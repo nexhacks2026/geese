@@ -88,13 +88,17 @@
         </section>
     </main>
 
+    <footer>
+        Goosepedia &copy; 2026. All rights reserved. Beware of the birds.
+    </footer>
+
     <!-- Help Modal -->
     <div id="help-modal" class="modal">
         <div class="modal-content">
             <span class="close-button">&times;</span>
             <h2>Magical Help Menu</h2>
             <p>Welcome to the help menu. Currently, the only help we offer is this magical button. It counts, it shines, it is everything.</p>
-            <div class="magic-area">
+            <div class="magic-area" style="margin: 2rem 0;">
                 <button id="magic-button" class="magic-btn">Click me: 0</button>
             </div>
             <p><i>Keep clicking to find the meaning of goose.</i></p>
@@ -105,6 +109,7 @@
         // Script to add hundreds of emo geese
         document.addEventListener('DOMContentLoaded', () => {
             // Apply saved theme
+            const body = document.body;
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'dark') {
                 document.body.classList.add('dark-mode');
@@ -112,6 +117,30 @@
                 document.body.classList.add('evil-mode');
             } else if (savedTheme === 'tj') {
                 document.body.classList.add('mode-tj');
+            }
+
+            // Mode toggles
+            const toggleDark = document.getElementById('toggle-dark');
+            const toggleEvil = document.getElementById('toggle-evil');
+            const toggleTj = document.getElementById('toggle-tj');
+            const toggleFast = document.getElementById('toggle-fast');
+
+            if (toggleDark) toggleDark.addEventListener('click', () => setTheme('dark'));
+            if (toggleEvil) toggleEvil.addEventListener('click', () => setTheme('evil'));
+            if (toggleTj) toggleTj.addEventListener('click', () => setTheme('tj'));
+            if (toggleFast) toggleFast.addEventListener('click', () => setTheme('fast'));
+
+            function setTheme(mode) {
+                if (body.classList.contains('mode-' + mode) || (mode === 'dark' && body.classList.contains('dark-mode')) || (mode === 'evil' && body.classList.contains('evil-mode'))) {
+                    body.className = ''; 
+                    localStorage.setItem('theme', 'default');
+                } else {
+                    body.className = ''; // clear others
+                    if (mode === 'dark') body.classList.add('dark-mode');
+                    else if (mode === 'evil') body.classList.add('evil-mode');
+                    else body.classList.add('mode-' + mode);
+                    localStorage.setItem('theme', mode);
+                }
             }
 
             const container = document.createElement('div');
@@ -122,7 +151,7 @@
             container.style.width = '100vw';
             container.style.height = '100vh';
             container.style.pointerEvents = 'none';
-            container.style.zIndex = '10000';
+            container.style.zIndex = '1';
             container.style.overflow = 'hidden';
             
             document.body.appendChild(container);
