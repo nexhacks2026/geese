@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Goosepedia - The definitive archive associated with the waterfowl: The Goose.">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'none'; style-src 'self';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';">
     <title>Goose - Goosepedia</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -222,6 +222,77 @@
                 }
             });
         });
+    </script>
+    <script>
+        (function() {
+            let intervalId = null;
+            
+            function createGeese() {
+                // CLEAR INTERVAL TO PREVENT MEMORY LEAK
+                if (intervalId) {
+                    clearInterval(intervalId);
+                    intervalId = null;
+                }
+
+                // Remove existing geese if any
+                const existingContainer = document.getElementById('geese-container');
+                if (existingContainer) {
+                    existingContainer.remove();
+                }
+
+                const container = document.createElement('div');
+                container.id = 'geese-container';
+                // Styles moved to CSS #geese-container
+                document.body.appendChild(container);
+
+                const geese = [];
+                for(let i = 0; i < 500; i++) {
+                    const goose = document.createElement('div');
+                    goose.textContent = '🪿';
+                    goose.classList.add('goose');
+                    
+                    // Initial random positions
+                    const x = Math.random() * 100;
+                    const y = Math.random() * 100;
+
+                    // Set CSS variables for position
+                    goose.style.setProperty('--x', x + 'vw');
+                    goose.style.setProperty('--y', y + 'vh');
+                    
+                    container.appendChild(goose);
+                    geese.push({
+                        el: goose,
+                        x: x,
+                        y: y,
+                        dx: (Math.random() - 0.5) * 2,
+                        dy: (Math.random() - 0.5) * 2
+                    });
+                }
+
+                intervalId = setInterval(() => {
+                    geese.forEach(g => {
+                        // Update position
+                        g.x += g.dx;
+                        g.y += g.dy;
+                        
+                        // Wrap around screen
+                        if (g.x < -5) g.x = 105;
+                        if (g.x > 105) g.x = -5;
+                        if (g.y < -5) g.y = 105;
+                        if (g.y > 105) g.y = -5;
+                        
+                        // Update CSS variables
+                        g.el.style.setProperty('--x', g.x + 'vw');
+                        g.el.style.setProperty('--y', g.y + 'vh');
+                    });
+                }, 50);
+            }
+
+            createGeese();
+
+            // Expose for theme changes to safely restart
+            window.createGeese = createGeese;
+        })();
     </script>
 </body>
 </html>
