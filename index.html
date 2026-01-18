@@ -107,6 +107,17 @@
         </section>
 
         <section>
+            <h2>Notable Species</h2>
+            <p>Global goose populations include several distinct species, broadly categorized into "grey geese" (Anser) and "black geese" (Branta).</p>
+            <ul>
+                <li><b>Canada Goose (<i>Branta canadensis</i>)</b>: Native to North America, highly recognizable by its black head and white chinstrap.</li>
+                <li><b>Greylag Goose (<i>Anser anser</i>)</b>: Large, grey, and the ancestor of most domesticated geese in Europe.</li>
+                <li><b>Snow Goose (<i>Anser caerulescens</i>)</b>: White morphs are brilliant white with black wingtips, often seen in massive flocks.</li>
+                <li><b>Nene (<i>Branta sandvicensis</i>)</b>: The Hawaiian goose, noted for being the world's rarest goose species.</li>
+            </ul>
+        </section>
+
+        <section>
             <h2>Relationship with Humans</h2>
             
             <h3>Domestication</h3>
@@ -349,6 +360,23 @@
 
             // Expose for theme changes to safely restart
             window.createGeese = createGeese;
+
+            // EASTER EGG: KONAMI CODE
+            const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+            let konamiPosition = 0;
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === konamiCode[konamiPosition]) {
+                    konamiPosition++;
+                    if (konamiPosition === konamiCode.length) {
+                        alert("🦢 HONK HONK! YOU'VE ACTIVATED SUPER GOOSE MODE! 🦢");
+                        document.body.style.filter = "invert(1)";
+                        konamiPosition = 0;
+                    }
+                } else {
+                    konamiPosition = 0;
+                }
+            });
         })();
     </script>
 </body>
