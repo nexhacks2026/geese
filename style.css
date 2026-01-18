@@ -1,12 +1,14 @@
+
 :root {
-    --bg-color: #202124;
-    --text-color: #e8eaed;
-    --link-color: #8ab4f8;
-    --link-visited: #c58af9;
-    --border-color: #5f6368;
-    --sidebar-bg: #2e2f31; /* Slightly lighter than main bg */
-    --content-bg: #202124;
+    --bg-color: #f8f9fa;
+    --text-color: #202124;
+    --link-color: #0645ad;
+    --link-visited: #551a8b;
+    --border-color: #a2a9b1;
+    --sidebar-bg: #ffffff;
+    --content-bg: #ffffff;
     --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --goose-orange: #f28500; /* Accent color */
 }
 
 body {
@@ -31,7 +33,7 @@ body {
 
 .sidebar h3 {
     font-size: 0.85rem;
-    color: #9aa0a6;
+    color: #495057; /* Darker grey for light background */
     border-bottom: 1px solid var(--border-color);
     margin-bottom: 0.5rem;
     padding-bottom: 0.25rem;
@@ -104,7 +106,7 @@ a:hover {
 /* Infobox mimic */
 .infobox {
     float: right;
-    background-color: var(--sidebar-bg);
+    background-color: #f1f1f1; /* Lighter grey for infobox */
     border: 1px solid var(--border-color);
     padding: 0.5rem;
     margin-left: 1rem;
@@ -112,13 +114,14 @@ a:hover {
     font-size: 0.9rem;
 }
 
-.infobox img {
-    width: 100%;
-    height: auto;
-    display: block;
-    margin-bottom: 0.5rem;
-    background-color: #ccc; /* Placeholder for image */
-    min-height: 200px;
+.infobox .placeholder {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: bold;
+    background-color: var(--goose-orange);
 }
 
 .infobox table {
@@ -128,6 +131,14 @@ a:hover {
 .infobox th {
     text-align: left;
     padding: 0.25rem;
+}
+
+.infobox .goose-header {
+    text-align: center;
+    background-color: var(--goose-orange);
+    padding: 5px;
+    color: #fff;
+    font-weight: bold;
 }
 
 .infobox td {
