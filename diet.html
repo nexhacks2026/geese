@@ -38,6 +38,7 @@
                      <div class="dropdown-item" id="toggle-evil">Evil Mode</div>
                      <div class="dropdown-item" id="toggle-tj">TJ Mode</div>
                      <div class="dropdown-item" id="toggle-fast">Fast Mode</div>
+                     <div class="dropdown-item" id="toggle-chicken">Chicken Mode</div>
                  </div>
             </li>
         </ul>
@@ -137,6 +138,7 @@
                 else if (savedTheme === 'evil') body.classList.add('evil-mode');
                 else if (savedTheme === 'tj') body.classList.add('mode-tj');
                 else if (savedTheme === 'fast') body.classList.add('mode-fast');
+                else if (savedTheme === 'chicken') body.classList.add('mode-chicken');
             }
 
             // Mode toggles
@@ -144,9 +146,10 @@
             const toggleEvil = document.getElementById('toggle-evil');
             const toggleTj = document.getElementById('toggle-tj');
             const toggleFast = document.getElementById('toggle-fast');
+            const toggleChicken = document.getElementById('toggle-chicken');
 
             function setTheme(mode) {
-               body.classList.remove('dark-mode', 'evil-mode', 'mode-tj', 'mode-fast');
+               body.classList.remove('dark-mode', 'evil-mode', 'mode-tj', 'mode-fast', 'mode-chicken');
                if (mode !== 'default') body.classList.add('mode-' + mode);
                // Handle special class names for backwards compat/specificity
                if (mode === 'dark') body.classList.add('dark-mode');
@@ -169,6 +172,10 @@
              if (toggleFast) toggleFast.addEventListener('click', () => {
                 if(body.classList.contains('mode-fast')) setTheme('default');
                 else setTheme('fast');
+            });
+             if (toggleChicken) toggleChicken.addEventListener('click', () => {
+                if(body.classList.contains('mode-chicken')) setTheme('default');
+                else setTheme('chicken');
             });
 
             const container = document.getElementById('goose-container');
