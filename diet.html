@@ -106,6 +106,36 @@
     </footer>
 
     <script nonce="8IBTHwOdqNKAWeKl7plt8g==">
+        document.addEventListener('DOMContentLoaded', () => {
+            // Developer Environment: Client-side Test Suite
+            window.runTests = () => {
+                console.group('Goosepedia Diet Tests');
+                const tests = [
+                    { description: 'Navbar should be present', condition: !!document.querySelector('.navbar') },
+                    { description: 'Diet Table should exist', condition: !!document.querySelector('.diet-table') },
+                     { description: 'Diet Table should have 4 data rows', condition: document.querySelectorAll('.diet-table tbody tr').length === 4 },
+                    { description: 'Secret snack should be hidden initially', condition: document.getElementById('secret-snack') && document.getElementById('secret-snack').style.display === 'none' },
+                    { description: 'Title should be correct', condition: document.title.includes('Goose Diet') }
+                ];
+
+                let allPassed = true;
+                tests.forEach(test => {
+                    const status = test.condition ? 'PASS' : 'FAIL';
+                    const style = test.condition ? 'color: green' : 'color: red; font-weight: bold';
+                    console.log(`%c[${status}] ${test.description}`, style);
+                    if (!test.condition) allPassed = false;
+                });
+                console.groupEnd();
+                
+                if (allPassed) console.log('%c✓ All Diet tests passed', 'color: green; font-weight: bold');
+                else console.warn('%c⚠ Some Diet tests failed', 'color: red; font-weight: bold');
+                
+                return allPassed;
+            };
+            console.log("Dev Env: Run window.runTests() to verify application state.");
+        });
+    </script>
+    <script nonce="8IBTHwOdqNKAWeKl7plt8g==">
         (function() {
             let intervalId = null;
             
