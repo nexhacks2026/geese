@@ -6,12 +6,44 @@
     --link-visited: #551a8b;
     --border-color: #a2a9b1;
     --sidebar-bg: #e1f5fe;
+    --sidebar-gradient-end: #b3e5fc;
+    --sidebar-border: #b3e5fc;
     --content-bg: #ffffff;
     --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     --goose-orange: #f28500; /* Accent color */
     --goose-green: #2e7d32;
     --goose-blue: #0277bd;
     --goose-grey: #808080;
+    --infobox-bg: #f9fbe7;
+    --infobox-border: #dce775;
+    --infobox-shadow: rgba(0,0,0,0.1);
+    --welcome-bg: #e8f5e9;
+    --welcome-border: #a5d6a7;
+    --ascii-bg: #fafafa;
+    --hover-bg: rgba(255, 255, 255, 0.5);
+}
+
+body[data-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --link-color: #8ab4f8;
+    --link-visited: #c58af9;
+    --border-color: #444;
+    --sidebar-bg: #1e1e1e;
+    --sidebar-gradient-end: #252525;
+    --sidebar-border: #333;
+    --content-bg: #1e1e1e;
+    --goose-blue: #64b5f6;
+    --goose-green: #81c784;
+    --goose-orange: #ffb74d;
+    --goose-grey: #9e9e9e;
+    --infobox-bg: #2a2a2a;
+    --infobox-border: #555;
+    --infobox-shadow: rgba(0,0,0,0.5);
+    --welcome-bg: #1b2e1e;
+    --welcome-border: #2e7d32;
+    --ascii-bg: #2d2d2d;
+    --hover-bg: rgba(255, 255, 255, 0.1);
 }
 
 body {
@@ -21,20 +53,22 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     display: flex;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 /* Sidebar */
 .sidebar {
     width: 176px; /* Standard Wiki width */
     background-color: var(--sidebar-bg);
-    background: linear-gradient(180deg, var(--sidebar-bg) 0%, #b3e5fc 100%);
+    background: linear-gradient(180deg, var(--sidebar-bg) 0%, var(--sidebar-gradient-end) 100%);
     padding: 1rem;
     min-height: 100vh;
     height: 100%;
     box-sizing: border-box;
     position: fixed;
-    border-right: 1px solid #b3e5fc;
+    border-right: 1px solid var(--sidebar-border);
     z-index: 100; /* Ensure sidebar stays on top of background geese */
+    transition: background-color 0.3s, border-color 0.3s;
 }
 
 .sidebar h3 {
@@ -66,7 +100,7 @@ body {
 .sidebar a:hover {
     text-decoration: none;
     color: var(--goose-orange);
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: var(--hover-bg);
     padding-left: 5px;
     transition: padding 0.2s;
 }
@@ -82,6 +116,7 @@ body {
     box-shadow: -2px 0 5px rgba(0,0,0,0.05);
     z-index: 10;
     position: relative;
+    transition: background-color 0.3s;
 }
 
 h1 {
@@ -130,13 +165,13 @@ a:hover {
 /* Infobox mimic */
 .infobox {
     float: right;
-    background-color: #f9fbe7;
-    border: 1px solid #dce775;
+    background-color: var(--infobox-bg);
+    border: 1px solid var(--infobox-border);
     padding: 0.5rem;
     margin-left: 1rem;
     width: 300px;
     font-size: 0.9rem;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 2px 2px 5px var(--infobox-shadow);
 }
 
 .infobox .placeholder {
@@ -145,8 +180,8 @@ a:hover {
     justify-content: center;
     color: #fff;
     font-weight: bold;
-    background-color: #fff;
-    border: 1px solid #ccc;
+    background-color: var(--content-bg);
+    border: 1px solid var(--border-color);
     margin-bottom: 10px;
     padding: 10px;
 }
@@ -181,14 +216,14 @@ a:hover {
     display: block;
     color: var(--goose-orange);
     text-align: center;
-    text-shadow: 1px 1px 0px #fff;
+    text-shadow: 1px 1px 0px var(--content-bg);
 }
 
 /* Welcome Section */
 .welcome-box {
-    background-color: #e8f5e9;
+    background-color: var(--welcome-bg);
     padding: 15px;
-    border: 2px solid #a5d6a7;
+    border: 2px solid var(--welcome-border);
     margin-bottom: 20px;
     border-radius: 8px;
 }
@@ -210,7 +245,7 @@ a:hover {
     white-space: pre;
     line-height: 1.1;
     color: var(--text-color);
-    background-color: #fafafa;
+    background-color: var(--ascii-bg);
     padding: 15px;
     border-radius: 8px;
     border: 2px dashed var(--goose-grey);
