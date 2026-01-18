@@ -513,9 +513,27 @@ body.mode-moon .main-content {
     animation: moon-float 3s ease-in-out infinite;
 }
 
-@keyframes moon-float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
+/* Mars Mode */
+body.mode-mars {
+    --bg-body: #200505;
+    --bg-sidebar: #330a0a;
+    --bg-card: #4a1212;
+    --text-main: #ffd1bd;
+    --text-muted: #e08e79;
+    --border: #751e1e;
+    --accent-primary: #ff4500;
+    --accent-secondary: #ff7b00;
+    --link: #ff9e80;
+    
+    background-image: 
+        radial-gradient(circle at 50% 0%, rgba(255, 69, 0, 0.15), transparent 70%),
+        radial-gradient(white, rgba(255,200,200,.15) 1px, transparent 2px);
+    background-size: 100% 100%, 300px 300px;
+    background-position: 0 0, 20px 40px;
+}
+
+body.mode-mars .main-content {
+    animation: moon-float 6s ease-in-out infinite; /* Reuse moon float, just slower for heavy space suit feel */
 }
 
 /* Mobile Responsiveness */

@@ -30,6 +30,7 @@
                      <div class="dropdown-item" id="toggle-fast">Fast Mode</div>
                      <div class="dropdown-item" id="toggle-chicken">Chicken Mode</div>
                      <div class="dropdown-item" id="toggle-moon">Moon Mode</div>
+                     <div class="dropdown-item" id="toggle-mars">Mars Mode</div>
                  </div>
             </li>
             <!-- DevOps Link -->
@@ -130,6 +131,8 @@
                 document.body.classList.add('mode-chicken');
             } else if (savedTheme === 'moon') {
                 document.body.classList.add('mode-moon');
+            } else if (savedTheme === 'mars') {
+                document.body.classList.add('mode-mars');
             }
 
             // Mode toggles
@@ -139,6 +142,7 @@
             const toggleFast = document.getElementById('toggle-fast');
             const toggleChicken = document.getElementById('toggle-chicken');
             const toggleMoon = document.getElementById('toggle-moon');
+            const toggleMars = document.getElementById('toggle-mars');
 
             if (toggleDark) toggleDark.addEventListener('click', () => setTheme('dark'));
             if (toggleEvil) toggleEvil.addEventListener('click', () => setTheme('evil'));
@@ -146,6 +150,7 @@
             if (toggleFast) toggleFast.addEventListener('click', () => setTheme('fast'));
             if (toggleChicken) toggleChicken.addEventListener('click', () => setTheme('chicken'));
             if (toggleMoon) toggleMoon.addEventListener('click', () => setTheme('moon'));
+            if (toggleMars) toggleMars.addEventListener('click', () => setTheme('mars'));
 
             function setTheme(mode) {
                 if (body.classList.contains('mode-' + mode) || (mode === 'dark' && body.classList.contains('dark-mode')) || (mode === 'evil' && body.classList.contains('evil-mode'))) {
@@ -199,6 +204,18 @@
                        const ty = Math.random() * 50 - 25;
                        goose.style.transform = `scale(${scale}) translate(${tx}px, ${ty}px)`;
                    }, 5000 + Math.random() * 5000);
+                }
+
+                // Mars mode gravity
+                if (savedTheme === 'mars') {
+                   // Random floating animation, slower
+                   goose.style.transition = 'transform 20s ease-in-out';
+                   goose.style.filter = 'sepia(100%) saturate(300%) hue-rotate(-50deg) contrast(120%)'; // Reddish tint
+                   setInterval(() => {
+                       const tx = Math.random() * 20 - 10;
+                       const ty = Math.random() * 20 - 10;
+                       goose.style.transform = `scale(${scale}) translate(${tx}px, ${ty}px)`;
+                   }, 10000 + Math.random() * 5000);
                 }
                 
                 container.appendChild(goose);

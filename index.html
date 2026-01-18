@@ -29,6 +29,7 @@
                      <div class="dropdown-item" id="toggle-fast">Fast Mode</div>
                      <div class="dropdown-item" id="toggle-chicken">Chicken Mode</div>
                      <div class="dropdown-item" id="toggle-moon">Moon Mode</div>
+                     <div class="dropdown-item" id="toggle-mars">Mars Mode</div>
                  </div>
             </li>
             <!-- DevOps Link -->
@@ -320,6 +321,7 @@
             const toggleFast = document.getElementById('toggle-fast');
             const toggleChicken = document.getElementById('toggle-chicken');
             const toggleMoon = document.getElementById('toggle-moon');
+            const toggleMars = document.getElementById('toggle-mars');
             const body = document.body;
 
             // Load saved state
@@ -337,6 +339,8 @@
                 body.classList.add('mode-chicken');
             } else if (savedTheme === 'moon') {
                 body.classList.add('mode-moon');
+            } else if (savedTheme === 'mars') {
+                body.classList.add('mode-mars');
             }
 
             // Help Modal Logic
@@ -516,8 +520,22 @@
                 });
             }
 
+            if (toggleMars) {
+                toggleMars.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (body.classList.contains('mode-mars')) {
+                        body.classList.remove('mode-mars');
+                        localStorage.setItem('theme', 'default');
+                    } else {
+                        resetModes();
+                        body.classList.add('mode-mars');
+                        localStorage.setItem('theme', 'mars');
+                    }
+                });
+            }
+
             function resetModes() {
-                body.classList.remove('dark-mode', 'evil-mode', 'mode-tj', 'mode-fast', 'mode-chicken', 'mode-moon');
+                body.classList.remove('dark-mode', 'evil-mode', 'mode-tj', 'mode-fast', 'mode-chicken', 'mode-moon', 'mode-mars');
                 deactivateEvilMode();
             }
 
@@ -659,6 +677,13 @@
                     walker.style.bottom = (50 + Math.random() * 200) + 'px';
                 }
                 
+                // If Mars Mode, apply a red tint and slower float?
+                 if (document.body.classList.contains('mode-mars')) {
+                    inner.style.animation = 'goose-float 8s infinite ease-in-out'; // Slower gravity
+                    walker.style.bottom = (50 + Math.random() * 100) + 'px';
+                    inner.style.filter = 'sepia(100%) saturate(300%) hue-rotate(-50deg) contrast(120%)'; // Reddish tint
+                }
+
                 setTimeout(() => {
                     walker.remove();
                 }, duration * 1000);
