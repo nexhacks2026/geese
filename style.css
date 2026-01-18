@@ -169,8 +169,7 @@ h2 {
 
 h3 {
     font-size: 1.4rem;
-    color: var(--secondary-color);
-    margin: 2rem 0 1rem;
+    color: var(--secondary-color);\n    margin: 2rem 0 1rem;
 }
 
 p {
@@ -226,8 +225,7 @@ p {
 
 .ascii-display {
     font-family: var(--font-mono);
-    background: #000;
-    color: var(--primary-color);
+    background: #000;\n    color: var(--primary-color);
     padding: 2rem;
     border-radius: var(--radius);
     overflow-x: auto;
@@ -259,8 +257,7 @@ p {
 }
 
 .magic-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(255,85,85,0.4);
+    transform: translateY(-3px);\n    box-shadow: 0 8px 25px rgba(255,85,85,0.4);
 }
 
 /* Modal */
@@ -270,8 +267,7 @@ p {
     z-index: 2000;
     left: 0;
     top: 0;
-    width: 100%;
-    height: 100%;
+    width: 100%;\n    height: 100%;
     background-color: rgba(0,0,0,0.8);
     backdrop-filter: blur(5px);
     align-items: center;
@@ -336,6 +332,15 @@ body.evil-mode {
 body.mode-tj {
     --primary-color: #00bcd4;
     --secondary-color: #ffeb3b;
+}
+
+body.mode-chicken {
+    --bg-color: #fff9c4;
+    --surface-color: #fff176;
+    --primary-color: #e65100;
+    --secondary-color: #fdd835;
+    --text-color: #3e2723;
+    --accent-color: #8d6e63;
 }
 
 body.mode-fast .main-wrapper {
