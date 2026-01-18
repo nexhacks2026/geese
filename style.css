@@ -298,6 +298,24 @@ footer {
     filter: drop-shadow(2px 2px 0px white);
 }
 
+/* Diet Table */
+.diet-table {
+    width: 100%;
+    margin-top: 1rem;
+    border: 3px solid black;
+    background: white;
+}
+.diet-table th {
+    background: green;
+    color: white;
+    padding: 10px;
+}
+.diet-table td {
+    padding: 10px;
+    border: 1px solid black;
+    font-weight: bold;
+}
+
 /* Mobile */
 @media (max-width: 700px) {
     .infobox {
