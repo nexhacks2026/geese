@@ -19,6 +19,13 @@
             <li><a href="index.html" class="nav-link">Home</a></li>
             <li><a href="anatomy.html" class="nav-link">Anatomy</a></li>
             <li><a href="diet.html" class="nav-link">Diet</a></li>
+            <li><button id="help-link" class="nav-link">Help</button></li>
+            <li class="settings-dropdown">
+                <span class="nav-link" aria-haspopup="true">Settings ▾</span>
+                <div class="dropdown-content">
+                    <a href="#" class="theme-toggle">Switch Theme</a>
+                </div>
+            </li>
             <li><button id="openHelpModal" class="nav-link" style="background:none; border:none; cursor:pointer; font-family:inherit; font-size:inherit;">Help</button></li>
         </ul>
     </nav>
@@ -35,7 +42,7 @@
 
         <aside class="infobox">
             <div class="placeholder">
-                <pre class="ascii-art" style="margin: 0; border: none; font-size: 0.7rem; background-color: transparent; padding: 0;">
+                <pre class="ascii-art">
       __
   __( o)>
   \___)
@@ -132,6 +139,17 @@
         Goosepedia &copy; 2026. All rights reserved.
     </footer>
 
+    <!-- Help Modal -->
+    <div id="help-modal" class="modal" hidden>
+        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="help-title">
+            <h2 id="help-title">Help & Accessibility</h2>
+            <p>Welcome to Goosepedia! We strive to make our content accessible to everyone.</p>
+            <ul>
+                <li>Use <strong>Tab</strong> to navigate links.</li>
+                <li>Press <strong>Esc</strong> to close this specific help window.</li>
+                <li>Links are underlined when hovered or focused.</li>
+            </ul>
+            <button id="close-modal" class="close-btn">Close Help</button>
     <!-- Accessible Modal -->
     <div id="helpModal" class="modal" role="dialog" aria-labelledby="modalTitle" aria-modal="true" aria-hidden="true">
         <div class="modal-content">
@@ -151,6 +169,10 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+
+            // Close on Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && !modal.hasAttribute('hidden')) {
             const modal = document.getElementById('helpModal');
             const openBtn = document.getElementById('openHelpModal');
             const closeBtn = document.getElementById('closeHelpModal');
@@ -216,6 +238,77 @@
                 }
             });
         });
+    </script>
+    <script>
+        (function() {
+            let intervalId = null;
+            
+            function createGeese() {
+                // CLEAR INTERVAL TO PREVENT MEMORY LEAK
+                if (intervalId) {
+                    clearInterval(intervalId);
+                    intervalId = null;
+                }
+
+                // Remove existing geese if any
+                const existingContainer = document.getElementById('geese-container');
+                if (existingContainer) {
+                    existingContainer.remove();
+                }
+
+                const container = document.createElement('div');
+                container.id = 'geese-container';
+                // Styles moved to CSS #geese-container
+                document.body.appendChild(container);
+
+                const geese = [];
+                for(let i = 0; i < 500; i++) {
+                    const goose = document.createElement('div');
+                    goose.textContent = '🪿';
+                    goose.classList.add('goose');
+                    
+                    // Initial random positions
+                    const x = Math.random() * 100;
+                    const y = Math.random() * 100;
+
+                    // Set CSS variables for position
+                    goose.style.setProperty('--x', x + 'vw');
+                    goose.style.setProperty('--y', y + 'vh');
+                    
+                    container.appendChild(goose);
+                    geese.push({
+                        el: goose,
+                        x: x,
+                        y: y,
+                        dx: (Math.random() - 0.5) * 2,
+                        dy: (Math.random() - 0.5) * 2
+                    });
+                }
+
+                intervalId = setInterval(() => {
+                    geese.forEach(g => {
+                        // Update position
+                        g.x += g.dx;
+                        g.y += g.dy;
+                        
+                        // Wrap around screen
+                        if (g.x < -5) g.x = 105;
+                        if (g.x > 105) g.x = -5;
+                        if (g.y < -5) g.y = 105;
+                        if (g.y > 105) g.y = -5;
+                        
+                        // Update CSS variables
+                        g.el.style.setProperty('--x', g.x + 'vw');
+                        g.el.style.setProperty('--y', g.y + 'vh');
+                    });
+                }, 50);
+            }
+
+            createGeese();
+
+            // Expose for theme changes to safely restart
+            window.createGeese = createGeese;
+        })();
     </script>
 </body>
 </html>
