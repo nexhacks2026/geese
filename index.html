@@ -205,6 +205,8 @@
             const magicButton = document.getElementById('magic-button');
             let magicCount = 0;
 
+            const creatures = ['🪿', '🦢', '🦆', '✨', '⭐', '🌟', '🦄', '🐲', '👼', '👹', '👻', '💀'];
+
             if (helpLink) {
                 helpLink.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -234,6 +236,11 @@
                         createSparkle(e.clientX, e.clientY);
                     }
                     
+                    // Create creatures
+                    for(let i=0; i<3; i++) {
+                        createCreature(e.clientX, e.clientY);
+                    }
+
                     if (magicCount % 10 === 0) {
                        // Small easter egg
                        console.log("Honk!");
@@ -262,6 +269,33 @@
                 setTimeout(() => {
                     sparkle.remove();
                 }, 1000);
+            }
+
+            function createCreature(x, y) {
+                const creature = document.createElement('div');
+                creature.textContent = creatures[Math.floor(Math.random() * creatures.length)];
+                creature.className = 'magic-creature';
+                creature.style.left = x + 'px';
+                creature.style.top = y + 'px';
+                
+                // Random direction and distance
+                const angle = Math.random() * Math.PI * 2;
+                const velocity = 100 + Math.random() * 200; // Fly further
+                const tx = Math.cos(angle) * velocity;
+                const ty = Math.sin(angle) * velocity;
+                
+                // Random rotation
+                const rot = -360 + Math.random() * 720;
+                
+                creature.style.setProperty('--tx', `${tx}px`);
+                creature.style.setProperty('--ty', `${ty}px`);
+                creature.style.setProperty('--rot', `${rot}deg`);
+                
+                document.body.appendChild(creature);
+                
+                setTimeout(() => {
+                    creature.remove();
+                }, 1500); // Matches animation duration
             }
 
             toggleDark.addEventListener('click', (e) => {
