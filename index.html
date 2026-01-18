@@ -25,7 +25,7 @@
                     <a href="#" class="theme-toggle">Switch Theme</a>
                 </div>
             </li>
-            <li><button id="openHelpModal" class="nav-link" style="background:none; border:none; cursor:pointer; font-family:inherit; font-size:inherit;">Help</button></li>
+            <li><button id="openHelpModal" class="nav-link">Help</button></li>
         </ul>
     </nav>
 
@@ -219,6 +219,13 @@
                             e.preventDefault();
                         }
                     }
+                }
+            });
+            
+            // Global Escape key support
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.classList.contains('open')) {
+                    closeModal();
                 }
             });
         });
