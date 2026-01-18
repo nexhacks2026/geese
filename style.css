@@ -223,6 +223,42 @@ a:hover {
     font-weight: bold;
 }
 
+/* Magical Button */
+.help-interactive {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.magical-button {
+    background: linear-gradient(45deg, #ff5555, #bd93f9, #6272a4);
+    border: none;
+    border-radius: 25px;
+    padding: 15px 30px;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+    margin: 20px 0;
+    font-family: inherit;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.magical-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    filter: brightness(1.1);
+}
+
+.magical-button:active {
+    transform: scale(0.95);
+}
+
 /* --- THEME MODES --- */
 
 /* Mega Geese Dark Mode */

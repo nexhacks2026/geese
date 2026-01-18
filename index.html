@@ -25,7 +25,7 @@
         <ul>
             <li><a href="#" id="help-link">Help</a></li>
             <li>
-                <a href="#">Help</a>
+                <a href="#help">Help</a>
                 <div style="font-size: 0.7rem; color: var(--goose-orange); margin-top: 2px; line-height: 1.1;">
                      Mason Bair saved all of the geese from certain doom.
                 </div>
@@ -152,6 +152,16 @@
             <li><a href="#">List of Anseriformes</a></li>
             <li><a href="#">Bird Migration</a></li>
         </ul>
+
+        <!-- Help Section (Newly Added) -->
+        <h2 id="help">Help & Magic</h2>
+        <p>If you find yourself lost in the gooseverse, do not panic. Panic attracts the geese.</p>
+        <p>Instead, use this magical tool we have provided. It serves no productive purpose, which is the highest form of art.</p>
+        
+        <div class="help-interactive">
+             <button id="magic-btn" class="magical-button">Honks: 0</button>
+             <p><em>Click to increment the honk counter. Witness the beauty found in simple numbers.</em></p>
+        </div>
     </div>
 
     <!-- Help Modal -->
@@ -346,6 +356,44 @@
                 document.body.appendChild(goose);
             }
 
+            // Magical Button Logic
+            const magicBtn = document.getElementById('magic-btn');
+            if (magicBtn) {
+                let count = 0;
+                magicBtn.addEventListener('click', () => {
+                    count++;
+                    magicBtn.textContent = `Honks: ${count}`;
+                    
+                    // Simple visual effect
+                    const r = Math.floor(Math.random() * 200 + 55);
+                    const g = Math.floor(Math.random() * 200 + 55);
+                    const b = Math.floor(Math.random() * 200 + 55);
+                    magicBtn.style.background = `linear-gradient(45deg, rgb(${r},${0},${0}), rgb(${0},${g},${b}))`;
+                    
+                    // Creates a floating 'Honk!' element
+                    const honk = document.createElement('span');
+                    honk.innerText = "HONK!";
+                    honk.style.position = 'absolute';
+                    const rect = magicBtn.getBoundingClientRect();
+                    honk.style.left = (rect.left + rect.width / 2) + 'px';
+                    honk.style.top = (rect.top) + 'px';
+                    honk.style.color = '#ff5555';
+                    honk.style.fontWeight = 'bold';
+                    honk.style.pointerEvents = 'none';
+                    honk.style.transition = 'opacity 0.8s, transform 0.8s';
+                    honk.style.zIndex = '1000';
+                    document.body.appendChild(honk);
+                    
+                    // Force reflow
+                    honk.offsetHeight;
+                    
+                    honk.style.opacity = '0';
+                    honk.style.transform = `translate(${Math.random() * 40 - 20}px, -40px) rotate(${Math.random() * 20 - 10}deg)`;
+                    
+                    setTimeout(() => {
+                        honk.remove();
+                    }, 800);
+                });
             // --- Walking Geese Logic ---
             
             // Start the geese walking
