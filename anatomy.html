@@ -103,9 +103,9 @@
                 document.body.appendChild(container);
 
                 const geese = [];
-                const speedFactor = 0.3; // Adjust speed for 60fps refresh rate
+                const speedFactor = 4.0; // CRAZY SPEED
 
-                for(let i = 0; i < 500; i++) {
+                for(let i = 0; i < 2000; i++) {
                     const goose = document.createElement('div');
                     goose.textContent = '🪿';
                     goose.classList.add('goose');
@@ -123,8 +123,8 @@
                         el: goose,
                         x: x,
                         y: y,
-                        dx: (Math.random() - 0.5) * 2,
-                        dy: (Math.random() - 0.5) * 2
+                        dx: (Math.random() - 0.5) * 4 * speedFactor,
+                        dy: (Math.random() - 0.5) * 4 * speedFactor
                     });
                 }
 
