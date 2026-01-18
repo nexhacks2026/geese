@@ -221,3 +221,103 @@ a:hover {
     text-align: center;
     font-weight: bold;
 }
+
+/* --- THEME MODES --- */
+
+/* Mega Geese Dark Mode */
+body.dark-mode {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --link-color: #8ab4f8;
+    --link-visited: #ce93d8;
+    --border-color: #555;
+    --sidebar-bg: #1e1e1e;
+    --content-bg: #1e1e1e;
+    --goose-orange: #ffab40;
+    --goose-green: #69f0ae;
+    --goose-blue: #40c4ff;
+    --goose-grey: #bdbdbd;
+}
+
+body.dark-mode .sidebar {
+    background: linear-gradient(180deg, #1e1e1e 0%, #263238 100%);
+    border-right-color: #333;
+}
+
+body.dark-mode .welcome-box, 
+body.dark-mode .ascii-art,
+body.dark-mode .infobox {
+    background-color: #263238;
+    border-color: #455a64;
+    color: #eceff1;
+}
+
+body.dark-mode .infobox {
+    background-color: #263238;
+    border-color: #444;
+}
+
+body.dark-mode .infobox .placeholder {
+    background-color: #37474f;
+    border-color: #546e7a;
+    color: #eceff1;
+}
+
+/* Evil Day Creative Mode */
+body.evil-mode {
+    --bg-color: #2b0c0c;
+    --text-color: #ffcccc;
+    --link-color: #ff5252;
+    --link-visited: #d50000;
+    --border-color: #b71c1c;
+    --sidebar-bg: #3e0a0a;
+    --content-bg: #4a0d0d;
+    --goose-orange: #ff3d00;
+    --goose-green: #dd2c00;
+    --goose-blue: #bf360c;
+    --goose-grey: #5d4037;
+}
+
+body.evil-mode .sidebar {
+    background: linear-gradient(180deg, #3e0a0a 0%, #000000 100%);
+    border-right-color: #8b0000;
+}
+
+body.evil-mode .welcome-box,
+body.evil-mode .ascii-art,
+body.evil-mode .infobox {
+    background-color: #3e0a0a;
+    border-color: #b71c1c;
+    color: #ff8a80;
+}
+
+body.evil-mode .infobox {
+    background-color: #3e0a0a;
+    border-color: #b71c1c;
+}
+
+body.evil-mode .infobox .placeholder {
+    background-color: #5d1010;
+    border-color: #b71c1c;
+    color: #ff8a80;
+}
+
+body.evil-mode .logo {
+    color: #ff1744;
+    text-shadow: 2px 2px 4px #000;
+}
+
+/* Evil Goose Class for Creative Mode */
+.spawned-evil-goose {
+    animation: jitter 0.5s infinite;
+    filter: sepia(100%) saturate(10000%) hue-rotate(320deg) drop-shadow(0 0 5px red);
+    user-select: none;
+}
+
+@keyframes jitter {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(2px, 2px) rotate(5deg); }
+    50% { transform: translate(0, -2px) rotate(0deg); }
+    75% { transform: translate(-2px, 0) rotate(-5deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
