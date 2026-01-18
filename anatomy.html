@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Goose Anatomy - Detailed biological structures of the goose.">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'nonce-8IBTHwOdqNKAWeKl7plt8g=='; style-src 'self';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'nonce-8IBTHwOdqNKAWeKl7plt8g=='; style-src 'self' 'unsafe-inline';">
     <title>Goose Anatomy - Goosepedia</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -29,7 +29,7 @@
     </nav>
 
     <main class="main-content">
-        <h1>Goose Anatomy</h1>
+        <h1 id="anatomy-title">Goose Anatomy</h1>
         <div class="site-sub">From Goosepedia, the free encyclopedia</div>
 
         <section>
@@ -50,6 +50,11 @@
         <section>
             <h2>The Neck</h2>
             <p>Their long necks are not just for elegance; they allow geese to reach underwater vegetation without diving. This adaptation lets them upend (tip forward) to feed on submerged plants while keeping an eye out for danger above water.</p>
+        </section>
+
+        <section>
+            <h2>Digestive System</h2>
+            <p>Geese obtain nutrition from a variety of sources but have a relatively inefficient digestive system compared to other herbivores. This means they must eat large quantities of food and defecate frequently—often every 12 to 20 minutes.</p>
         </section>
 
         <section>
@@ -150,6 +155,20 @@
 
             // Expose for theme changes to safely restart
             window.createGeese = createGeese;
+
+            // EASTER EGG: HONKATOMY
+            const title = document.getElementById('anatomy-title');
+            let clickCount = 0;
+            if (title) {
+                title.addEventListener('click', () => {
+                   clickCount++;
+                   if (clickCount === 5) {
+                       title.textContent = "Honkatomy";
+                       title.style.color = "red";
+                       alert("YOU HAVE UNLOCKED THE FORBIDDEN KNOWLEDGE OF HONKATOMY!");
+                   }
+                });
+            }
         })();
     </script>
 </body>
