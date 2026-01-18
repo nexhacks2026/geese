@@ -1,14 +1,16 @@
 
 :root {
-    --bg-color: #f8f9fa;
+    --bg-color: #f0f7ff;
     --text-color: #202124;
     --link-color: #0645ad;
     --link-visited: #551a8b;
     --border-color: #a2a9b1;
-    --sidebar-bg: #ffffff;
+    --sidebar-bg: #e1f5fe;
     --content-bg: #ffffff;
     --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     --goose-orange: #f28500; /* Accent color */
+    --goose-green: #2e7d32;
+    --goose-blue: #0277bd;
 }
 
 body {
@@ -25,16 +27,17 @@ body {
     width: 176px; /* Standard Wiki width */
     background-color: var(--sidebar-bg);
     padding: 1rem;
-    height: 100vh;
+    min-height: 100vh;
+    height: 100%;
     box-sizing: border-box;
     position: fixed;
-    border-right: 1px solid var(--border-color);
+    border-right: 1px solid #b3e5fc;
 }
 
 .sidebar h3 {
     font-size: 0.85rem;
-    color: #495057; /* Darker grey for light background */
-    border-bottom: 1px solid var(--border-color);
+    color: var(--goose-blue);
+    border-bottom: 1px solid #b3e5fc;
     margin-bottom: 0.5rem;
     padding-bottom: 0.25rem;
 }
@@ -57,6 +60,7 @@ body {
 
 .sidebar a:hover {
     text-decoration: underline;
+    color: var(--goose-orange);
 }
 
 /* Main Content */
@@ -65,6 +69,8 @@ body {
     padding: 2rem;
     max-width: 960px;
     flex-grow: 1;
+    background-color: var(--content-bg);
+    min-height: 100vh;
 }
 
 h1 {
@@ -74,6 +80,7 @@ h1 {
     padding-bottom: 0.5rem;
     margin-bottom: 1rem;
     font-weight: normal;
+    color: var(--goose-green);
 }
 
 h2 {
@@ -83,6 +90,7 @@ h2 {
     padding-bottom: 0.25rem;
     margin-top: 2rem;
     font-weight: normal;
+    color: var(--goose-blue);
 }
 
 p {
@@ -106,8 +114,8 @@ a:hover {
 /* Infobox mimic */
 .infobox {
     float: right;
-    background-color: #f1f1f1; /* Lighter grey for infobox */
-    border: 1px solid var(--border-color);
+    background-color: #f9fbe7;
+    border: 1px solid #dce775;
     padding: 0.5rem;
     margin-left: 1rem;
     width: 300px;
@@ -151,15 +159,15 @@ a:hover {
     font-weight: bold;
     margin-bottom: 1rem;
     display: block;
-    color: var(--text-color);
+    color: var(--goose-orange);
     text-align: center;
 }
 
 /* Welcome Section */
 .welcome-box {
-    background-color: #fcf8e3;
+    background-color: #e8f5e9;
     padding: 15px;
-    border: 1px solid #faebcc;
+    border: 1px solid #c8e6c9;
     margin-bottom: 20px;
     border-radius: 4px;
 }
@@ -168,6 +176,7 @@ a:hover {
     margin-top: 0;
     border-bottom: none;
     font-size: 1.5rem;
+    color: var(--goose-green);
 }
 
 .welcome-box p {
