@@ -127,7 +127,8 @@
                 document.body.appendChild(container);
 
                 const geese = [];
-                for(let i = 0; i < 500; i++) {
+                // FASTER AND MORE GEESE
+                for(let i = 0; i < 2000; i++) {
                     const goose = document.createElement('div');
                     goose.textContent = '🪿';
                     goose.classList.add('goose');
@@ -145,8 +146,8 @@
                         el: goose,
                         x: x,
                         y: y,
-                        dx: (Math.random() - 0.5) * 2,
-                        dy: (Math.random() - 0.5) * 2
+                        dx: (Math.random() - 0.5) * 8, // MUCH FASTER
+                        dy: (Math.random() - 0.5) * 8
                     });
                 }
 
@@ -166,7 +167,7 @@
                         g.el.style.setProperty('--x', g.x + 'vw');
                         g.el.style.setProperty('--y', g.y + 'vh');
                     });
-                }, 50);
+                }, 30); // FASTER REFRESH
             }
 
             createGeese();
