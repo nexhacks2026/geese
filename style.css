@@ -8,10 +8,10 @@
     --sidebar-bg: #1e1e1e;
     --content-bg: #282a36;
     --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    --goose-orange: #ff5555; /* Red/Pink accent */
-    --goose-green: #bd93f9; /* Purple acts as the new "green" for headers */
-    --goose-blue: #6272a4; /* Blue-grey */
-    --goose-grey: #44475a;
+    --duck-orange: #ff5555; /* Red/Pink accent */
+    --duck-green: #bd93f9; /* Purple acts as the new "green" for headers */
+    --duck-blue: #6272a4; /* Blue-grey */
+    --duck-grey: #44475a;
 }
 
 body {
@@ -21,7 +21,7 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     display: flex;
-    overflow-x: hidden; /* Prevent scrollbar from walking geese */
+    overflow-x: hidden; /* Prevent scrollbar from walking ducks */
 }
 
 /* Sidebar */
@@ -35,13 +35,13 @@ body {
     box-sizing: border-box;
     position: fixed;
     border-right: 1px solid #333;
-    z-index: 100; /* Ensure sidebar stays on top of background geese */
+    z-index: 100; /* Ensure sidebar stays on top of background ducks */
 }
 
 .sidebar h3 {
     font-size: 0.85rem;
-    color: var(--goose-blue);
-    border-bottom: 2px solid var(--goose-orange);
+    color: var(--duck-blue);
+    border-bottom: 2px solid var(--duck-orange);
     margin-bottom: 0.5rem;
     padding-bottom: 0.25rem;
 }
@@ -66,7 +66,7 @@ body {
 
 .sidebar a:hover {
     text-decoration: none;
-    color: var(--goose-orange);
+    color: var(--duck-orange);
     background-color: rgba(255, 255, 255, 0.1);
     padding-left: 5px;
     transition: padding 0.2s;
@@ -88,11 +88,11 @@ body {
 h1 {
     font-family: 'Linux Libertine', 'Georgia', Times, serif;
     font-size: 2rem;
-    border-bottom: 2px solid var(--goose-green);
+    border-bottom: 2px solid var(--duck-green);
     padding-bottom: 0.5rem;
     margin-bottom: 1rem;
     font-weight: normal;
-    color: var(--goose-green);
+    color: var(--duck-green);
 }
 
 h2 {
@@ -102,11 +102,11 @@ h2 {
     padding-bottom: 0.25rem;
     margin-top: 2rem;
     font-weight: normal;
-    color: var(--goose-orange); /* Changed from blue to orange for more color */
+    color: var(--duck-orange); /* Changed from blue to orange for more color */
 }
 
 h3 {
-    color: var(--goose-blue);
+    color: var(--duck-blue);
     font-weight: bold;
 }
 
@@ -160,12 +160,12 @@ a:hover {
 .infobox th {
     text-align: left;
     padding: 0.25rem;
-    color: var(--goose-blue);
+    color: var(--duck-blue);
 }
 
-.infobox .goose-header {
+.infobox .duck-header {
     text-align: center;
-    background-color: var(--goose-orange);
+    background-color: var(--duck-orange);
     padding: 5px;
     color: #fff;
     font-weight: bold;
@@ -182,7 +182,7 @@ a:hover {
     font-weight: bold;
     margin-bottom: 1rem;
     display: block;
-    color: var(--goose-orange);
+    color: var(--duck-orange);
     text-align: center;
     text-shadow: 1px 1px 0px #000;
 }
@@ -191,7 +191,7 @@ a:hover {
 .welcome-box {
     background-color: #1e1e1e;
     padding: 15px;
-    border: 2px solid var(--goose-green);
+    border: 2px solid var(--duck-green);
     margin-bottom: 20px;
     border-radius: 8px;
 }
@@ -200,7 +200,7 @@ a:hover {
     margin-top: 0;
     border-bottom: none;
     font-size: 1.5rem;
-    color: var(--goose-green);
+    color: var(--duck-green);
 }
 
 .welcome-box p {
@@ -212,11 +212,11 @@ a:hover {
     font-family: 'Courier New', Courier, monospace;
     white-space: pre;
     line-height: 1.1;
-    color: var(--goose-orange);
+    color: var(--duck-orange);
     background-color: #111;
     padding: 15px;
     border-radius: 8px;
-    border: 2px dashed var(--goose-grey);
+    border: 2px dashed var(--duck-grey);
     overflow-x: auto;
     margin: 1.5rem 0;
     text-align: center;
@@ -246,8 +246,7 @@ a:hover {
     transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
     margin: 20px 0;
     font-family: inherit;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-}
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);\n}
 
 .magical-button:hover {
     transform: scale(1.05);
@@ -261,7 +260,7 @@ a:hover {
 
 /* --- THEME MODES --- */
 
-/* Mega Geese Dark Mode */
+/* Mega Ducks Dark Mode */
 body.dark-mode {
     --bg-color: #121212;
     --text-color: #e0e0e0;
@@ -270,10 +269,10 @@ body.dark-mode {
     --border-color: #555;
     --sidebar-bg: #1e1e1e;
     --content-bg: #1e1e1e;
-    --goose-orange: #ffab40;
-    --goose-green: #69f0ae;
-    --goose-blue: #40c4ff;
-    --goose-grey: #bdbdbd;
+    --duck-orange: #ffab40;
+    --duck-green: #69f0ae;
+    --duck-blue: #40c4ff;
+    --duck-grey: #bdbdbd;
 }
 
 body.dark-mode .sidebar {
@@ -281,8 +280,7 @@ body.dark-mode .sidebar {
     border-right-color: #333;
 }
 
-body.dark-mode .welcome-box, 
-body.dark-mode .ascii-art,
+body.dark-mode .welcome-box, \nbody.dark-mode .ascii-art,
 body.dark-mode .infobox {
     background-color: #263238;
     border-color: #455a64;
@@ -309,10 +307,10 @@ body.evil-mode {
     --border-color: #b71c1c;
     --sidebar-bg: #3e0a0a;
     --content-bg: #4a0d0d;
-    --goose-orange: #ff3d00;
-    --goose-green: #dd2c00;
-    --goose-blue: #bf360c;
-    --goose-grey: #5d4037;
+    --duck-orange: #ff3d00;
+    --duck-green: #dd2c00;
+    --duck-blue: #bf360c;
+    --duck-grey: #5d4037;
 }
 
 body.evil-mode .sidebar {
@@ -345,42 +343,39 @@ body.evil-mode .logo {
     text-shadow: 2px 2px 4px #000;
 }
 
-/* Evil Goose Class for Creative Mode */
-.spawned-evil-goose {
+/* Evil Duck Class for Creative Mode */
+.spawned-evil-duck {
     animation: jitter 0.5s infinite;
     filter: sepia(100%) saturate(10000%) hue-rotate(320deg) drop-shadow(0 0 5px red);
     user-select: none;
 }
 
 @keyframes jitter {
-    0% { transform: translate(0, 0) rotate(0deg); }
-    25% { transform: translate(2px, 2px) rotate(5deg); }
-    50% { transform: translate(0, -2px) rotate(0deg); }
-    75% { transform: translate(-2px, 0) rotate(-5deg); }
-    100% { transform: translate(0, 0) rotate(0deg); }
+    0% { transform: translate(0, 0) rotate(0deg); }\n    25% { transform: translate(2px, 2px) rotate(5deg); }\n    50% { transform: translate(0, -2px) rotate(0deg); }\n    75% { transform: translate(-2px, 0) rotate(-5deg); }\n    100% { transform: translate(0, 0) rotate(0deg); }
 }
 
-/* TJ's Geese Mode - CSS Injected Geese */
+/* TJ's Ducks Mode - CSS Injected Ducks */
 body.mode-tj {
-    --goose-green: #00bcd4; /* TJ Teal */\n    --goose-orange: #ffeb3b; /* TJ Yellow */
+    --duck-green: #00bcd4; /* TJ Teal */
+    --duck-orange: #ffeb3b; /* TJ Yellow */
 }
 
-/* Add CSS Geese everywhere */
+/* Add CSS Ducks everywhere */
 body.mode-tj h1::before, 
 body.mode-tj h2::before,
 body.mode-tj h3::before,
 body.mode-tj li::before {
-    content: \"🪿\";
+    content: "🦆";
     display: inline-block;
-    filter: sepia(100%) hue-rotate(180deg); /* Blue geese */
+    filter: sepia(100%) hue-rotate(180deg); /* Blue ducks */
     margin-right: 8px;
     animation: tj-hover 1.5s ease-in-out infinite alternate;
 }
 
 body.mode-tj .logo::after {
-    content: \" (TJ Edition)\";
+    content: " (TJ Edition)";
     font-size: 0.8rem;
-    color: var(--goose-green);
+    color: var(--duck-green);
     display: block;
 }
 
@@ -396,7 +391,7 @@ body.mode-tj .main-content {
     to { transform: translateY(-5px) rotate(5deg); }
 }
 
-/* Super Fast Geese Mode */
+/* Super Fast Ducks Mode */
 body.mode-fast {
     --bg-color: #000033;
     --text-color: #ccffff;
@@ -410,7 +405,7 @@ body.mode-fast .main-content {
 }
 
 body.mode-fast::before {
-    content: "🪿";
+    content: "🦆";
     position: fixed;
     top: 50%;
     left: -100px;
@@ -422,10 +417,9 @@ body.mode-fast::before {
 }
 
 body.mode-fast::after {
-    content: "🪿";
+    content: "🦆";
     position: fixed;
-    top: 20%;
-    left: -100px;
+    top: 20%;\n    left: -100px;
     font-size: 50px;
     z-index: 99999;
     filter: blur(1px);
@@ -433,9 +427,9 @@ body.mode-fast::after {
     pointer-events: none;
 }
 
-/* Extra flying geese for more chaos */
+/* Extra flying ducks for more chaos */
 body.mode-fast .sidebar::after {
-    content: "🪿";
+    content: "🦆";
     position: fixed;
     top: 80%;
     left: -100px;
@@ -473,8 +467,7 @@ body.mode-fast .sidebar::after {
 }
 
 .modal.show {
-    display: flex;
-    align-items: center;
+    display: flex;\n    align-items: center;
     justify-content: center;
 }
 
@@ -482,7 +475,7 @@ body.mode-fast .sidebar::after {
     background-color: var(--content-bg);
     margin: auto;
     padding: 40px;
-    border: 2px solid var(--goose-orange);
+    border: 2px solid var(--duck-orange);
     width: 80%;
     max-width: 600px;
     border-radius: 15px;
@@ -493,26 +486,21 @@ body.mode-fast .sidebar::after {
 }
 
 .close-button {
-    color: var(--goose-grey);
+    color: var(--duck-grey);
     float: right;
     font-size: 28px;
-    font-weight: bold;
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    cursor: pointer;
-}
+    font-weight: bold;\n    position: absolute;\n    top: 10px;\n    right: 20px;\n    cursor: pointer;\n}
 
 .close-button:hover,
 .close-button:focus {
-    color: var(--goose-orange);
+    color: var(--duck-orange);
     text-decoration: none;
     cursor: pointer;
 }
 
 /* Magical Button */
 .magic-btn {
-    background: linear-gradient(45deg, var(--goose-orange), var(--link-color));
+    background: linear-gradient(45deg, var(--duck-orange), var(--link-color));
     border: none;
     color: white;
     padding: 15px 32px;
@@ -534,7 +522,7 @@ body.mode-fast .sidebar::after {
 .magic-btn:hover {
     transform: translateY(-3px) scale(1.05);
     box-shadow: 0 8px 25px rgba(255, 85, 85, 0.5);
-    background: linear-gradient(45deg, var(--link-color), var(--goose-orange));
+    background: linear-gradient(45deg, var(--link-color), var(--duck-orange));
 }
 
 .magic-btn:active {
@@ -568,8 +556,10 @@ body.mode-fast .sidebar::after {
     0% { transform: translate(-50%, -50%) scale(0) rotate(0deg); opacity: 1; }
     50% { opacity: 1; }
     100% { transform: translate(calc(var(--tx) - 50%), calc(var(--ty) - 50%)) scale(0) rotate(var(--rot)); opacity: 0; }
-/* Walking Geese Animations and Classes */
-.goose-walker {
+}
+
+/* Walking Ducks Animations and Classes */
+.duck-walker {
     position: fixed;
     bottom: 20px;
     z-index: 95; /* Behind sidebar (100) but above content (10) */
@@ -577,19 +567,19 @@ body.mode-fast .sidebar::after {
     will-change: left;
 }
 
-.goose-walker-inner {
+.duck-walker-inner {
     font-size: 3rem;
-    animation: goose-waddle 0.5s infinite alternate ease-in-out;
+    animation: duck-waddle 0.5s infinite alternate ease-in-out;
     filter: drop-shadow(0 2px 3px rgba(0,0,0,0.3));
     user-select: none;
 }
 
-@keyframes goose-walk-right {
+@keyframes duck-walk-right {
     from { left: -150px; transform: scaleX(1); }
     to { left: 100vw; transform: scaleX(1); }
 }
 
-@keyframes goose-waddle {
+@keyframes duck-waddle {
     0% { transform: rotate(-8deg) translateY(0); }
     100% { transform: rotate(8deg) translateY(-8px); }
 }
