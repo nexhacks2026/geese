@@ -308,4 +308,15 @@ footer {
 }
 
 /* Mobile */
-@media (max-width: 700px) {\n    .infobox {\n        float: none;\n        width: 100%;\n        margin: 1rem 0;\n    }\n    \n    .navbar {\n        flex-direction: column;\n        gap: 1rem;\n    }\n}
+@media (max-width: 700px) {
+    .infobox {
+        float: none;
+        width: 100%;
+        margin: 1rem 0;
+    }
+    
+    .navbar {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
