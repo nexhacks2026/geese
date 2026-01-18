@@ -142,11 +142,16 @@ a:hover {
     font-size: 1.5rem;
     font-weight: 800;
     font-family: "Courier New", monospace;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 .nav-link:hover {
     color: white !important;
     background: red;
+    text-decoration: none;
 }
 
 /* Dropdown Menu */
@@ -274,6 +279,47 @@ footer {
     color: red;
     font-weight: bold;
     transform: rotate(5deg);
+    position: relative;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.close-button {
+    background: transparent;
+    border: none;
+    font-size: 2rem;
+    font-weight: bold;
+    color: black;
+    cursor: pointer;
+}
+
+.close-button:hover {
+    color: white;
+    transform: rotate(90deg);
+}
+
+.close-btn {
+    width: 100%;
+    background: black;
+    color: white;
+    border: 3px solid red;
+    padding: 10px;
+    font-family: var(--font-mono);
+    cursor: pointer;
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.close-btn:hover {
+    background: white;
+    color: black;
+    border-color: blue;
 }
 
 /* Geese Animation - PURE CHAOS */
