@@ -73,6 +73,16 @@
     <script>
         // Script to add even more dark geese to the diet page
         document.addEventListener('DOMContentLoaded', () => {
+            // Apply saved theme
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+            } else if (savedTheme === 'evil') {
+                document.body.classList.add('evil-mode');
+            } else if (savedTheme === 'tj') {
+                document.body.classList.add('mode-tj');
+            }
+
             const container = document.getElementById('goose-container');
             const emoji = '🪿';
             

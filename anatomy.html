@@ -67,6 +67,16 @@
     <script>
         // Script to add hundreds of emo geese
         document.addEventListener('DOMContentLoaded', () => {
+            // Apply saved theme
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+            } else if (savedTheme === 'evil') {
+                document.body.classList.add('evil-mode');
+            } else if (savedTheme === 'tj') {
+                document.body.classList.add('mode-tj');
+            }
+
             const container = document.createElement('div');
             container.id = 'geese-overlay';
             container.style.position = 'fixed';
