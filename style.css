@@ -77,8 +77,7 @@ body {
     padding: 2rem;
     max-width: 960px;
     flex-grow: 1;
-    background-color: var(--content-bg);
-    min-height: 100vh;
+    background-color: var(--content-bg);\n    min-height: 100vh;
     box-shadow: -2px 0 5px rgba(0,0,0,0.5);
     z-index: 10;
     position: relative;
@@ -147,8 +146,7 @@ a:hover {
     color: var(--text-color);
     font-weight: bold;
     background-color: #333;
-    border: 1px solid #555;
-    margin-bottom: 10px;
+    border: 1px solid #555;\n    margin-bottom: 10px;
     padding: 10px;
 }
 
@@ -271,8 +269,7 @@ body.evil-mode {
     --link-visited: #d50000;
     --border-color: #b71c1c;
     --sidebar-bg: #3e0a0a;
-    --content-bg: #4a0d0d;
-    --goose-orange: #ff3d00;
+    --content-bg: #4a0d0d;\n    --goose-orange: #ff3d00;
     --goose-green: #dd2c00;
     --goose-blue: #bf360c;
     --goose-grey: #5d4037;
@@ -320,4 +317,41 @@ body.evil-mode .logo {
     50% { transform: translate(0, -2px) rotate(0deg); }
     75% { transform: translate(-2px, 0) rotate(-5deg); }
     100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+/* TJ's Geese Mode - CSS Injected Geese */
+body.mode-tj {
+    --goose-green: #00bcd4; /* TJ Teal */
+    --goose-orange: #ffeb3b; /* TJ Yellow */
+}
+
+/* Add CSS Geese everywhere */
+body.mode-tj h1::before, 
+body.mode-tj h2::before,
+body.mode-tj h3::before,
+body.mode-tj li::before {
+    content: "🪿";
+    display: inline-block;
+    filter: sepia(100%) hue-rotate(180deg); /* Blue geese */
+    margin-right: 8px;
+    animation: tj-hover 1.5s ease-in-out infinite alternate;
+}
+
+body.mode-tj .logo::after {
+    content: " (TJ Edition)";
+    font-size: 0.8rem;
+    color: var(--goose-green);
+    display: block;
+}
+
+body.mode-tj .main-content {
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 100px 100px;
+}
+
+@keyframes tj-hover {
+    from { transform: translateY(0) rotate(-5deg); }
+    to { transform: translateY(-5px) rotate(5deg); }
 }
