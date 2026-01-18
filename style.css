@@ -63,6 +63,7 @@ a:hover {
     position: sticky;
     top: 0;
     z-index: 100;
+    width: 100%;
 }
 
 .logo {
@@ -219,11 +220,15 @@ a:hover {
 footer {
     text-align: center;
     padding: 2rem;
-    color: var(--text-muted);
+    color: #ffffff;
     font-size: 0.9rem;
     border-top: 1px solid var(--border);
     margin-top: auto;
-    background-color: var(--bg-body);
+    background-color: #24292f;
+}
+
+footer a {
+    color: #58a6ff;
 }
 
 /* Modal Styles */
@@ -317,6 +322,12 @@ footer {
     
     .navbar {
         flex-direction: column;
+        gap: 1rem;
+    }
+
+    .nav-menu {
+        flex-wrap: wrap;
+        justify-content: center;
         gap: 1rem;
     }
 }
