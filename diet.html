@@ -108,6 +108,7 @@
                 document.body.classList.add('dark-mode');
             } else if (savedTheme === 'evil') {
                 document.body.classList.add('evil-mode');
+                activateEvilMode();
             } else if (savedTheme === 'tj') {
                 document.body.classList.add('mode-tj');
             } else if (savedTheme === 'fast') {
@@ -209,10 +210,12 @@
                     e.preventDefault();
                     if (body.classList.contains('evil-mode')) {
                         body.classList.remove('evil-mode');
+                        deactivateEvilMode();
                         localStorage.setItem('theme', 'default');
                     } else {
                         resetModes();
                         body.classList.add('evil-mode');
+                        activateEvilMode();
                         localStorage.setItem('theme', 'evil');
                     }
                 });
@@ -248,6 +251,44 @@
 
             function resetModes() {
                 body.classList.remove('dark-mode', 'evil-mode', 'mode-tj', 'mode-fast');
+                deactivateEvilMode();
+            }
+
+            function activateEvilMode() {
+                document.addEventListener('click', spawnEvilGooseHandler);
+                // Spawn one to start if none exist
+                if (document.querySelectorAll('.spawned-evil-goose').length === 0) {
+                     spawnEvilGoose(window.innerWidth/2, window.innerHeight/2);
+                }
+            }
+
+            function deactivateEvilMode() {
+                document.removeEventListener('click', spawnEvilGooseHandler);
+                document.querySelectorAll('.spawned-evil-goose').forEach(el => el.remove());
+            }
+
+            function spawnEvilGooseHandler(e) {
+                // Ignore clicks on sidebar/links to avoid interfering with navigation too much
+                if (e.target.closest('a') || e.target.closest('.sidebar') || e.target.closest('.modal-content')) return;
+                spawnEvilGoose(e.clientX, e.clientY);
+            }
+
+            function spawnEvilGoose(x, y) {
+                const goose = document.createElement('div');
+                goose.textContent = '🪿';
+                goose.className = 'spawned-evil-goose';
+                goose.style.position = 'fixed';
+                goose.style.left = x + 'px';
+                goose.style.top = y + 'px';
+                goose.style.fontSize = (30 + Math.random() * 30) + 'px';
+                goose.style.zIndex = '10005';
+                goose.style.pointerEvents = 'none';
+                
+                // Random transform
+                const angle = Math.random() * 360;
+                goose.style.transform = `rotate(${angle}deg)`;
+                
+                document.body.appendChild(goose);
             }
 
             function createSparkle(x, y) {
