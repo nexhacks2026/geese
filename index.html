@@ -582,12 +582,28 @@
             function startWalkingGeese() {
                 spawnWalkingGoose();
                 
+                // Regular walker
                 setInterval(() => {
                     if (document.hidden) return; 
-                    if (Math.random() < 0.4) {
+                    if (Math.random() < 0.6) {
                         spawnWalkingGoose();
                     }
-                }, 3000);
+                }, 2000);
+
+                // Occasional flock
+                setInterval(() => {
+                    if (document.hidden) return;
+                    if (Math.random() < 0.3) {
+                        spawnFlock();
+                    }
+                }, 8000);
+            }
+
+            function spawnFlock() {
+                const flockSize = Math.floor(Math.random() * 5) + 3;
+                for (let i = 0; i < flockSize; i++) {
+                    setTimeout(() => spawnWalkingGoose(), i * 300 + (Math.random() * 200));
+                }
             }
 
             function spawnWalkingGoose() {
