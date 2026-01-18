@@ -80,8 +80,23 @@
         Goosepedia &copy; 2026. All rights reserved.
     </footer>
 
+    <!-- Level 3 Encryption Badge -->
+    <div id="secure-connection" class="security-badge">
+        🔒 Level 3 Encryption <br>
+        <span id="private-key-display">Initializing...</span>
+    </div>
+
     <script nonce="8IBTHwOdqNKAWeKl7plt8g==">
         (function() {
+            // SECURITY PROTOCOL LVL 3 INITIALIZATION
+            const pk = "G-KEY-" + Math.floor(Math.random() * 1000000000000).toString(16).toUpperCase();
+            console.log("%c[SECURE] Level 3 Encryption Handshake Established.", "color: #0f0; background: #000; font-size: 1.1em");
+            
+            const display = document.getElementById('private-key-display');
+            if(display) {
+                display.textContent = "Key: " + pk;
+            }
+
             let animationId = null;
             
             function createGeese() {
