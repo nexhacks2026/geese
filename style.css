@@ -21,6 +21,7 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     display: flex;
+    overflow-x: hidden; /* Prevent scrollbar from walking geese */
 }
 
 /* Sidebar */
@@ -222,6 +223,42 @@ a:hover {
     font-weight: bold;
 }
 
+/* Magical Button */
+.help-interactive {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.magical-button {
+    background: linear-gradient(45deg, #ff5555, #bd93f9, #6272a4);
+    border: none;
+    border-radius: 25px;
+    padding: 15px 30px;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+    margin: 20px 0;
+    font-family: inherit;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.magical-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    filter: brightness(1.1);
+}
+
+.magical-button:active {
+    transform: scale(0.95);
+}
+
 /* --- THEME MODES --- */
 
 /* Mega Geese Dark Mode */
@@ -325,8 +362,7 @@ body.evil-mode .logo {
 
 /* TJ's Geese Mode - CSS Injected Geese */
 body.mode-tj {
-    --goose-green: #00bcd4; /* TJ Teal */
-    --goose-orange: #ffeb3b; /* TJ Yellow */
+    --goose-green: #00bcd4; /* TJ Teal */\n    --goose-orange: #ffeb3b; /* TJ Yellow */
 }
 
 /* Add CSS Geese everywhere */
@@ -334,7 +370,7 @@ body.mode-tj h1::before,
 body.mode-tj h2::before,
 body.mode-tj h3::before,
 body.mode-tj li::before {
-    content: "🪿";
+    content: \"🪿\";
     display: inline-block;
     filter: sepia(100%) hue-rotate(180deg); /* Blue geese */
     margin-right: 8px;
@@ -342,7 +378,7 @@ body.mode-tj li::before {
 }
 
 body.mode-tj .logo::after {
-    content: " (TJ Edition)";
+    content: \" (TJ Edition)\";
     font-size: 0.8rem;
     color: var(--goose-green);
     display: block;
@@ -358,6 +394,68 @@ body.mode-tj .main-content {
 @keyframes tj-hover {
     from { transform: translateY(0) rotate(-5deg); }
     to { transform: translateY(-5px) rotate(5deg); }
+}
+
+/* Super Fast Geese Mode */
+body.mode-fast {
+    --bg-color: #000033;
+    --text-color: #ccffff;
+    --link-color: #00ffff;
+    overflow-x: hidden; 
+}
+
+body.mode-fast .main-content {
+    animation: speed-shake 0.1s infinite;
+    transform: skewX(-5deg);
+}
+
+body.mode-fast::before {
+    content: "🪿";
+    position: fixed;
+    top: 50%;
+    left: -100px;
+    font-size: 100px;
+    z-index: 99999;
+    filter: blur(2px);
+    animation: super-fast-fly 2s linear infinite;
+    pointer-events: none;
+}
+
+body.mode-fast::after {
+    content: "🪿";
+    position: fixed;
+    top: 20%;
+    left: -100px;
+    font-size: 50px;
+    z-index: 99999;
+    filter: blur(1px);
+    animation: super-fast-fly 1.5s linear infinite 0.5s;
+    pointer-events: none;
+}
+
+/* Extra flying geese for more chaos */
+body.mode-fast .sidebar::after {
+    content: "🪿";
+    position: fixed;
+    top: 80%;
+    left: -100px;
+    font-size: 80px;
+    z-index: 99999;
+    filter: blur(1px);
+    animation: super-fast-fly 1s linear infinite 0.2s;
+    pointer-events: none;
+}
+
+@keyframes super-fast-fly {
+    0% { left: -100px; transform: scaleX(1); }
+    50% { transform: scaleX(0.8) skewX(-20deg); }
+    100% { left: 120vw; transform: scaleX(1); }
+}
+
+@keyframes speed-shake {
+    0% { transform: translate(1px, 1px) skewX(-5deg); }
+    50% { transform: translate(-1px, -1px) skewX(-5deg); }
+    100% { transform: translate(1px, 1px) skewX(-5deg); }
 }
 
 /* Help Modal Styles for the Magical Page */
@@ -470,4 +568,28 @@ body.mode-tj .main-content {
     0% { transform: translate(-50%, -50%) scale(0) rotate(0deg); opacity: 1; }
     50% { opacity: 1; }
     100% { transform: translate(calc(var(--tx) - 50%), calc(var(--ty) - 50%)) scale(0) rotate(var(--rot)); opacity: 0; }
+/* Walking Geese Animations and Classes */
+.goose-walker {
+    position: fixed;
+    bottom: 20px;
+    z-index: 95; /* Behind sidebar (100) but above content (10) */
+    pointer-events: none;
+    will-change: left;
+}
+
+.goose-walker-inner {
+    font-size: 3rem;
+    animation: goose-waddle 0.5s infinite alternate ease-in-out;
+    filter: drop-shadow(0 2px 3px rgba(0,0,0,0.3));
+    user-select: none;
+}
+
+@keyframes goose-walk-right {
+    from { left: -150px; transform: scaleX(1); }
+    to { left: 100vw; transform: scaleX(1); }
+}
+
+@keyframes goose-waddle {
+    0% { transform: rotate(-8deg) translateY(0); }
+    100% { transform: rotate(8deg) translateY(-8px); }
 }

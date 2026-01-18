@@ -25,7 +25,7 @@
         <ul>
             <li><a href="#" id="help-link">Help</a></li>
             <li>
-                <a href="#">Help</a>
+                <a href="#help">Help</a>
                 <div style="font-size: 0.7rem; color: var(--goose-orange); margin-top: 2px; line-height: 1.1;">
                      Mason Bair saved all of the geese from certain doom.
                 </div>
@@ -39,6 +39,7 @@
             <li><a href="#" id="toggle-dark">Mega Geese Dark Mode</a></li>
             <li><a href="#" id="toggle-evil">Evil Day Creative Mode</a></li>
             <li><a href="#" id="toggle-tj">TJ's CSS Geese</a></li>
+            <li><a href="#" id="toggle-fast">Super Fast Geese Mode</a></li>
         </ul>
     </div>
 
@@ -151,6 +152,16 @@
             <li><a href="#">List of Anseriformes</a></li>
             <li><a href="#">Bird Migration</a></li>
         </ul>
+
+        <!-- Help Section (Newly Added) -->
+        <h2 id="help">Help & Magic</h2>
+        <p>If you find yourself lost in the gooseverse, do not panic. Panic attracts the geese.</p>
+        <p>Instead, use this magical tool we have provided. It serves no productive purpose, which is the highest form of art.</p>
+        
+        <div class="help-interactive">
+             <button id="magic-btn" class="magical-button">Honks: 0</button>
+             <p><em>Click to increment the honk counter. Witness the beauty found in simple numbers.</em></p>
+        </div>
     </div>
 
     <!-- Help Modal -->
@@ -171,6 +182,7 @@
             const toggleDark = document.getElementById('toggle-dark');
             const toggleEvil = document.getElementById('toggle-evil');
             const toggleTj = document.getElementById('toggle-tj');
+            const toggleFast = document.getElementById('toggle-fast');
             const body = document.body;
 
             // Load saved state
@@ -182,6 +194,8 @@
                 activateEvilMode();
             } else if (savedTheme === 'tj') {
                 body.classList.add('mode-tj');
+            } else if (savedTheme === 'fast') {
+                body.classList.add('mode-fast');
             }
 
             // Help Modal Logic
@@ -322,8 +336,20 @@
                 }
             });
 
+            toggleFast.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (body.classList.contains('mode-fast')) {
+                    body.classList.remove('mode-fast');
+                    localStorage.setItem('theme', 'default');
+                } else {
+                    resetModes();
+                    body.classList.add('mode-fast');
+                    localStorage.setItem('theme', 'fast');
+                }
+            });
+
             function resetModes() {
-                body.classList.remove('dark-mode', 'evil-mode', 'mode-tj');
+                body.classList.remove('dark-mode', 'evil-mode', 'mode-tj', 'mode-fast');
                 deactivateEvilMode();
             }
 
@@ -362,6 +388,101 @@
                 goose.style.transform = `rotate(${angle}deg)`;
                 
                 document.body.appendChild(goose);
+            }
+
+            // Magical Button Logic
+            const magicBtn = document.getElementById('magic-btn');
+            if (magicBtn) {
+                let count = 0;
+                magicBtn.addEventListener('click', () => {
+                    count++;
+                    magicBtn.textContent = `Honks: ${count}`;
+                    
+                    // Simple visual effect
+                    const r = Math.floor(Math.random() * 200 + 55);
+                    const g = Math.floor(Math.random() * 200 + 55);
+                    const b = Math.floor(Math.random() * 200 + 55);
+                    magicBtn.style.background = `linear-gradient(45deg, rgb(${r},${0},${0}), rgb(${0},${g},${b}))`;
+                    
+                    // Creates a floating 'Honk!' element
+                    const honk = document.createElement('span');
+                    honk.innerText = "HONK!";
+                    honk.style.position = 'absolute';
+                    const rect = magicBtn.getBoundingClientRect();
+                    honk.style.left = (rect.left + rect.width / 2) + 'px';
+                    honk.style.top = (rect.top) + 'px';
+                    honk.style.color = '#ff5555';
+                    honk.style.fontWeight = 'bold';
+                    honk.style.pointerEvents = 'none';
+                    honk.style.transition = 'opacity 0.8s, transform 0.8s';
+                    honk.style.zIndex = '1000';
+                    document.body.appendChild(honk);
+                    
+                    // Force reflow
+                    honk.offsetHeight;
+                    
+                    honk.style.opacity = '0';
+                    honk.style.transform = `translate(${Math.random() * 40 - 20}px, -40px) rotate(${Math.random() * 20 - 10}deg)`;
+                    
+                    setTimeout(() => {
+                        honk.remove();
+                    }, 800);
+                });
+            // --- Walking Geese Logic ---
+            
+            // Start the geese walking
+            startWalkingGeese();
+
+            function startWalkingGeese() {
+                // Spawn one immediately
+                spawnWalkingGoose();
+                
+                // Spawn more periodically
+                setInterval(() => {
+                    if (document.hidden) return; 
+                    // 40% chance every 3 seconds
+                    if (Math.random() < 0.4) {
+                        spawnWalkingGoose();
+                    }
+                }, 3000);
+            }
+
+            function spawnWalkingGoose() {
+                const walker = document.createElement('div');
+                walker.className = 'goose-walker';
+                
+                const inner = document.createElement('div');
+                inner.className = 'goose-walker-inner';
+                inner.textContent = '🪿';
+                
+                walker.appendChild(inner);
+                document.body.appendChild(walker);
+                
+                // Randomize duration
+                const duration = 15 + Math.random() * 10; // 15-25 seconds
+                walker.style.animation = `goose-walk-right ${duration}s linear forwards`;
+                
+                // Randomize size
+                const size = 2 + Math.random() * 2;
+                inner.style.fontSize = `${size}rem`;
+                
+                // Z-index layering: some in front of content, some behind
+                // Content is z-index 10, sidebar is 100
+                if (Math.random() > 0.5) {
+                    walker.style.zIndex = '5'; // Behind content
+                    walker.style.opacity = '0.7';
+                } else {
+                    walker.style.zIndex = '95'; // In front of content, behind sidebar
+                }
+                
+                // Randomize bottom position slightly
+                const bottom = Math.random() * 50; 
+                walker.style.bottom = `${bottom}px`;
+                
+                // Clean up when animation finishes
+                setTimeout(() => {
+                    walker.remove();
+                }, duration * 1000);
             }
         });
     </script>
