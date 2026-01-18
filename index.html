@@ -121,6 +121,25 @@
         </section>
 
         <section>
+            <h2>Goose Life Simulator</h2>
+            <p>Experience the life cycle of a goose! Start as an egg and grow into a majestic waterfowl.</p>
+            <div class="simulator-box">
+                <div id="sim-display" class="sim-display">🥚</div>
+                <h3 id="sim-status">Stage: Egg</h3>
+                <p id="sim-message">A warm egg waiting to hatch.</p>
+                
+                <div class="sim-controls">
+                    <button id="btn-nurture">Keep Warm</button>
+                    <button id="btn-feed" disabled>Feed</button>
+                    <button id="btn-honk" disabled>Honk</button>
+                </div>
+                <div class="sim-stats">
+                    Growth: <span id="sim-growth">0</span>%
+                </div>
+            </div>
+        </section>
+
+        <section>
             <h2>Etymology</h2>
             <p>The word "geese" comes from the Proto-Indo-European *ghans-. In Germanic languages, the root word gave Old
                 English <i>gōs</i> with the plural <i>gēs</i>.</p>
@@ -150,6 +169,9 @@
                 <li>Links are underlined when hovered or focused.</li>
             </ul>
             <button id="close-modal" class="close-btn">Close Help</button>
+        </div>
+    </div>
+
     <!-- Accessible Modal -->
     <div id="helpModal" class="modal" role="dialog" aria-labelledby="modalTitle" aria-modal="true" aria-hidden="true">
         <div class="modal-content">
@@ -170,9 +192,97 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
-            // Close on Escape key
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && !modal.hasAttribute('hidden')) {
+            // Simulator Logic
+            const sim = {
+                stage: 0,
+                growth: 0,
+                stages: [
+                    { name: 'Egg', emoji: '🥚', msg: 'Waiting to hatch...', maxGrowth: 10, nurtureText: 'Keep Warm' }, 
+                    { name: 'Gosling', emoji: '🐥', msg: 'Peep peep! Hungry!', maxGrowth: 30, nurtureText: 'Pet' },
+                    { name: 'Adult Goose', emoji: '🪿', msg: 'Ready to defend the lake.', maxGrowth: 100, nurtureText: 'Preen' },
+                    { name: 'Elder Goose', emoji: '👑🪿', msg: 'The wise ruler of the park.', maxGrowth: 100, nurtureText: 'Preen' }
+                ],
+                
+                init() {
+                    const btnNurture = document.getElementById('btn-nurture');
+                    const btnFeed = document.getElementById('btn-feed');
+                    const btnHonk = document.getElementById('btn-honk');
+
+                    if (btnNurture) btnNurture.addEventListener('click', () => this.grow(5));
+                    if (btnFeed) btnFeed.addEventListener('click', () => this.grow(10));
+                    if (btnHonk) btnHonk.addEventListener('click', () => this.honk());
+                    
+                    this.updateUI();
+                },
+                
+                grow(amount) {
+                    if (this.stage >= 3) return;
+                    
+                    this.growth += amount;
+                    const currentStage = this.stages[this.stage];
+                    
+                    if (this.growth >= currentStage.maxGrowth) {
+                        this.evolve();
+                    }
+                    this.updateUI();
+                },
+                
+                evolve() {
+                    this.stage++;
+                    this.growth = 0;
+                    
+                    // Unlock/Update controls based on new stage
+                    const btnFeed = document.getElementById('btn-feed');
+                    const btnHonk = document.getElementById('btn-honk');
+                    const btnNurture = document.getElementById('btn-nurture');
+                    
+                    if (this.stage === 1) { // Gosling
+                        if(btnFeed) btnFeed.disabled = false;
+                    }
+                    if (this.stage === 2) { // Adult
+                        if(btnHonk) btnHonk.disabled = false;
+                    }
+                },
+                
+                honk() {
+                    const display = document.getElementById('sim-display');
+                    const originalEmoji = this.stages[this.stage].emoji;
+                    
+                    display.textContent = '🔊 ' + originalEmoji;
+                    document.getElementById('sim-message').textContent = "HONK!!";
+                    
+                    setTimeout(() => {
+                        display.textContent = originalEmoji;
+                        document.getElementById('sim-message').textContent = this.stages[this.stage].msg;
+                    }, 1000);
+                },
+                
+                updateUI() {
+                    const s = this.stages[this.stage];
+                    document.getElementById('sim-display').textContent = s.emoji;
+                    document.getElementById('sim-status').textContent = `Stage: ${s.name}`;
+                    document.getElementById('sim-message').textContent = s.msg;
+                    document.getElementById('btn-nurture').textContent = s.nurtureText;
+                    
+                    if (this.stage < 3) {
+                         const percent = Math.min(100, Math.round((this.growth / s.maxGrowth) * 100));
+                         document.getElementById('sim-growth').textContent = percent;
+                    } else {
+                         document.getElementById('sim-growth').textContent = "MAX";
+                         document.getElementById('btn-nurture').disabled = true;
+                         document.getElementById('btn-feed').disabled = true;
+                         document.getElementById('sim-message').textContent = "You have reached peak goose.";
+                    }
+                }
+            };
+            
+            // Initialize simulator if elements exist
+            if(document.getElementById('sim-display')) {
+                sim.init();
+            }
+
+            // --- Existing Help Modal Logic ---
+
             const modal = document.getElementById('helpModal');
             const openBtn = document.getElementById('openHelpModal');
             const closeBtn = document.getElementById('closeHelpModal');
