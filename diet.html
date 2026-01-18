@@ -107,13 +107,13 @@
 
     <script nonce="8IBTHwOdqNKAWeKl7plt8g==">
         (function() {
-            let intervalId = null;
+            let animationId = null;
             
             function createGeese() {
-                // CLEAR INTERVAL TO PREVENT MEMORY LEAK
-                if (intervalId) {
-                    clearInterval(intervalId);
-                    intervalId = null;
+                // STOP ANIMATION IF RUNNING
+                if (animationId) {
+                    cancelAnimationFrame(animationId);
+                    animationId = null;
                 }
 
                 // Remove existing geese if any
@@ -150,7 +150,7 @@
                     });
                 }
 
-                intervalId = setInterval(() => {
+                function animate() {
                     geese.forEach(g => {
                         // Update position
                         g.x += g.dx;
@@ -166,7 +166,11 @@
                         g.el.style.setProperty('--x', g.x + 'vw');
                         g.el.style.setProperty('--y', g.y + 'vh');
                     });
-                }, 50);
+                    
+                    animationId = requestAnimationFrame(animate);
+                }
+                
+                animate();
             }
 
             createGeese();
