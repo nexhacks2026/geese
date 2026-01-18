@@ -243,13 +243,38 @@
                 }
             });
             
-            // Global Escape listener
             // Global Escape key support
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && modal.classList.contains('open')) {
                     closeModal();
                 }
             });
+
+            // Developer Environment: Client-side Test Suite
+            window.runTests = () => {
+                console.group('Goosepedia Index Tests');
+                const tests = [
+                    { description: 'Navbar should be present', condition: !!document.querySelector('.navbar') },
+                    { description: 'Main Content area should exist', condition: !!document.getElementById('mainContent') },
+                    { description: 'Help Modal should be present', condition: !!document.getElementById('helpModal') },
+                    { description: 'Title should contain Goose', condition: document.title.includes('Goose') }
+                ];
+
+                let allPassed = true;
+                tests.forEach(test => {
+                    const status = test.condition ? 'PASS' : 'FAIL';
+                    const style = test.condition ? 'color: green' : 'color: red; font-weight: bold';
+                    console.log(`%c[${status}] ${test.description}`, style);
+                    if (!test.condition) allPassed = false;
+                });
+                console.groupEnd();
+                
+                if (allPassed) console.log('%c✓ All Index tests passed', 'color: green; font-weight: bold');
+                else console.warn('%c⚠ Some Index tests failed', 'color: red; font-weight: bold');
+                
+                return allPassed;
+            };
+            console.log("Dev Env: Run window.runTests() to verify application state.");
         });
     </script>
     <script nonce="8IBTHwOdqNKAWeKl7plt8g==">
