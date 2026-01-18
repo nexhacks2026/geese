@@ -26,7 +26,6 @@
                     <a href="#" class="theme-toggle">Switch Theme</a>
                 </div>
             </li>
-            <li><button id="openHelpModal" class="nav-link" style="background:none; border:none; cursor:pointer; font-family:inherit; font-size:inherit;">Help</button></li>
         </ul>
     </nav>
 
@@ -139,17 +138,6 @@
         Goosepedia &copy; 2026. All rights reserved.
     </footer>
 
-    <!-- Help Modal -->
-    <div id="help-modal" class="modal" hidden>
-        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="help-title">
-            <h2 id="help-title">Help & Accessibility</h2>
-            <p>Welcome to Goosepedia! We strive to make our content accessible to everyone.</p>
-            <ul>
-                <li>Use <strong>Tab</strong> to navigate links.</li>
-                <li>Press <strong>Esc</strong> to close this specific help window.</li>
-                <li>Links are underlined when hovered or focused.</li>
-            </ul>
-            <button id="close-modal" class="close-btn">Close Help</button>
     <!-- Accessible Modal -->
     <div id="helpModal" class="modal" role="dialog" aria-labelledby="modalTitle" aria-modal="true" aria-hidden="true">
         <div class="modal-content">
@@ -169,29 +157,26 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-
-            // Close on Escape key
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && !modal.hasAttribute('hidden')) {
             const modal = document.getElementById('helpModal');
-            const openBtn = document.getElementById('openHelpModal');
+            const openBtn = document.getElementById('help-link');
             const closeBtn = document.getElementById('closeHelpModal');
             let lastFocusedElement;
 
             function openModal() {
+                if (!modal) return;
                 lastFocusedElement = document.activeElement;
                 modal.classList.add('open');
                 modal.setAttribute('aria-hidden', 'false');
-                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+                document.body.style.overflow = 'hidden'; 
                 
-                // Focus on the close button initially
-                closeBtn.focus();
+                if (closeBtn) closeBtn.focus();
             }
 
             function closeModal() {
+                if (!modal) return;
                 modal.classList.remove('open');
                 modal.setAttribute('aria-hidden', 'true');
-                document.body.style.overflow = ''; // Restore scrolling
+                document.body.style.overflow = ''; 
                 
                 if (lastFocusedElement) {
                     lastFocusedElement.focus();
@@ -214,22 +199,24 @@
             });
 
             // Keyboard navigation
-            modal.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
+            window.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.classList.contains('open')) {
                     closeModal();
                 }
 
-                if (e.key === 'Tab') {
+                if (e.key === 'Tab' && modal.classList.contains('open')) {
                     const focusableElements = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                    if (focusableElements.length === 0) return;
+
                     const firstElement = focusableElements[0];
                     const lastElement = focusableElements[focusableElements.length - 1];
 
-                    if (e.shiftKey) { /* shift + tab */
+                    if (e.shiftKey) { 
                         if (document.activeElement === firstElement) {
                             lastElement.focus();
                             e.preventDefault();
                         }
-                    } else { /* tab */
+                    } else { 
                         if (document.activeElement === lastElement) {
                             firstElement.focus();
                             e.preventDefault();
