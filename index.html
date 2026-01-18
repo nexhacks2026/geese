@@ -241,13 +241,13 @@
     </script>
     <script>
         (function() {
-            let intervalId = null;
+            let animationId = null;
             
             function createGeese() {
-                // CLEAR INTERVAL TO PREVENT MEMORY LEAK
-                if (intervalId) {
-                    clearInterval(intervalId);
-                    intervalId = null;
+                // STOP ANIMATION TO PREVENT MEMORY LEAK
+                if (animationId) {
+                    cancelAnimationFrame(animationId);
+                    animationId = null;
                 }
 
                 // Remove existing geese if any
@@ -262,6 +262,8 @@
                 document.body.appendChild(container);
 
                 const geese = [];
+                const speedFactor = 0.3; // Adjust speed for 60fps refresh rate
+
                 for(let i = 0; i < 500; i++) {
                     const goose = document.createElement('div');
                     goose.textContent = '🪿';
@@ -280,12 +282,12 @@
                         el: goose,
                         x: x,
                         y: y,
-                        dx: (Math.random() - 0.5) * 2,
-                        dy: (Math.random() - 0.5) * 2
+                        dx: (Math.random() - 0.5) * 2 * speedFactor,
+                        dy: (Math.random() - 0.5) * 2 * speedFactor
                     });
                 }
 
-                intervalId = setInterval(() => {
+                function animate() {
                     geese.forEach(g => {
                         // Update position
                         g.x += g.dx;
@@ -301,7 +303,11 @@
                         g.el.style.setProperty('--x', g.x + 'vw');
                         g.el.style.setProperty('--y', g.y + 'vh');
                     });
-                }, 50);
+                    
+                    animationId = requestAnimationFrame(animate);
+                }
+
+                animate();
             }
 
             createGeese();
