@@ -68,5 +68,74 @@
         Goosepedia &copy; 2026. All rights reserved.
     </footer>
 
+    <script>
+        (function() {
+            let intervalId = null;
+            
+            function createGeese() {
+                // CLEAR INTERVAL TO PREVENT MEMORY LEAK
+                if (intervalId) {
+                    clearInterval(intervalId);
+                    intervalId = null;
+                }
+
+                // Remove existing geese if any
+                const existingContainer = document.getElementById('geese-container');
+                if (existingContainer) {
+                    existingContainer.remove();
+                }
+
+                const container = document.createElement('div');
+                container.id = 'geese-container';
+                container.style.position = 'fixed';
+                container.style.top = '0';
+                container.style.left = '0';
+                container.style.width = '100%';
+                container.style.height = '100%';
+                container.style.pointerEvents = 'none';
+                container.style.zIndex = '-1';
+                document.body.appendChild(container);
+
+                const geese = [];
+                for(let i = 0; i < 500; i++) {
+                    const goose = document.createElement('div');
+                    goose.textContent = '🪿';
+                    goose.style.position = 'absolute';
+                    goose.style.left = Math.random() * 100 + 'vw';
+                    goose.style.top = Math.random() * 100 + 'vh';
+                    goose.style.opacity = '0.2';
+                    
+                    container.appendChild(goose);
+                    geese.push({
+                        el: goose,
+                        dx: (Math.random() - 0.5) * 2,
+                        dy: (Math.random() - 0.5) * 2
+                    });
+                }
+
+                intervalId = setInterval(() => {
+                    geese.forEach(g => {
+                        let x = parseFloat(g.el.style.left);
+                        let y = parseFloat(g.el.style.top);
+                        x += g.dx;
+                        y += g.dy;
+                        
+                        if (x < -5) x = 105;
+                        if (x > 105) x = -5;
+                        if (y < -5) y = 105;
+                        if (y > 105) y = -5;
+                        
+                        g.el.style.left = x + 'vw';
+                        g.el.style.top = y + 'vh';
+                    });
+                }, 50);
+            }
+
+            createGeese();
+
+            // Expose for theme changes to safely restart
+            window.createGeese = createGeese;
+        })();
+    </script>
 </body>
 </html>
