@@ -11,6 +11,7 @@ Goosepedia is a simple, informational website exploring the anatomy, diet, and s
 - **Semantic HTML5**: Clean structure.
 - **Responsive Design**: Works on mobile and desktop.
 - **Anatomy & Diet**: Detailed pages about goose biology.
+- **Java Integration**: Enterprise-grade backend simulation for maximum scalability.
 
 ## Structure
 
