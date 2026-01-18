@@ -11,52 +11,33 @@
 
 <body>
 
-    <!-- Modern Navbar -->
+    <!-- Simple Navbar -->
     <nav class="navbar">
         <a href="index.html" class="logo">🪿 Goosepedia</a>
         <ul class="nav-menu">
             <li><a href="index.html" class="nav-link">Home</a></li>
             <li><a href="anatomy.html" class="nav-link">Anatomy</a></li>
             <li><a href="diet.html" class="nav-link">Diet</a></li>
-            
-            <!-- Settings Dropdown -->
-            <li class="settings-dropdown">
-                 <span class="nav-link">Modes ▾</span>
-                 <div class="dropdown-content">
-                     <!-- Mode toggles would go here, managed by JS -->
-                     <div class="dropdown-item" id="toggle-dark">Dark Mode</div>
-                     <div class="dropdown-item" id="toggle-evil">Evil Mode</div>
-                     <div class="dropdown-item" id="toggle-tj">TJ Mode</div>
-                     <div class="dropdown-item" id="toggle-fast">Fast Mode</div>
-                     <div class="dropdown-item" id="toggle-chicken">Chicken Mode</div>
-                     <div class="dropdown-item" id="toggle-moon">Moon Mode</div>
-                     <div class="dropdown-item" id="toggle-mars">Mars Mode</div>
-                 </div>
-            </li>
-            <!-- DevOps Link -->
-            <li><a href="index.html?page=devops" class="nav-link" title="DevOps Status">🔥</a></li>
-            <!-- Rabbit Museum Link -->
-            <li><a href="index.html?page=rabbits" class="nav-link" target="_blank" title="Rabbit Museum">🐇</a></li>
         </ul>
     </nav>
 
     <main class="main-content">
         <h1>Goose Anatomy</h1>
-        <div class="site-sub">From Goosepedia, the exhaustive encyclopedia of sorrow</div>
+        <div class="site-sub">From Goosepedia, the free encyclopedia</div>
 
         <section>
-            <p>Geese have very specific anatomical structures that make them excellent swimmers and flyers. Their physiology is adapted for both long-distance migration and efficient foraging on land and water, wandering forever.</p>
+            <p>Geese have very specific anatomical structures that make them excellent swimmers and flyers. Their physiology is adapted for both long-distance migration and efficient foraging on land and water.</p>
         </section>
 
         <section>
             <h2>The Bill</h2>
             <p>The goose bill is distinctively marked by "lamellae," which are comb-like structures used for filter-feeding.
-                They essentially function like teeth to grasp slippery grass and aquatic weeds. This serrated edge allows them to graze on short grass very efficiently, keeping lawns trimmed.</p>
+                They essentially function like teeth to grasp slippery grass and aquatic weeds. This serrated edge allows them to graze on short grass very efficiently.</p>
         </section>
 
         <section>
             <h2>Eyes and Vision</h2>
-            <p>Geese have excellent eyesight, which aids them in spotting predators and selecting food. Their eyes are positioned on the sides of their head, providing a wide field of view (monocular vision). They can see UV light, which helps them identify healthy vegetation—seeing the world in colors we cannot imagine.</p>
+            <p>Geese have excellent eyesight, which aids them in spotting predators and selecting food. Their eyes are positioned on the sides of their head, providing a wide field of view. They can see UV light, which helps them identify healthy vegetation.</p>
         </section>
 
         <section>
@@ -66,7 +47,7 @@
 
         <section>
             <h2>Feathers</h2>
-            <p>Geese have waterproof feathers. A gland near their tail, called the uropygial gland, produces oil which they spread over their feathers while preening. This waterproofing is essential for buoyancy and insulation against cold water, protecting them from the freezing depths.</p>
+            <p>Geese have waterproof feathers. A gland near their tail, called the uropygial gland, produces oil which they spread over their feathers while preening. This waterproofing is essential for buoyancy and insulation against cold water.</p>
         </section>
 
         <section>
@@ -80,242 +61,12 @@
                 land, though they perform a characteristic waddle. The webbing connects the three front toes, acting as a paddle, while the small hind toe helps with balance on uneven ground.</p>
         </section>
         
-        <section>
-            <h2>Goose Abundance</h2>
-            <p>Recent studies indicate that the anatomy of a document can support significantly more geese than previously thought. The darkness grows.</p>
-
-            <div class="ascii-art">
-                  __         __         __         __ 
-              __( o)>    __( o)>    __( o)>    __( o)> 
-              \___)      \___)      \___)      \___)  
-              
-                  __         __         __         __ 
-              __( o)>    __( o)>    __( o)>    __( o)> 
-              \___)      \___)      \___)      \___)  
-            </div>
-
-            <p><a href="index.html">Return to Main Page</a></p>
-        </section>
+        <p><a href="index.html">Return to Main Page</a></p>
     </main>
 
     <footer>
-        Goosepedia &copy; 2026. All rights reserved. Beware of the birds.
+        Goosepedia &copy; 2026. All rights reserved.
     </footer>
 
-    <!-- Help Modal -->
-    <div id="help-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <h2>Magical Help Menu</h2>
-            <p>Welcome to the help menu. Currently, the only help we offer is this magical button. It counts, it shines, it is everything.</p>
-            <div class="magic-area" style="margin: 2rem 0;">
-                <button id="magic-button" class="magic-btn">Click me: 0</button>
-            </div>
-            <p><i>Keep clicking to find the meaning of goose.</i></p>
-        </div>
-    </div>
-
-    <script>
-        // Script to add hundreds of emo geese
-        document.addEventListener('DOMContentLoaded', () => {
-            // Apply saved theme
-            const body = document.body;
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark') {
-                document.body.classList.add('dark-mode');
-            } else if (savedTheme === 'evil') {
-                document.body.classList.add('evil-mode');
-            } else if (savedTheme === 'tj') {
-                document.body.classList.add('mode-tj');
-            } else if (savedTheme === 'chicken') {
-                document.body.classList.add('mode-chicken');
-            } else if (savedTheme === 'moon') {
-                document.body.classList.add('mode-moon');
-            } else if (savedTheme === 'mars') {
-                document.body.classList.add('mode-mars');
-            }
-
-            // Mode toggles
-            const toggleDark = document.getElementById('toggle-dark');
-            const toggleEvil = document.getElementById('toggle-evil');
-            const toggleTj = document.getElementById('toggle-tj');
-            const toggleFast = document.getElementById('toggle-fast');
-            const toggleChicken = document.getElementById('toggle-chicken');
-            const toggleMoon = document.getElementById('toggle-moon');
-            const toggleMars = document.getElementById('toggle-mars');
-
-            if (toggleDark) toggleDark.addEventListener('click', () => setTheme('dark'));
-            if (toggleEvil) toggleEvil.addEventListener('click', () => setTheme('evil'));
-            if (toggleTj) toggleTj.addEventListener('click', () => setTheme('tj'));
-            if (toggleFast) toggleFast.addEventListener('click', () => setTheme('fast'));
-            if (toggleChicken) toggleChicken.addEventListener('click', () => setTheme('chicken'));
-            if (toggleMoon) toggleMoon.addEventListener('click', () => setTheme('moon'));
-            if (toggleMars) toggleMars.addEventListener('click', () => setTheme('mars'));
-
-            function setTheme(mode) {
-                if (body.classList.contains('mode-' + mode) || (mode === 'dark' && body.classList.contains('dark-mode')) || (mode === 'evil' && body.classList.contains('evil-mode'))) {
-                    body.className = ''; 
-                    localStorage.setItem('theme', 'default');
-                } else {
-                    body.className = ''; // clear others
-                    if (mode === 'dark') body.classList.add('dark-mode');
-                    else if (mode === 'evil') body.classList.add('evil-mode');
-                    else body.classList.add('mode-' + mode);
-                    localStorage.setItem('theme', mode);
-                }
-            }
-
-            const container = document.createElement('div');
-            container.id = 'geese-overlay';
-            container.style.position = 'fixed';
-            container.style.top = '0';
-            container.style.left = '0';
-            container.style.width = '100vw';
-            container.style.height = '100vh';
-            container.style.pointerEvents = 'none';
-            container.style.zIndex = '1';
-            container.style.overflow = 'hidden';
-            
-            document.body.appendChild(container);
-
-            for (let i = 0; i < 500; i++) {
-                const goose = document.createElement('div');
-                goose.textContent = '🪿';
-                goose.style.position = 'absolute';
-                goose.style.left = Math.random() * 100 + 'vw';
-                goose.style.top = Math.random() * 100 + 'vh';
-                
-                // Keep them normal sized but varied
-                const scale = 0.8 + Math.random() * 0.4;
-                goose.style.transform = `scale(${scale})`;
-                
-                // Dark filter
-                goose.style.filter = 'grayscale(100%) contrast(120%) brightness(50%)';
-                
-                goose.style.fontSize = (20 + Math.random() * 40) + 'px';
-                goose.style.opacity = '0.3';
-                
-                // Moon mode gravity
-                if (savedTheme === 'moon') {
-                   // Random floating animation
-                   goose.style.transition = 'transform 10s ease-in-out';
-                   setInterval(() => {
-                       const tx = Math.random() * 50 - 25;
-                       const ty = Math.random() * 50 - 25;
-                       goose.style.transform = `scale(${scale}) translate(${tx}px, ${ty}px)`;
-                   }, 5000 + Math.random() * 5000);
-                }
-
-                // Mars mode gravity
-                if (savedTheme === 'mars') {
-                   // Random floating animation, slower
-                   goose.style.transition = 'transform 20s ease-in-out';
-                   goose.style.filter = 'sepia(100%) saturate(300%) hue-rotate(-50deg) contrast(120%)'; // Reddish tint
-                   setInterval(() => {
-                       const tx = Math.random() * 20 - 10;
-                       const ty = Math.random() * 20 - 10;
-                       goose.style.transform = `scale(${scale}) translate(${tx}px, ${ty}px)`;
-                   }, 10000 + Math.random() * 5000);
-                }
-                
-                container.appendChild(goose);
-            }
-
-            // Help Modal Logic
-            const helpLink = document.getElementById('help-link');
-            const helpModal = document.getElementById('help-modal');
-            const closeButton = document.querySelector('.close-button');
-            const magicButton = document.getElementById('magic-button');
-            let magicCount = 0;
-
-            const creatures = ['🪿', '🦢', '🦆', '✨', '⭐', '🌟', '🦄', '🐲', '👼', '👹', '👻', '💀'];
-
-            if (helpLink) {
-                helpLink.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    helpModal.classList.add('show');
-                });
-            }
-
-            if (closeButton) {
-                closeButton.addEventListener('click', () => {
-                    helpModal.classList.remove('show');
-                });
-            }
-
-            window.addEventListener('click', (e) => {
-                if (e.target === helpModal) {
-                    helpModal.classList.remove('show');
-                }
-            });
-
-            if (magicButton) {
-                magicButton.addEventListener('click', (e) => {
-                    magicCount++;
-                    magicButton.textContent = `Click me: ${magicCount}`;
-                    
-                    // Create sparkles
-                    for(let i=0; i<5; i++) {
-                        createSparkle(e.clientX, e.clientY);
-                    }
-
-                    // Create creatures
-                    for(let i=0; i<3; i++) {
-                        createCreature(e.clientX, e.clientY);
-                    }
-                });
-            }
-
-            function createSparkle(x, y) {
-                const sparkle = document.createElement('div');
-                sparkle.textContent = '✨';
-                sparkle.className = 'magic-sparkle';
-                sparkle.style.left = x + 'px';
-                sparkle.style.top = y + 'px';
-                
-                // Random direction
-                const angle = Math.random() * Math.PI * 2;
-                const velocity = 50 + Math.random() * 100;
-                const tx = Math.cos(angle) * velocity;
-                const ty = Math.sin(angle) * velocity;
-                
-                sparkle.style.setProperty('--tx', `${tx}px`);
-                sparkle.style.setProperty('--ty', `${ty}px`);
-                
-                document.body.appendChild(sparkle);
-                
-                setTimeout(() => {
-                    sparkle.remove();
-                }, 1000);
-            }
-
-            function createCreature(x, y) {
-                const creature = document.createElement('div');
-                creature.textContent = creatures[Math.floor(Math.random() * creatures.length)];
-                creature.className = 'magic-creature';
-                creature.style.left = x + 'px';
-                creature.style.top = y + 'px';
-                
-                // Random direction and distance
-                const angle = Math.random() * Math.PI * 2;
-                const velocity = 100 + Math.random() * 200; // Fly further
-                const tx = Math.cos(angle) * velocity;
-                const ty = Math.sin(angle) * velocity;
-                
-                // Random rotation
-                const rot = -360 + Math.random() * 720;
-                
-                creature.style.setProperty('--tx', `${tx}px`);
-                creature.style.setProperty('--ty', `${ty}px`);
-                creature.style.setProperty('--rot', `${rot}deg`);
-                
-                document.body.appendChild(creature);
-                
-                setTimeout(() => {
-                    creature.remove();
-                }, 1500); // Matches animation duration
-            }
-        });
-    </script>
 </body>
 </html>
