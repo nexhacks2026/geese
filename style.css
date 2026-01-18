@@ -21,6 +21,7 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     display: flex;
+    overflow-x: hidden; /* Prevent scrollbar from walking geese */
 }
 
 /* Sidebar */
@@ -325,8 +326,7 @@ body.evil-mode .logo {
 
 /* TJ's Geese Mode - CSS Injected Geese */
 body.mode-tj {
-    --goose-green: #00bcd4; /* TJ Teal */
-    --goose-orange: #ffeb3b; /* TJ Yellow */
+    --goose-green: #00bcd4; /* TJ Teal */\n    --goose-orange: #ffeb3b; /* TJ Yellow */
 }
 
 /* Add CSS Geese everywhere */
@@ -334,7 +334,7 @@ body.mode-tj h1::before,
 body.mode-tj h2::before,
 body.mode-tj h3::before,
 body.mode-tj li::before {
-    content: "🪿";
+    content: \"🪿\";
     display: inline-block;
     filter: sepia(100%) hue-rotate(180deg); /* Blue geese */
     margin-right: 8px;
@@ -342,7 +342,7 @@ body.mode-tj li::before {
 }
 
 body.mode-tj .logo::after {
-    content: " (TJ Edition)";
+    content: \" (TJ Edition)\";
     font-size: 0.8rem;
     color: var(--goose-green);
     display: block;
@@ -453,4 +453,30 @@ body.mode-tj .main-content {
 @keyframes sparkle-anim {
     0% { transform: translate(0, 0) scale(0); opacity: 1; }
     100% { transform: translate(var(--tx), var(--ty)) scale(1.5); opacity: 0; }
+}
+
+/* Walking Geese Animations and Classes */
+.goose-walker {
+    position: fixed;
+    bottom: 20px;
+    z-index: 95; /* Behind sidebar (100) but above content (10) */
+    pointer-events: none;
+    will-change: left;
+}
+
+.goose-walker-inner {
+    font-size: 3rem;
+    animation: goose-waddle 0.5s infinite alternate ease-in-out;
+    filter: drop-shadow(0 2px 3px rgba(0,0,0,0.3));
+    user-select: none;
+}
+
+@keyframes goose-walk-right {
+    from { left: -150px; transform: scaleX(1); }
+    to { left: 100vw; transform: scaleX(1); }
+}
+
+@keyframes goose-waddle {
+    0% { transform: rotate(-8deg) translateY(0); }
+    100% { transform: rotate(8deg) translateY(-8px); }
 }
