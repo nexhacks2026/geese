@@ -331,3 +331,13 @@ footer a {
         gap: 1rem;
     }
 }
+
+/* Nav Button Reset */
+button.nav-link {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+}
