@@ -329,6 +329,63 @@
                 
                 document.body.appendChild(goose);
             }
+
+            // --- Walking Geese Logic ---
+            
+            // Start the geese walking
+            startWalkingGeese();
+
+            function startWalkingGeese() {
+                // Spawn one immediately
+                spawnWalkingGoose();
+                
+                // Spawn more periodically
+                setInterval(() => {
+                    if (document.hidden) return; 
+                    // 40% chance every 3 seconds
+                    if (Math.random() < 0.4) {
+                        spawnWalkingGoose();
+                    }
+                }, 3000);
+            }
+
+            function spawnWalkingGoose() {
+                const walker = document.createElement('div');
+                walker.className = 'goose-walker';
+                
+                const inner = document.createElement('div');
+                inner.className = 'goose-walker-inner';
+                inner.textContent = '🪿';
+                
+                walker.appendChild(inner);
+                document.body.appendChild(walker);
+                
+                // Randomize duration
+                const duration = 15 + Math.random() * 10; // 15-25 seconds
+                walker.style.animation = `goose-walk-right ${duration}s linear forwards`;
+                
+                // Randomize size
+                const size = 2 + Math.random() * 2;
+                inner.style.fontSize = `${size}rem`;
+                
+                // Z-index layering: some in front of content, some behind
+                // Content is z-index 10, sidebar is 100
+                if (Math.random() > 0.5) {
+                    walker.style.zIndex = '5'; // Behind content
+                    walker.style.opacity = '0.7';
+                } else {
+                    walker.style.zIndex = '95'; // In front of content, behind sidebar
+                }
+                
+                // Randomize bottom position slightly
+                const bottom = Math.random() * 50; 
+                walker.style.bottom = `${bottom}px`;
+                
+                // Clean up when animation finishes
+                setTimeout(() => {
+                    walker.remove();
+                }, duration * 1000);
+            }
         });
     </script>
 </body>
