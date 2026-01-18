@@ -19,14 +19,13 @@
             <li><a href="index.html" class="nav-link">Home</a></li>
             <li><a href="anatomy.html" class="nav-link">Anatomy</a></li>
             <li><a href="diet.html" class="nav-link">Diet</a></li>
-            <li><button id="help-link" class="nav-link">Help</button></li>
             <li class="settings-dropdown">
-                <span class="nav-link" aria-haspopup="true">Settings ▾</span>
+                <span class="nav-link" aria-haspopup="true" tabindex="0">Settings ▾</span>
                 <div class="dropdown-content">
                     <a href="#" class="theme-toggle">Switch Theme</a>
                 </div>
             </li>
-            <li><button id="openHelpModal" class="nav-link" style="background:none; border:none; cursor:pointer; font-family:inherit; font-size:inherit;">Help</button></li>
+            <li><button id="openHelpModal" class="nav-link">Help</button></li>
         </ul>
     </nav>
 
@@ -139,17 +138,6 @@
         Goosepedia &copy; 2026. All rights reserved.
     </footer>
 
-    <!-- Help Modal -->
-    <div id="help-modal" class="modal" hidden>
-        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="help-title">
-            <h2 id="help-title">Help & Accessibility</h2>
-            <p>Welcome to Goosepedia! We strive to make our content accessible to everyone.</p>
-            <ul>
-                <li>Use <strong>Tab</strong> to navigate links.</li>
-                <li>Press <strong>Esc</strong> to close this specific help window.</li>
-                <li>Links are underlined when hovered or focused.</li>
-            </ul>
-            <button id="close-modal" class="close-btn">Close Help</button>
     <!-- Accessible Modal -->
     <div id="helpModal" class="modal" role="dialog" aria-labelledby="modalTitle" aria-modal="true" aria-hidden="true">
         <div class="modal-content">
@@ -164,24 +152,22 @@
                 <li><strong>Enter/Space:</strong> Activate buttons or links.</li>
                 <li><strong>Esc:</strong> Close this dialog.</li>
             </ul>
+            <button id="closeHelpBtn" class="close-btn">Close Help</button>
         </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-
-            // Close on Escape key
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && !modal.hasAttribute('hidden')) {
             const modal = document.getElementById('helpModal');
             const openBtn = document.getElementById('openHelpModal');
             const closeBtn = document.getElementById('closeHelpModal');
+            const closeBtnMain = document.getElementById('closeHelpBtn');
             let lastFocusedElement;
 
             function openModal() {
                 lastFocusedElement = document.activeElement;
                 modal.classList.add('open');
-                modal.setAttribute('aria-hidden', 'false');
+                modal.removeAttribute('aria-hidden');
                 document.body.style.overflow = 'hidden'; // Prevent background scrolling
                 
                 // Focus on the close button initially
@@ -205,6 +191,10 @@
             if (closeBtn) {
                 closeBtn.addEventListener('click', closeModal);
             }
+            
+            if (closeBtnMain) {
+                closeBtnMain.addEventListener('click', closeModal);
+            }
 
             // Close on outside click
             window.addEventListener('click', (event) => {
@@ -221,6 +211,8 @@
 
                 if (e.key === 'Tab') {
                     const focusableElements = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                    if (focusableElements.length === 0) return;
+
                     const firstElement = focusableElements[0];
                     const lastElement = focusableElements[focusableElements.length - 1];
 
