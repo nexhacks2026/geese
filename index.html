@@ -26,6 +26,7 @@
                     <a href="#" class="theme-toggle">Switch Theme</a>
                 </div>
             </li>
+            <li><button id="openHelpModal" class="nav-link">Help</button></li>
         </ul>
     </nav>
 
@@ -224,6 +225,7 @@
             });
             
             // Global Escape listener
+            // Global Escape key support
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && modal.classList.contains('open')) {
                     closeModal();
