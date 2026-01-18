@@ -34,6 +34,7 @@ body {
     box-sizing: border-box;
     position: fixed;
     border-right: 1px solid #b3e5fc;
+    z-index: 100; /* Ensure sidebar stays on top of background geese */
 }
 
 .sidebar h3 {
@@ -79,6 +80,8 @@ body {
     background-color: var(--content-bg);
     min-height: 100vh;
     box-shadow: -2px 0 5px rgba(0,0,0,0.05);
+    z-index: 10;
+    position: relative;
 }
 
 h1 {
