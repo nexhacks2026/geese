@@ -154,3 +154,22 @@ a:hover {
     color: var(--text-color);
     text-align: center;
 }
+
+/* Welcome Section */
+.welcome-box {
+    background-color: #fcf8e3;
+    padding: 15px;
+    border: 1px solid #faebcc;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+.welcome-box h2 {
+    margin-top: 0;
+    border-bottom: none;
+    font-size: 1.5rem;
+}
+
+.welcome-box p {
+    margin-bottom: 0;
+}
