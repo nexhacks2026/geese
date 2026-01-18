@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Goose Diet - Understanding the nutritional needs and feeding habits of geese.">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'nonce-8IBTHwOdqNKAWeKl7plt8g=='; style-src 'self';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'nonce-8IBTHwOdqNKAWeKl7plt8g=='; style-src 'self' 'unsafe-inline';">
     <title>Goose Diet - Goosepedia</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -44,6 +44,38 @@
         <section>
             <h2>Seasonal Variations</h2>
             <p>Their diet changes with the seasons. In spring and summer, they focus on nutrient-rich grasses and sedges. In autumn and winter, they often scavenge for waste grain left in harvested fields, such as corn, wheat, and barley.</p>
+            
+            <table class="diet-table">
+                <thead>
+                    <tr>
+                        <th>Season</th>
+                        <th>Primary Food Sources</th>
+                        <th>Goal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Spring</td>
+                        <td>Tender grasses, clover, sedges</td>
+                        <td>Weight gain for migration/breeding</td>
+                    </tr>
+                    <tr>
+                        <td>Summer</td>
+                        <td>Aquatic plants, broadleaf weeds</td>
+                        <td>Molting & feather regrowth</td>
+                    </tr>
+                    <tr>
+                        <td>Autumn</td>
+                        <td>Waste grains, berries, seeds</td>
+                        <td>Building fat reserves for winter</td>
+                    </tr>
+                    <tr>
+                        <td>Winter</td>
+                        <td>Roots, rhizomes, agricultural crops</td>
+                        <td>Maintenance & survival</td>
+                    </tr>
+                </tbody>
+            </table>
         </section>
 
         <section>
@@ -60,15 +92,20 @@
             <h2>Human Interference</h2>
             <p>While often fed by humans, items like white bread are actually harmful to their health, causing a condition known as "angel wing." This nutritional deficiency causes the wings to develop incorrectly, preventing the bird from flying. Safe alternatives for feeding geese include cracked corn, oats, or chopped lettuce.</p>
             
+            <!-- Hidden egg hidden within structure -->
+            <div id="secret-snack" style="display:none; color: red; font-size: 2rem; border: 5px solid lime; padding: 20px; text-align: center; margin-top: 20px;">
+                🌽 YOU FOUND THE SECRET CORN STASH! 🌽
+            </div>
+
             <p><a href="index.html">Return to Main Page</a></p>
         </section>
     </main>
 
     <footer>
-        Goosepedia &copy; 2026. All rights reserved.
+        Goosepedia &copy; 2026. All rights reserved. <span id="corn-trigger" style="cursor: pointer;">🌽</span>
     </footer>
 
-    <script>
+    <script nonce="8IBTHwOdqNKAWeKl7plt8g==">
         (function() {
             let intervalId = null;
             
@@ -87,7 +124,6 @@
 
                 const container = document.createElement('div');
                 container.id = 'geese-container';
-                // Styles moved to CSS #geese-container
                 document.body.appendChild(container);
 
                 const geese = [];
@@ -137,6 +173,17 @@
 
             // Expose for theme changes to safely restart
             window.createGeese = createGeese;
+
+            // EASTER EGG SCRIPT
+            const trigger = document.getElementById('corn-trigger');
+            const stash = document.getElementById('secret-snack');
+            
+            if(trigger && stash) {
+                trigger.addEventListener('click', () => {
+                   stash.style.display = 'block'; 
+                   alert('HONK! GIVE ME THE CORN!');
+                });
+            }
         })();
     </script>
 </body>
