@@ -19,6 +19,7 @@
             <li><a href="index.html" class="nav-link">Home</a></li>
             <li><a href="anatomy.html" class="nav-link">Anatomy</a></li>
             <li><a href="diet.html" class="nav-link">Diet</a></li>
+            <li><button id="openHelpModal" class="nav-link">Help</button></li>
             <li class="settings-dropdown">
                 <span class="nav-link" aria-haspopup="true">Settings ▾</span>
                 <div class="dropdown-content">
@@ -80,6 +81,103 @@
         Goosepedia &copy; 2026. All rights reserved.
     </footer>
 
+    <!-- Accessible Modal -->
+    <div id="helpModal" class="modal" role="dialog" aria-labelledby="modalTitle" aria-modal="true" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Help & Accessibility</h2>
+                <button id="closeHelpModal" class="close-button" aria-label="Close help dialog">&times;</button>
+            </div>
+            <p>Welcome to Goosepedia! Use the navigation links to explore different sections.</p>
+            <p><strong>Keyboard Shortcuts:</strong></p>
+            <ul>
+                <li><strong>Tab:</strong> Navigate through links and interactive elements.</li>
+                <li><strong>Enter/Space:</strong> Activate buttons or links.</li>
+                <li><strong>Esc:</strong> Close this dialog.</li>
+            </ul>
+            <button id="closeHelpBtn" class="close-btn">Close Help</button>
+        </div>
+    </div>
+
+    <script nonce="8IBTHwOdqNKAWeKl7plt8g==">
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const modal = document.getElementById('helpModal');
+            const openBtn = document.getElementById('openHelpModal');
+            const closeBtn = document.getElementById('closeHelpModal');
+            const closeBtnMain = document.getElementById('closeHelpBtn');
+            let lastFocusedElement;
+
+            function openModal() {
+                lastFocusedElement = document.activeElement;
+                modal.classList.add('open');
+                modal.removeAttribute('aria-hidden');
+                document.body.style.overflow = 'hidden'; 
+                
+                closeBtn.focus();
+            }
+
+            function closeModal() {
+                modal.classList.remove('open');
+                modal.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = ''; 
+                
+                if (lastFocusedElement) {
+                    lastFocusedElement.focus();
+                }
+            }
+
+            if (openBtn) {
+                openBtn.addEventListener('click', openModal);
+            }
+
+            if (closeBtn) {
+                closeBtn.addEventListener('click', closeModal);
+            }
+            
+            if (closeBtnMain) {
+                closeBtnMain.addEventListener('click', closeModal);
+            }
+
+            window.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    closeModal();
+                }
+            });
+
+            modal.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeModal();
+                }
+
+                if (e.key === 'Tab') {
+                    const focusableElements = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                    if (focusableElements.length === 0) return;
+
+                    const firstElement = focusableElements[0];
+                    const lastElement = focusableElements[focusableElements.length - 1];
+
+                    if (e.shiftKey) { 
+                        if (document.activeElement === firstElement) {
+                            lastElement.focus();
+                            e.preventDefault();
+                        }
+                    } else { 
+                        if (document.activeElement === lastElement) {
+                            firstElement.focus();
+                            e.preventDefault();
+                        }
+                    }
+                }
+            });
+            
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.classList.contains('open')) {
+                    closeModal();
+                }
+            });
+        });
+    </script>
     <script nonce="8IBTHwOdqNKAWeKl7plt8g==">
         (function() {
             let animationId = null;
