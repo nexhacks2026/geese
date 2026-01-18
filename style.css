@@ -150,13 +150,9 @@ a:hover {
     margin-bottom: 0.25rem;
 }
 
-.sidebar li a {
-    display: block;
-    padding: 0.4rem 0.75rem;
-    border-radius: 6px;
-    color: var(--text-main);
-    font-size: 0.95rem;
-    transition: background 0.2s, color 0.2s;
+h3 {
+    font-size: 1.4rem;
+    color: var(--secondary-color);\n    margin: 2rem 0 1rem;
 }
 
 .sidebar li a:hover {
@@ -218,8 +214,16 @@ a:hover {
     border-bottom: 1px solid var(--border);
 }
 
-.infobox tr:last-child td {
-    border-bottom: none;
+.ascii-display {
+    font-family: var(--font-mono);
+    background: #000;\n    color: var(--primary-color);
+    padding: 2rem;
+    border-radius: var(--radius);
+    overflow-x: auto;
+    font-size: 0.85rem;
+    text-align: center;
+    border: 1px dashed var(--border-color);
+    margin: 2rem 0;
 }
 
 .goose-header {
@@ -242,11 +246,8 @@ a:hover {
     margin-bottom: 2.5rem;
 }
 
-.welcome-box h2 {
-    margin-top: 0;
-    border-bottom: none;
-    font-size: 1.5rem;
-    color: var(--accent-secondary);
+.magic-btn:hover {
+    transform: translateY(-3px);\n    box-shadow: 0 8px 25px rgba(255,85,85,0.4);
 }
 
 /* ASCII Art */
@@ -284,10 +285,9 @@ a:hover {
     z-index: 2000;
     left: 0;
     top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.7);
-    backdrop-filter: blur(4px);
+    width: 100%;\n    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    backdrop-filter: blur(5px);
     align-items: center;
     justify-content: center;
 }
@@ -447,14 +447,17 @@ body.mode-tj {
     --accent-secondary: #00bcd4;
 }
 
-body.mode-tj h1::before, 
-body.mode-tj h2::before,
-body.mode-tj li::before {
-    content: "🪿";
-    display: inline-block;
-    filter: sepia(100%) hue-rotate(180deg);
-    margin-right: 0.5rem;
-    animation: tj-hover 1.5s ease-in-out infinite alternate;
+body.mode-chicken {
+    --bg-color: #fff9c4;
+    --surface-color: #fff176;
+    --primary-color: #e65100;
+    --secondary-color: #fdd835;
+    --text-color: #3e2723;
+    --accent-color: #8d6e63;
+}
+
+body.mode-fast .main-wrapper {
+    animation: jitter 0.1s infinite;
 }
 
 @keyframes tj-hover {

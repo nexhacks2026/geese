@@ -11,36 +11,27 @@
 
 <body>
 
-    <nav class="sidebar">
-        <a href="index.html" class="logo">Goosepedia</a>
-
-        <h3>Navigation</h3>
-        <ul>
-            <li><a href="index.html">Main page</a></li>
-            <li><a href="anatomy.html">Anatomy</a></li>
-            <li><a href="diet.html">Diet & Feeding</a></li>
-            <li><a href="#">Random Goose</a></li>
-        </ul>
-
-        <h3>Interaction</h3>
-        <ul>
-            <li><a href="#" id="help-link">Help</a></li>
-            <li>
-                <a href="#help">Help Context</a>
-                <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; line-height: 1.2;">
-                     Mason Bair saved all of the geese from certain doom.
-                </div>
+    <!-- Modern Navbar -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">🪿 Goosepedia</a>
+        <ul class="nav-menu">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="anatomy.html" class="nav-link">Anatomy</a></li>
+            <li><a href="diet.html" class="nav-link">Diet</a></li>
+            
+            <!-- Settings Dropdown -->
+            <li class="settings-dropdown">
+                 <span class="nav-link">Modes ▾</span>
+                 <div class="dropdown-content">
+                     <div class="dropdown-item" id="toggle-dark">Dark Mode</div>
+                     <div class="dropdown-item" id="toggle-evil">Evil Mode</div>
+                     <div class="dropdown-item" id="toggle-tj">TJ Mode</div>
+                     <div class="dropdown-item" id="toggle-fast">Fast Mode</div>
+                     <div class="dropdown-item" id="toggle-chicken">Chicken Mode</div>
+                 </div>
             </li>
-            <li><a href="#">About Goosepedia</a></li>
-            <li><a href="#">Community portal</a></li>
-        </ul>
-
-        <h3>Modes</h3>
-        <ul>
-            <li><a href="#" id="toggle-dark">Mega Geese Dark Mode</a></li>
-            <li><a href="#" id="toggle-evil">Evil Day Creative Mode</a></li>
-            <li><a href="#" id="toggle-tj">TJ's CSS Geese</a></li>
-            <li><a href="#" id="toggle-fast">Super Fast Geese Mode</a></li>
+            <!-- Rabbit Museum Link -->
+            <li><a href="index.html?page=rabbits" class="nav-link" target="_blank" title="Rabbit Museum">🐇</a></li>
         </ul>
     </nav>
 
@@ -60,7 +51,7 @@
       __
   __( o)>
   \___)
-                </pre>
+                </pre> <!-- Fixed closing tag from original sloppy HTML -->
             </div>
             <table>
                 <tr>
@@ -179,25 +170,94 @@
         </section>
     </main>
 
+    <footer>
+        Goosepedia &copy; 2026. All rights reserved. Beware of the birds.
+    </footer>
+
     <!-- Help Modal -->
     <div id="help-modal" class="modal">
         <div class="modal-content">
             <span class="close-button">&times;</span>
             <h2>Magical Help Menu</h2>
             <p>Welcome to the help menu. Currently, the only help we offer is this magical button. It counts, it shines, it is everything.</p>
-            <div class="magic-area">
+            <div class="magic-area" style="margin: 2rem 0;">
                 <button id="magic-button" class="magic-btn">Click me: 0</button>
             </div>
             <p><i>Keep clicking to find the meaning of goose.</i></p>
         </div>
     </div>
 
+    <!-- Scripts -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // --- Rabbit Museum Logic ---
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('page') === 'rabbits') {
+                document.title = "The Rabbit Museum";
+                
+                // Change Logo
+                const logo = document.querySelector('.logo');
+                if(logo) logo.textContent = "🐇 Rabbitpedia";
+
+                // Replace Main Content
+                const mainContent = document.querySelector('.main-content');
+                if (mainContent) mainContent.remove();
+
+                const museumContent = document.createElement('main');
+                museumContent.className = 'main-content rabbit-museum';
+                museumContent.innerHTML = `
+                    <header class="welcome-box" style="border-left-color: var(--accent-highlight);">
+                        <h2>The Unspoken History of Rabbits</h2>
+                        <p>Welcome to the hidden wing of the archive. Here we celebrate the bounce, the wiggle, and the twitch.</p>
+                    </header>
+
+                    <h1>Rabbit History</h1>
+                    <div class="site-sub">From the archives of soft things</div>
+
+                    <div class="ascii-art">
+           \\
+           \\_
+        .--(')
+      o( )_-_\\_
+      
+      THE ANCIENT HOPPER
+                    </div>
+
+                    <section>
+                        <h2>Origins of the Hop</h2>
+                        <p>While geese chose violence and honking, rabbits chose evasion and salad. The first historical record of a rabbit dates back to the Great Lettuce Famine of 3000 BC.</p>
+                    </section>
+
+                    <section>
+                        <h2>The Museum Collection</h2>
+                        <ul>
+                            <li><strong>The Holy Carrot:</strong> A fossilized root vegetable revered by early lagomorphs.</li>
+                            <li><strong>The Ear of Hearing:</strong> A sculpture dedicated to their evolutionary advantage.</li>
+                            <li><strong> fluffy.txt:</strong> An ancient manuscript describing optimal fluff density.</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Rabbit vs Goose</h2>
+                        <p>Rabbits and geese have maintained a cold war for centuries. One controls the water, the other controls the burrow. They rarely interact, for a honk terrorizes the twitchy.</p>
+                    </section>
+                    
+                    <p style="text-align:center; margin-top: 3rem;">
+                        <a href="index.html" class="magical-button" style="text-decoration:none;">Return to Geese</a>
+                    </p>
+                `;
+                
+                document.querySelector('.navbar').after(museumContent);
+                
+                // Return early to prevent Goose scripts from running
+                return;
+            }
+
             const toggleDark = document.getElementById('toggle-dark');
             const toggleEvil = document.getElementById('toggle-evil');
             const toggleTj = document.getElementById('toggle-tj');
             const toggleFast = document.getElementById('toggle-fast');
+            const toggleChicken = document.getElementById('toggle-chicken');
             const body = document.body;
 
             // Load saved state
@@ -211,6 +271,8 @@
                 body.classList.add('mode-tj');
             } else if (savedTheme === 'fast') {
                 body.classList.add('mode-fast');
+            } else if (savedTheme === 'chicken') {
+                body.classList.add('mode-chicken');
             }
 
             // Help Modal Logic
@@ -257,7 +319,6 @@
                     }
 
                     if (magicCount % 10 === 0) {
-                       // Small easter egg
                        console.log("Honk!");
                     }
                 });
@@ -363,14 +424,27 @@
                 }
             });
 
+            if (toggleChicken) {
+                toggleChicken.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (body.classList.contains('mode-chicken')) {
+                        body.classList.remove('mode-chicken');
+                        localStorage.setItem('theme', 'default');
+                    } else {
+                        resetModes();
+                        body.classList.add('mode-chicken');
+                        localStorage.setItem('theme', 'chicken');
+                    }
+                });
+            }
+
             function resetModes() {
-                body.classList.remove('dark-mode', 'evil-mode', 'mode-tj', 'mode-fast');
+                body.classList.remove('dark-mode', 'evil-mode', 'mode-tj', 'mode-fast', 'mode-chicken');
                 deactivateEvilMode();
             }
 
             function activateEvilMode() {
                 document.addEventListener('click', spawnEvilGooseHandler);
-                // Spawn one to start if none exist
                 if (document.querySelectorAll('.spawned-evil-goose').length === 0) {
                      spawnEvilGoose(window.innerWidth/2, window.innerHeight/2);
                 }
@@ -382,8 +456,7 @@
             }
 
             function spawnEvilGooseHandler(e) {
-                // Ignore clicks on sidebar/links to avoid interfering with navigation too much
-                if (e.target.closest('a') || e.target.closest('.sidebar') || e.target.closest('.modal-content')) return;
+                if (e.target.closest('a') || e.target.closest('.dropdown-content') || e.target.closest('.modal-content')) return;
                 spawnEvilGoose(e.clientX, e.clientY);
             }
 
@@ -398,7 +471,6 @@
                 goose.style.zIndex = '10005';
                 goose.style.pointerEvents = 'none';
                 
-                // Random transform
                 const angle = Math.random() * 360;
                 goose.style.transform = `rotate(${angle}deg)`;
                 
@@ -413,13 +485,11 @@
                     count++;
                     magicBtn.textContent = `Honks: ${count}`;
                     
-                    // Simple visual effect
                     const r = Math.floor(Math.random() * 200 + 55);
                     const g = Math.floor(Math.random() * 200 + 55);
                     const b = Math.floor(Math.random() * 200 + 55);
                     magicBtn.style.background = `linear-gradient(45deg, rgb(${r},${0},${0}), rgb(${0},${g},${b}))`;
                     
-                    // Creates a floating 'Honk!' element
                     const honk = document.createElement('span');
                     honk.innerText = "HONK!";
                     honk.style.position = 'absolute';
@@ -433,8 +503,7 @@
                     honk.style.zIndex = '1000';
                     document.body.appendChild(honk);
                     
-                    // Force reflow
-                    honk.offsetHeight;
+                    honk.offsetHeight; // Force reflow
                     
                     honk.style.opacity = '0';
                     honk.style.transform = `translate(${Math.random() * 40 - 20}px, -40px) rotate(${Math.random() * 20 - 10}deg)`;
@@ -451,13 +520,10 @@
             startWalkingGeese();
 
             function startWalkingGeese() {
-                // Spawn one immediately
                 spawnWalkingGoose();
                 
-                // Spawn more periodically
                 setInterval(() => {
                     if (document.hidden) return; 
-                    // 40% chance every 3 seconds
                     if (Math.random() < 0.4) {
                         spawnWalkingGoose();
                     }
@@ -475,11 +541,9 @@
                 walker.appendChild(inner);
                 document.body.appendChild(walker);
                 
-                // Randomize duration
-                const duration = 15 + Math.random() * 10; // 15-25 seconds
+                const duration = 15 + Math.random() * 10;
                 walker.style.animation = `goose-walk-right ${duration}s linear forwards`;
                 
-                // Randomize size
                 const size = 2 + Math.random() * 2;
                 inner.style.fontSize = `${size}rem`;
                 
@@ -489,14 +553,12 @@
                     walker.style.zIndex = '5'; // Behind content if content was high, but here content is standard flow
                     walker.style.opacity = '0.7';
                 } else {
-                    walker.style.zIndex = '95'; // In front of content, behind sidebar
+                    walker.style.zIndex = '95';
                 }
                 
-                // Randomize bottom position slightly
                 const bottom = Math.random() * 50; 
                 walker.style.bottom = `${bottom}px`;
                 
-                // Clean up when animation finishes
                 setTimeout(() => {
                     walker.remove();
                 }, duration * 1000);
@@ -504,4 +566,5 @@
         });
     </script>
 </body>
+
 </html>
