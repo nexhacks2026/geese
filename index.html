@@ -11,25 +11,24 @@
 
 <body>
 
-    <nav class="sidebar">
-        <a href="index.html" class="logo">Goosepedia</a>
-
-        <h3>Navigation</h3>
-        <ul>
-            <li><a href="index.html">Main page</a></li>
-            <li><a href="anatomy.html">Anatomy</a></li>
-            <li><a href="diet.html">Diet & Feeding</a></li>
-            <li><a href="#">Random Goose</a></li>
-        </ul>
-
-        <h3>Interaction</h3>
-        <ul>
-            <li><a href="#" id="help-link">Help</a></li>
-            <li>
-                <a href="#help">Help Context</a>
-                <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; line-height: 1.2;">
-                     Mason Bair saved all of the geese from certain doom.
-                </div>
+    <!-- Modern Navbar -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">🪿 Goosepedia</a>
+        <ul class="nav-menu">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="anatomy.html" class="nav-link">Anatomy</a></li>
+            <li><a href="diet.html" class="nav-link">Diet</a></li>
+            
+            <!-- Settings Dropdown -->
+            <li class="settings-dropdown">
+                 <span class="nav-link">Modes ▾</span>
+                 <div class="dropdown-content">
+                     <div class="dropdown-item" id="toggle-dark">Dark Mode</div>
+                     <div class="dropdown-item" id="toggle-evil">Evil Mode</div>
+                     <div class="dropdown-item" id="toggle-tj">TJ Mode</div>
+                     <div class="dropdown-item" id="toggle-fast">Fast Mode</div>
+                     <div class="dropdown-item" id="toggle-chicken">Chicken Mode</div>
+                 </div>
             </li>
         </ul>
     </nav>
@@ -215,6 +214,7 @@
             const toggleEvil = document.getElementById('toggle-evil');
             const toggleTj = document.getElementById('toggle-tj');
             const toggleFast = document.getElementById('toggle-fast');
+            const toggleChicken = document.getElementById('toggle-chicken');
             const body = document.body;
 
             // Load saved state
@@ -228,6 +228,8 @@
                 body.classList.add('mode-tj');
             } else if (savedTheme === 'fast') {
                 body.classList.add('mode-fast');
+            } else if (savedTheme === 'chicken') {
+                body.classList.add('mode-chicken');
             }
 
             // Help Modal Logic
@@ -379,8 +381,22 @@
                 }
             });
 
+            if (toggleChicken) {
+                toggleChicken.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (body.classList.contains('mode-chicken')) {
+                        body.classList.remove('mode-chicken');
+                        localStorage.setItem('theme', 'default');
+                    } else {
+                        resetModes();
+                        body.classList.add('mode-chicken');
+                        localStorage.setItem('theme', 'chicken');
+                    }
+                });
+            }
+
             function resetModes() {
-                body.classList.remove('dark-mode', 'evil-mode', 'mode-tj', 'mode-fast');
+                body.classList.remove('dark-mode', 'evil-mode', 'mode-tj', 'mode-fast', 'mode-chicken');
                 deactivateEvilMode();
             }
 
@@ -507,4 +523,5 @@
         });
     </script>
 </body>
+
 </html>

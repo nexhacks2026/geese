@@ -11,22 +11,26 @@
 
 <body>
 
-    <nav class="sidebar">
-        <a href="index.html" class="logo">Goosepedia</a>
-
-        <h3>Navigation</h3>
-        <ul>
-            <li><a href="index.html">Main page</a></li>
-            <li><a href="anatomy.html">Anatomy</a></li>
-            <li><a href="diet.html">Diet & Feeding</a></li>
-            <li><a href="#">Random Goose</a></li>
-        </ul>
-
-        <h3>Interaction</h3>
-        <ul>
-            <li><a href="#" id="help-link">Help</a></li>
-            <li><a href="#">About Goosepedia</a></li>
-            <li><a href="#">Community portal</a></li>
+    <!-- Modern Navbar -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">🪿 Goosepedia</a>
+        <ul class="nav-menu">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="anatomy.html" class="nav-link">Anatomy</a></li>
+            <li><a href="diet.html" class="nav-link">Diet</a></li>
+            
+            <!-- Settings Dropdown -->
+            <li class="settings-dropdown">
+                 <span class="nav-link">Modes ▾</span>
+                 <div class="dropdown-content">
+                     <!-- Mode toggles would go here, managed by JS -->
+                     <div class="dropdown-item" id="toggle-dark">Dark Mode</div>
+                     <div class="dropdown-item" id="toggle-evil">Evil Mode</div>
+                     <div class="dropdown-item" id="toggle-tj">TJ Mode</div>
+                     <div class="dropdown-item" id="toggle-fast">Fast Mode</div>
+                     <div class="dropdown-item" id="toggle-chicken">Chicken Mode</div>
+                 </div>
+            </li>
         </ul>
     </nav>
 
@@ -117,6 +121,8 @@
                 document.body.classList.add('evil-mode');
             } else if (savedTheme === 'tj') {
                 document.body.classList.add('mode-tj');
+            } else if (savedTheme === 'chicken') {
+                document.body.classList.add('mode-chicken');
             }
 
             // Mode toggles
@@ -124,11 +130,13 @@
             const toggleEvil = document.getElementById('toggle-evil');
             const toggleTj = document.getElementById('toggle-tj');
             const toggleFast = document.getElementById('toggle-fast');
+            const toggleChicken = document.getElementById('toggle-chicken');
 
             if (toggleDark) toggleDark.addEventListener('click', () => setTheme('dark'));
             if (toggleEvil) toggleEvil.addEventListener('click', () => setTheme('evil'));
             if (toggleTj) toggleTj.addEventListener('click', () => setTheme('tj'));
             if (toggleFast) toggleFast.addEventListener('click', () => setTheme('fast'));
+            if (toggleChicken) toggleChicken.addEventListener('click', () => setTheme('chicken'));
 
             function setTheme(mode) {
                 if (body.classList.contains('mode-' + mode) || (mode === 'dark' && body.classList.contains('dark-mode')) || (mode === 'evil' && body.classList.contains('evil-mode'))) {
