@@ -293,8 +293,7 @@ footer {
     font-family: "Segoe UI Emoji", "Apple Color Emoji", sans-serif;
     transform: translate3d(var(--x, 0), var(--y, 0), 0) rotate(var(--r, 0deg));
     will-change: transform;
-    opacity: 1 !important; /* FULL VISIBILITY */
-    font-size: 3rem; /* BIG GEESE */
+    opacity: 1 !important; /* FULL VISIBILITY */\n    font-size: 3rem; /* BIG GEESE */
     filter: drop-shadow(2px 2px 0px white);
 }
 
@@ -316,9 +315,30 @@ footer {
     font-weight: bold;
 }
 
+/* Security Badge - Level 3 Encryption */
+.security-badge {
+    position: fixed; 
+    bottom: 20px; 
+    right: 20px; 
+    background: #000; 
+    color: #0f0; 
+    padding: 10px; 
+    border: 2px solid #0f0; 
+    font-family: var(--font-mono); 
+    z-index: 10000;
+    font-size: 0.9rem;
+    box-shadow: 0 0 10px #0f0;
+    animation: pulse-green 2s infinite;
+}
+
+@keyframes pulse-green {
+    0% { box-shadow: 0 0 5px #0f0; }
+    50% { box-shadow: 0 0 15px #0f0, 0 0 5px #0f0; }
+    100% { box-shadow: 0 0 5px #0f0; }
+}
+
 /* Mobile */
-@media (max-width: 700px) {
-    .infobox {
+@media (max-width: 700px) {\n    .infobox {
         float: none;
         width: 100%;
     }
