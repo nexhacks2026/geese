@@ -11,22 +11,27 @@
 
 <body>
 
-    <nav class="sidebar">
-        <a href="index.html" class="logo">Goosepedia</a>
-
-        <h3>Navigation</h3>
-        <ul>
-            <li><a href="index.html">Main page</a></li>
-            <li><a href="anatomy.html">Anatomy</a></li>
-            <li><a href="diet.html">Diet & Feeding</a></li>
-            <li><a href="#">Random Goose</a></li>
-        </ul>
-        
-        <h3>Interaction</h3>
-        <ul>
-            <li><a href="#" id="help-link">Help</a></li>
-            <li><a href="#">About Goosepedia</a></li>
-            <li><a href="#">Community portal</a></li>
+    <!-- Modern Navbar -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">🪿 Goosepedia</a>
+        <ul class="nav-menu">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="anatomy.html" class="nav-link">Anatomy</a></li>
+            <li><a href="diet.html" class="nav-link">Diet</a></li>
+            
+            <!-- Settings Dropdown -->
+            <li class="settings-dropdown">
+                 <span class="nav-link">Modes ▾</span>
+                 <div class="dropdown-content">
+                     <div class="dropdown-item" id="toggle-dark">Dark Mode</div>
+                     <div class="dropdown-item" id="toggle-evil">Evil Mode</div>
+                     <div class="dropdown-item" id="toggle-tj">TJ Mode</div>
+                     <div class="dropdown-item" id="toggle-fast">Fast Mode</div>
+                     <div class="dropdown-item" id="toggle-chicken">Chicken Mode</div>
+                 </div>
+            </li>
+            <!-- Rabbit Museum Link -->
+            <li><a href="index.html?page=rabbits" class="nav-link" target="_blank" title="Rabbit Museum">🐇</a></li>
         </ul>
     </nav>
 
@@ -101,11 +106,17 @@
             // Apply saved theme
             const body = document.body;
             const savedTheme = localStorage.getItem('theme');
-            if (savedTheme) {
-                if (savedTheme === 'dark') body.classList.add('dark-mode');
-                else if (savedTheme === 'evil') body.classList.add('evil-mode');
-                else if (savedTheme === 'tj') body.classList.add('mode-tj');
-                else if (savedTheme === 'fast') body.classList.add('mode-fast');
+            if (savedTheme === 'dark') {
+                body.classList.add('dark-mode');
+            } else if (savedTheme === 'evil') {
+                body.classList.add('evil-mode');
+                activateEvilMode();
+            } else if (savedTheme === 'tj') {
+                body.classList.add('mode-tj');
+            } else if (savedTheme === 'fast') {
+                body.classList.add('mode-fast');
+            } else if (savedTheme === 'chicken') {
+                body.classList.add('mode-chicken');
             }
 
             // Mode toggles
@@ -113,14 +124,22 @@
             const toggleEvil = document.getElementById('toggle-evil');
             const toggleTj = document.getElementById('toggle-tj');
             const toggleFast = document.getElementById('toggle-fast');
+            const toggleChicken = document.getElementById('toggle-chicken');
 
             function setTheme(mode) {
-               body.classList.remove('dark-mode', 'evil-mode', 'mode-tj', 'mode-fast');
-               if (mode !== 'default') body.classList.add('mode-' + mode);
-               // Handle special class names for backwards compat/specificity
-               if (mode === 'dark') body.classList.add('dark-mode');
-               if (mode === 'evil') body.classList.add('evil-mode');
-               localStorage.setItem('theme', mode);
+                body.classList.remove('dark-mode', 'evil-mode', 'mode-tj', 'mode-fast', 'mode-chicken');
+                deactivateEvilMode();
+                if (mode !== 'default') {
+                    if (mode === 'dark') {
+                        body.classList.add('dark-mode');
+                    } else if (mode === 'evil') {
+                        body.classList.add('evil-mode');
+                        activateEvilMode();
+                    } else {
+                        body.classList.add('mode-' + mode);
+                    }
+                }
+                localStorage.setItem('theme', mode);
             }
 
             if (toggleDark) toggleDark.addEventListener('click', () => {
@@ -135,10 +154,51 @@
                 if(body.classList.contains('mode-tj')) setTheme('default');
                 else setTheme('tj');
             });
-             if (toggleFast) toggleFast.addEventListener('click', () => {
+            if (toggleFast) toggleFast.addEventListener('click', () => {
                 if(body.classList.contains('mode-fast')) setTheme('default');
                 else setTheme('fast');
             });
+            if (toggleChicken) toggleChicken.addEventListener('click', () => {
+                if(body.classList.contains('mode-chicken')) setTheme('default');
+                else setTheme('chicken');
+            });
+
+            function activateEvilMode() {
+                document.addEventListener('click', spawnEvilGooseHandler);
+                // Spawn one to start if none exist
+                if (document.querySelectorAll('.spawned-evil-goose').length === 0) {
+                    spawnEvilGoose(window.innerWidth/2, window.innerHeight/2);
+                }
+            }
+
+            function deactivateEvilMode() {
+                document.removeEventListener('click', spawnEvilGooseHandler);
+                document.querySelectorAll('.spawned-evil-goose').forEach(el => el.remove());
+            }
+
+            function spawnEvilGooseHandler(e) {
+                // Ignore clicks on navbar/links to avoid interfering with navigation
+                if (e.target.closest('a') || e.target.closest('.navbar') || e.target.closest('.modal-content')) return;
+                spawnEvilGoose(e.clientX, e.clientY);
+            }
+
+            function spawnEvilGoose(x, y) {
+                const goose = document.createElement('div');
+                goose.textContent = '🪿';
+                goose.className = 'spawned-evil-goose';
+                goose.style.position = 'fixed';
+                goose.style.left = x + 'px';
+                goose.style.top = y + 'px';
+                goose.style.fontSize = (30 + Math.random() * 30) + 'px';
+                goose.style.zIndex = '10005';
+                goose.style.pointerEvents = 'none';
+                
+                // Random transform
+                const angle = Math.random() * 360;
+                goose.style.transform = `rotate(${angle}deg)`;
+                
+                document.body.appendChild(goose);
+            }
 
             const container = document.getElementById('goose-container');
             const emoji = '🪿';

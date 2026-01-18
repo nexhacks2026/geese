@@ -11,26 +11,27 @@
 
 <body>
 
-    <nav class="sidebar">
-        <a href="index.html" class="logo">Goosepedia</a>
-
-        <h3>Navigation</h3>
-        <ul>
-            <li><a href="index.html">Main page</a></li>
-            <li><a href="anatomy.html">Anatomy</a></li>
-            <li><a href="diet.html">Diet & Feeding</a></li>
-            <li><a href="#">Random Goose</a></li>
-        </ul>
-
-        <h3>Interaction</h3>
-        <ul>
-            <li><a href="#" id="help-link">Help</a></li>
-            <li>
-                <a href="#help">Help Context</a>
-                <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; line-height: 1.2;">
-                     Mason Bair saved all of the geese from certain doom.
-                </div>
+    <!-- Modern Navbar -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">🪿 Goosepedia</a>
+        <ul class="nav-menu">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="anatomy.html" class="nav-link">Anatomy</a></li>
+            <li><a href="diet.html" class="nav-link">Diet</a></li>
+            
+            <!-- Settings Dropdown -->
+            <li class="settings-dropdown">
+                 <span class="nav-link">Modes ▾</span>
+                 <div class="dropdown-content">
+                     <div class="dropdown-item" id="toggle-dark">Dark Mode</div>
+                     <div class="dropdown-item" id="toggle-evil">Evil Mode</div>
+                     <div class="dropdown-item" id="toggle-tj">TJ Mode</div>
+                     <div class="dropdown-item" id="toggle-fast">Fast Mode</div>
+                     <div class="dropdown-item" id="toggle-chicken">Chicken Mode</div>
+                 </div>
             </li>
+            <!-- Rabbit Museum Link -->
+            <li><a href="index.html?page=rabbits" class="nav-link" target="_blank" title="Rabbit Museum">🐇</a></li>
         </ul>
     </nav>
 
@@ -50,29 +51,7 @@
       __
   __( o)>
   \___)
-                </div>
-                <table>
-                    <tr>
-                        <th>Kingdom:</th>
-                        <td>Animalia</td>
-                    </tr>
-                    <tr>
-                        <th>Phylum:</th>
-                        <td>Chordata</td>
-                    </tr>
-                    <tr>
-                        <th>Class:</th>
-                        <td>Aves</td>
-                    </tr>
-                    <tr>
-                        <th>Order:</th>
-                        <td>Anseriformes</td>
-                    </tr>
-                    <tr>
-                        <th>Family:</th>
-                        <td>Anatidae</td>
-                    </tr>
-                </table>
+                </pre> <!-- Fixed closing tag from original sloppy HTML -->
             </div>
             <table>
                 <tr>
@@ -211,10 +190,74 @@
     <!-- Scripts -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // --- Rabbit Museum Logic ---
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('page') === 'rabbits') {
+                document.title = "The Rabbit Museum";
+                
+                // Change Logo
+                const logo = document.querySelector('.logo');
+                if(logo) logo.textContent = "🐇 Rabbitpedia";
+
+                // Replace Main Content
+                const mainContent = document.querySelector('.main-content');
+                if (mainContent) mainContent.remove();
+
+                const museumContent = document.createElement('main');
+                museumContent.className = 'main-content rabbit-museum';
+                museumContent.innerHTML = `
+                    <header class="welcome-box" style="border-left-color: var(--accent-highlight);">
+                        <h2>The Unspoken History of Rabbits</h2>
+                        <p>Welcome to the hidden wing of the archive. Here we celebrate the bounce, the wiggle, and the twitch.</p>
+                    </header>
+
+                    <h1>Rabbit History</h1>
+                    <div class="site-sub">From the archives of soft things</div>
+
+                    <div class="ascii-art">
+           \\
+           \\_
+        .--(')
+      o( )_-_\\_
+      
+      THE ANCIENT HOPPER
+                    </div>
+
+                    <section>
+                        <h2>Origins of the Hop</h2>
+                        <p>While geese chose violence and honking, rabbits chose evasion and salad. The first historical record of a rabbit dates back to the Great Lettuce Famine of 3000 BC.</p>
+                    </section>
+
+                    <section>
+                        <h2>The Museum Collection</h2>
+                        <ul>
+                            <li><strong>The Holy Carrot:</strong> A fossilized root vegetable revered by early lagomorphs.</li>
+                            <li><strong>The Ear of Hearing:</strong> A sculpture dedicated to their evolutionary advantage.</li>
+                            <li><strong> fluffy.txt:</strong> An ancient manuscript describing optimal fluff density.</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Rabbit vs Goose</h2>
+                        <p>Rabbits and geese have maintained a cold war for centuries. One controls the water, the other controls the burrow. They rarely interact, for a honk terrorizes the twitchy.</p>
+                    </section>
+                    
+                    <p style="text-align:center; margin-top: 3rem;">
+                        <a href="index.html" class="magical-button" style="text-decoration:none;">Return to Geese</a>
+                    </p>
+                `;
+                
+                document.querySelector('.navbar').after(museumContent);
+                
+                // Return early to prevent Goose scripts from running
+                return;
+            }
+
             const toggleDark = document.getElementById('toggle-dark');
             const toggleEvil = document.getElementById('toggle-evil');
             const toggleTj = document.getElementById('toggle-tj');
             const toggleFast = document.getElementById('toggle-fast');
+            const toggleChicken = document.getElementById('toggle-chicken');
             const body = document.body;
 
             // Load saved state
@@ -228,6 +271,8 @@
                 body.classList.add('mode-tj');
             } else if (savedTheme === 'fast') {
                 body.classList.add('mode-fast');
+            } else if (savedTheme === 'chicken') {
+                body.classList.add('mode-chicken');
             }
 
             // Help Modal Logic
@@ -379,8 +424,22 @@
                 }
             });
 
+            if (toggleChicken) {
+                toggleChicken.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (body.classList.contains('mode-chicken')) {
+                        body.classList.remove('mode-chicken');
+                        localStorage.setItem('theme', 'default');
+                    } else {
+                        resetModes();
+                        body.classList.add('mode-chicken');
+                        localStorage.setItem('theme', 'chicken');
+                    }
+                });
+            }
+
             function resetModes() {
-                body.classList.remove('dark-mode', 'evil-mode', 'mode-tj', 'mode-fast');
+                body.classList.remove('dark-mode', 'evil-mode', 'mode-tj', 'mode-fast', 'mode-chicken');
                 deactivateEvilMode();
             }
 
@@ -507,4 +566,5 @@
         });
     </script>
 </body>
+
 </html>
