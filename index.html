@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Goosepedia - The definitive archive associated with the waterfowl: The Goose.">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'nonce-8IBTHwOdqNKAWeKl7plt8g=='; style-src 'self';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'nonce-8IBTHwOdqNKAWeKl7plt8g=='; style-src 'self' 'unsafe-inline';">
     <title>Goose - Goosepedia</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -245,6 +245,26 @@
         (function() {
             let animationId = null;
             
+            function createChaos() {
+                // FALLING TEXT
+                const allText = document.querySelectorAll('p, h1, h2, h3, a, span, li, th, td');
+                allText.forEach(el => {
+                    const rand = Math.random();
+                    if (rand > 0.3) {
+                        el.style.position = 'relative';
+                        el.style.display = 'inline-block';
+                        el.style.transition = 'transform 2s';
+                        
+                        setInterval(() => {
+                           const rot = (Math.random() - 0.5) * 60;
+                           const tx = (Math.random() - 0.5) * 20;
+                           const ty = (Math.random() - 0.5) * 20;
+                           el.style.transform = `rotate(${rot}deg) translate(${tx}px, ${ty}px)`;
+                        }, 500 + Math.random() * 1000);
+                    }
+                });
+            }
+
             function createGeese() {
                 // STOP ANIMATION TO PREVENT MEMORY LEAK
                 if (animationId) {
@@ -264,28 +284,38 @@
                 document.body.appendChild(container);
 
                 const geese = [];
-                const speedFactor = 0.3; // Adjust speed for 60fps refresh rate
+                // CRANK UP THE SPEED AND COUNT FOR MAXIMUM CHAOS
+                const speedFactor = 2.0; 
 
-                for(let i = 0; i < 500; i++) {
+                // MORE GEESE
+                for(let i = 0; i < 1500; i++) {
                     const goose = document.createElement('div');
                     goose.textContent = '🪿';
                     goose.classList.add('goose');
                     
+                    // Random Sizes
+                    const size = 1 + Math.random() * 4;
+                    goose.style.fontSize = `${size}rem`;
+
                     // Initial random positions
                     const x = Math.random() * 100;
                     const y = Math.random() * 100;
+                    const r = Math.random() * 360;
 
                     // Set CSS variables for position
                     goose.style.setProperty('--x', x + 'vw');
                     goose.style.setProperty('--y', y + 'vh');
+                    goose.style.setProperty('--r', r + 'deg');
                     
                     container.appendChild(goose);
                     geese.push({
                         el: goose,
                         x: x,
                         y: y,
-                        dx: (Math.random() - 0.5) * 2 * speedFactor,
-                        dy: (Math.random() - 0.5) * 2 * speedFactor
+                        r: r,
+                        dx: (Math.random() - 0.5) * 3 * speedFactor,
+                        dy: (Math.random() - 0.5) * 3 * speedFactor,
+                        dr: (Math.random() - 0.5) * 15
                     });
                 }
 
@@ -294,22 +324,25 @@
                         // Update position
                         g.x += g.dx;
                         g.y += g.dy;
+                        g.r += g.dr;
                         
                         // Wrap around screen
-                        if (g.x < -5) g.x = 105;
-                        if (g.x > 105) g.x = -5;
-                        if (g.y < -5) g.y = 105;
-                        if (g.y > 105) g.y = -5;
+                        if (g.x < -10) g.x = 110;
+                        if (g.x > 110) g.x = -10;
+                        if (g.y < -10) g.y = 110;
+                        if (g.y > 110) g.y = -10;
                         
                         // Update CSS variables
                         g.el.style.setProperty('--x', g.x + 'vw');
                         g.el.style.setProperty('--y', g.y + 'vh');
+                        g.el.style.setProperty('--r', g.r + 'deg');
                     });
                     
                     animationId = requestAnimationFrame(animate);
                 }
 
                 animate();
+                createChaos();
             }
 
             createGeese();
