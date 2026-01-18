@@ -32,6 +32,7 @@
         <ul>
             <li><a href="#" id="toggle-dark">Mega Geese Dark Mode</a></li>
             <li><a href="#" id="toggle-evil">Evil Day Creative Mode</a></li>
+            <li><a href="#" id="toggle-tj">TJ's CSS Geese</a></li>
         </ul>
     </div>
 
@@ -150,14 +151,18 @@
         document.addEventListener('DOMContentLoaded', () => {
             const toggleDark = document.getElementById('toggle-dark');
             const toggleEvil = document.getElementById('toggle-evil');
+            const toggleTj = document.getElementById('toggle-tj');
             const body = document.body;
 
             // Load saved state
-            if (localStorage.getItem('theme') === 'dark') {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
                 body.classList.add('dark-mode');
-            } else if (localStorage.getItem('theme') === 'evil') {
+            } else if (savedTheme === 'evil') {
                 body.classList.add('evil-mode');
                 activateEvilMode();
+            } else if (savedTheme === 'tj') {
+                body.classList.add('mode-tj');
             }
 
             toggleDark.addEventListener('click', (e) => {
@@ -166,9 +171,8 @@
                     body.classList.remove('dark-mode');
                     localStorage.setItem('theme', 'default');
                 } else {
+                    resetModes();
                     body.classList.add('dark-mode');
-                    body.classList.remove('evil-mode');
-                    deactivateEvilMode();
                     localStorage.setItem('theme', 'dark');
                 }
             });
@@ -180,12 +184,29 @@
                     deactivateEvilMode();
                     localStorage.setItem('theme', 'default');
                 } else {
+                    resetModes();
                     body.classList.add('evil-mode');
-                    body.classList.remove('dark-mode');
                     activateEvilMode();
                     localStorage.setItem('theme', 'evil');
                 }
             });
+
+            toggleTj.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (body.classList.contains('mode-tj')) {
+                    body.classList.remove('mode-tj');
+                    localStorage.setItem('theme', 'default');
+                } else {
+                    resetModes();
+                    body.classList.add('mode-tj');
+                    localStorage.setItem('theme', 'tj');
+                }
+            });
+
+            function resetModes() {
+                body.classList.remove('dark-mode', 'evil-mode', 'mode-tj');
+                deactivateEvilMode();
+            }
 
             function activateEvilMode() {
                 document.addEventListener('click', spawnEvilGooseHandler);
