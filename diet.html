@@ -200,6 +200,38 @@
                 document.body.appendChild(goose);
             }
 
+            // Mode toggles
+            const toggleDark = document.getElementById('toggle-dark');
+            const toggleEvil = document.getElementById('toggle-evil');
+            const toggleTj = document.getElementById('toggle-tj');
+            const toggleFast = document.getElementById('toggle-fast');
+
+            function setTheme(mode) {
+               body.classList.remove('dark-mode', 'evil-mode', 'mode-tj', 'mode-fast');
+               if (mode !== 'default') body.classList.add('mode-' + mode);
+               // Handle special class names for backwards compat/specificity
+               if (mode === 'dark') body.classList.add('dark-mode');
+               if (mode === 'evil') body.classList.add('evil-mode');
+               localStorage.setItem('theme', mode);
+            }
+
+            if (toggleDark) toggleDark.addEventListener('click', () => {
+                if(body.classList.contains('dark-mode')) setTheme('default');
+                else setTheme('dark');
+            });
+            if (toggleEvil) toggleEvil.addEventListener('click', () => {
+                if(body.classList.contains('evil-mode')) setTheme('default');
+                else setTheme('evil');
+            });
+            if (toggleTj) toggleTj.addEventListener('click', () => {
+                if(body.classList.contains('mode-tj')) setTheme('default');
+                else setTheme('tj');
+            });
+             if (toggleFast) toggleFast.addEventListener('click', () => {
+                if(body.classList.contains('mode-fast')) setTheme('default');
+                else setTheme('fast');
+            });
+
             const container = document.getElementById('goose-container');
             const emoji = '🪿';
             

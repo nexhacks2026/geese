@@ -200,6 +200,30 @@
                 document.body.appendChild(goose);
             }
 
+            // Mode toggles
+            const toggleDark = document.getElementById('toggle-dark');
+            const toggleEvil = document.getElementById('toggle-evil');
+            const toggleTj = document.getElementById('toggle-tj');
+            const toggleFast = document.getElementById('toggle-fast');
+
+            if (toggleDark) toggleDark.addEventListener('click', () => setTheme('dark'));
+            if (toggleEvil) toggleEvil.addEventListener('click', () => setTheme('evil'));
+            if (toggleTj) toggleTj.addEventListener('click', () => setTheme('tj'));
+            if (toggleFast) toggleFast.addEventListener('click', () => setTheme('fast'));
+
+            function setTheme(mode) {
+                if (body.classList.contains('mode-' + mode) || (mode === 'dark' && body.classList.contains('dark-mode')) || (mode === 'evil' && body.classList.contains('evil-mode'))) {
+                    body.className = ''; 
+                    localStorage.setItem('theme', 'default');
+                } else {
+                    body.className = ''; // clear others
+                    if (mode === 'dark') body.classList.add('dark-mode');
+                    else if (mode === 'evil') body.classList.add('evil-mode');
+                    else body.classList.add('mode-' + mode);
+                    localStorage.setItem('theme', mode);
+                }
+            }
+
             const container = document.createElement('div');
             container.id = 'geese-overlay';
             container.style.position = 'fixed';
@@ -208,7 +232,7 @@
             container.style.width = '100vw';
             container.style.height = '100vh';
             container.style.pointerEvents = 'none';
-            container.style.zIndex = '10000';
+            container.style.zIndex = '1';
             container.style.overflow = 'hidden';
             
             document.body.appendChild(container);
