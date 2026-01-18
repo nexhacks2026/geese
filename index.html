@@ -23,6 +23,7 @@
 
         <h3>Interaction</h3>
         <ul>
+            <li><a href="#" id="help-link">Help</a></li>
             <li>
                 <a href="#help">Help</a>
                 <div style="font-size: 0.7rem; color: var(--goose-orange); margin-top: 2px; line-height: 1.1;">
@@ -38,6 +39,7 @@
             <li><a href="#" id="toggle-dark">Mega Geese Dark Mode</a></li>
             <li><a href="#" id="toggle-evil">Evil Day Creative Mode</a></li>
             <li><a href="#" id="toggle-tj">TJ's CSS Geese</a></li>
+            <li><a href="#" id="toggle-fast">Super Fast Geese Mode</a></li>
         </ul>
     </div>
 
@@ -162,11 +164,25 @@
         </div>
     </div>
 
+    <!-- Help Modal -->
+    <div id="help-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Magical Help Menu</h2>
+            <p>Welcome to the help menu. Currently, the only help we offer is this magical button. It counts, it shines, it is everything.</p>
+            <div class="magic-area">
+                <button id="magic-button" class="magic-btn">Click me: 0</button>
+            </div>
+            <p><i>Keep clicking to find the meaning of goose.</i></p>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const toggleDark = document.getElementById('toggle-dark');
             const toggleEvil = document.getElementById('toggle-evil');
             const toggleTj = document.getElementById('toggle-tj');
+            const toggleFast = document.getElementById('toggle-fast');
             const body = document.body;
 
             // Load saved state
@@ -178,6 +194,74 @@
                 activateEvilMode();
             } else if (savedTheme === 'tj') {
                 body.classList.add('mode-tj');
+            } else if (savedTheme === 'fast') {
+                body.classList.add('mode-fast');
+            }
+
+            // Help Modal Logic
+            const helpLink = document.getElementById('help-link');
+            const helpModal = document.getElementById('help-modal');
+            const closeButton = document.querySelector('.close-button');
+            const magicButton = document.getElementById('magic-button');
+            let magicCount = 0;
+
+            if (helpLink) {
+                helpLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    helpModal.classList.add('show');
+                });
+            }
+
+            if (closeButton) {
+                closeButton.addEventListener('click', () => {
+                    helpModal.classList.remove('show');
+                });
+            }
+
+            window.addEventListener('click', (e) => {
+                if (e.target === helpModal) {
+                    helpModal.classList.remove('show');
+                }
+            });
+
+            if (magicButton) {
+                magicButton.addEventListener('click', (e) => {
+                    magicCount++;
+                    magicButton.textContent = `Click me: ${magicCount}`;
+                    
+                    // Create sparkles
+                    for(let i=0; i<5; i++) {
+                        createSparkle(e.clientX, e.clientY);
+                    }
+                    
+                    if (magicCount % 10 === 0) {
+                       // Small easter egg
+                       console.log("Honk!");
+                    }
+                });
+            }
+
+            function createSparkle(x, y) {
+                const sparkle = document.createElement('div');
+                sparkle.textContent = '✨';
+                sparkle.className = 'magic-sparkle';
+                sparkle.style.left = x + 'px';
+                sparkle.style.top = y + 'px';
+                
+                // Random direction
+                const angle = Math.random() * Math.PI * 2;
+                const velocity = 50 + Math.random() * 100;
+                const tx = Math.cos(angle) * velocity;
+                const ty = Math.sin(angle) * velocity;
+                
+                sparkle.style.setProperty('--tx', `${tx}px`);
+                sparkle.style.setProperty('--ty', `${ty}px`);
+                
+                document.body.appendChild(sparkle);
+                
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 1000);
             }
 
             toggleDark.addEventListener('click', (e) => {
@@ -218,8 +302,20 @@
                 }
             });
 
+            toggleFast.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (body.classList.contains('mode-fast')) {
+                    body.classList.remove('mode-fast');
+                    localStorage.setItem('theme', 'default');
+                } else {
+                    resetModes();
+                    body.classList.add('mode-fast');
+                    localStorage.setItem('theme', 'fast');
+                }
+            });
+
             function resetModes() {
-                body.classList.remove('dark-mode', 'evil-mode', 'mode-tj');
+                body.classList.remove('dark-mode', 'evil-mode', 'mode-tj', 'mode-fast');
                 deactivateEvilMode();
             }
 
@@ -238,7 +334,7 @@
 
             function spawnEvilGooseHandler(e) {
                 // Ignore clicks on sidebar/links to avoid interfering with navigation too much
-                if (e.target.closest('a') || e.target.closest('.sidebar')) return;
+                if (e.target.closest('a') || e.target.closest('.sidebar') || e.target.closest('.modal-content')) return;
                 spawnEvilGoose(e.clientX, e.clientY);
             }
 
@@ -298,6 +394,61 @@
                         honk.remove();
                     }, 800);
                 });
+            // --- Walking Geese Logic ---
+            
+            // Start the geese walking
+            startWalkingGeese();
+
+            function startWalkingGeese() {
+                // Spawn one immediately
+                spawnWalkingGoose();
+                
+                // Spawn more periodically
+                setInterval(() => {
+                    if (document.hidden) return; 
+                    // 40% chance every 3 seconds
+                    if (Math.random() < 0.4) {
+                        spawnWalkingGoose();
+                    }
+                }, 3000);
+            }
+
+            function spawnWalkingGoose() {
+                const walker = document.createElement('div');
+                walker.className = 'goose-walker';
+                
+                const inner = document.createElement('div');
+                inner.className = 'goose-walker-inner';
+                inner.textContent = '🪿';
+                
+                walker.appendChild(inner);
+                document.body.appendChild(walker);
+                
+                // Randomize duration
+                const duration = 15 + Math.random() * 10; // 15-25 seconds
+                walker.style.animation = `goose-walk-right ${duration}s linear forwards`;
+                
+                // Randomize size
+                const size = 2 + Math.random() * 2;
+                inner.style.fontSize = `${size}rem`;
+                
+                // Z-index layering: some in front of content, some behind
+                // Content is z-index 10, sidebar is 100
+                if (Math.random() > 0.5) {
+                    walker.style.zIndex = '5'; // Behind content
+                    walker.style.opacity = '0.7';
+                } else {
+                    walker.style.zIndex = '95'; // In front of content, behind sidebar
+                }
+                
+                // Randomize bottom position slightly
+                const bottom = Math.random() * 50; 
+                walker.style.bottom = `${bottom}px`;
+                
+                // Clean up when animation finishes
+                setTimeout(() => {
+                    walker.remove();
+                }, duration * 1000);
             }
         });
     </script>

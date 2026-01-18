@@ -21,6 +21,7 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     display: flex;
+    overflow-x: hidden; /* Prevent scrollbar from walking geese */
 }
 
 /* Sidebar */
@@ -361,8 +362,7 @@ body.evil-mode .logo {
 
 /* TJ's Geese Mode - CSS Injected Geese */
 body.mode-tj {
-    --goose-green: #00bcd4; /* TJ Teal */
-    --goose-orange: #ffeb3b; /* TJ Yellow */
+    --goose-green: #00bcd4; /* TJ Teal */\n    --goose-orange: #ffeb3b; /* TJ Yellow */
 }
 
 /* Add CSS Geese everywhere */
@@ -370,7 +370,7 @@ body.mode-tj h1::before,
 body.mode-tj h2::before,
 body.mode-tj h3::before,
 body.mode-tj li::before {
-    content: "🪿";
+    content: \"🪿\";
     display: inline-block;
     filter: sepia(100%) hue-rotate(180deg); /* Blue geese */
     margin-right: 8px;
@@ -378,7 +378,7 @@ body.mode-tj li::before {
 }
 
 body.mode-tj .logo::after {
-    content: " (TJ Edition)";
+    content: \" (TJ Edition)\";
     font-size: 0.8rem;
     color: var(--goose-green);
     display: block;
@@ -394,4 +394,187 @@ body.mode-tj .main-content {
 @keyframes tj-hover {
     from { transform: translateY(0) rotate(-5deg); }
     to { transform: translateY(-5px) rotate(5deg); }
+}
+
+/* Super Fast Geese Mode */
+body.mode-fast {
+    --bg-color: #000033;
+    --text-color: #ccffff;
+    --link-color: #00ffff;
+    overflow-x: hidden; 
+}
+
+body.mode-fast .main-content {
+    animation: speed-shake 0.1s infinite;
+    transform: skewX(-5deg);
+}
+
+body.mode-fast::before {
+    content: "🪿";
+    position: fixed;
+    top: 50%;
+    left: -100px;
+    font-size: 100px;
+    z-index: 99999;
+    filter: blur(2px);
+    animation: super-fast-fly 2s linear infinite;
+    pointer-events: none;
+}
+
+body.mode-fast::after {
+    content: "🪿";
+    position: fixed;
+    top: 20%;
+    left: -100px;
+    font-size: 50px;
+    z-index: 99999;
+    filter: blur(1px);
+    animation: super-fast-fly 1.5s linear infinite 0.5s;
+    pointer-events: none;
+}
+
+/* Extra flying geese for more chaos */
+body.mode-fast .sidebar::after {
+    content: "🪿";
+    position: fixed;
+    top: 80%;
+    left: -100px;
+    font-size: 80px;
+    z-index: 99999;
+    filter: blur(1px);
+    animation: super-fast-fly 1s linear infinite 0.2s;
+    pointer-events: none;
+}
+
+@keyframes super-fast-fly {
+    0% { left: -100px; transform: scaleX(1); }
+    50% { transform: scaleX(0.8) skewX(-20deg); }
+    100% { left: 120vw; transform: scaleX(1); }
+}
+
+@keyframes speed-shake {
+    0% { transform: translate(1px, 1px) skewX(-5deg); }
+    50% { transform: translate(-1px, -1px) skewX(-5deg); }
+    100% { transform: translate(1px, 1px) skewX(-5deg); }
+}
+
+/* Help Modal Styles for the Magical Page */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; 
+    z-index: 20000; /* On top of everything */
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.8); 
+    backdrop-filter: blur(5px);
+}
+
+.modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: var(--content-bg);
+    margin: auto;
+    padding: 40px;
+    border: 2px solid var(--goose-orange);
+    width: 80%;
+    max-width: 600px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    position: relative;
+    text-align: center;
+    color: var(--text-color);
+}
+
+.close-button {
+    color: var(--goose-grey);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--goose-orange);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Magical Button */
+.magic-btn {
+    background: linear-gradient(45deg, var(--goose-orange), var(--link-color));
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.2rem;
+    margin: 20px 2px;
+    cursor: pointer;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    font-family: var(--font-family);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.magic-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(255, 85, 85, 0.5);
+    background: linear-gradient(45deg, var(--link-color), var(--goose-orange));
+}
+
+.magic-btn:active {
+    transform: translateY(1px);
+}
+
+.magic-sparkle {
+    position: absolute;
+    pointer-events: none;
+    animation: sparkle-anim 1s forwards;
+    font-size: 20px;
+}
+
+@keyframes sparkle-anim {
+    0% { transform: translate(0, 0) scale(0); opacity: 1; }
+    100% { transform: translate(var(--tx), var(--ty)) scale(1.5); opacity: 0; }
+}
+
+/* Walking Geese Animations and Classes */
+.goose-walker {
+    position: fixed;
+    bottom: 20px;
+    z-index: 95; /* Behind sidebar (100) but above content (10) */
+    pointer-events: none;
+    will-change: left;
+}
+
+.goose-walker-inner {
+    font-size: 3rem;
+    animation: goose-waddle 0.5s infinite alternate ease-in-out;
+    filter: drop-shadow(0 2px 3px rgba(0,0,0,0.3));
+    user-select: none;
+}
+
+@keyframes goose-walk-right {
+    from { left: -150px; transform: scaleX(1); }
+    to { left: 100vw; transform: scaleX(1); }
+}
+
+@keyframes goose-waddle {
+    0% { transform: rotate(-8deg) translateY(0); }
+    100% { transform: rotate(8deg) translateY(-8px); }
 }
