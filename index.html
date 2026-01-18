@@ -39,6 +39,7 @@
             <li><a href="#" id="toggle-dark">Mega Geese Dark Mode</a></li>
             <li><a href="#" id="toggle-evil">Evil Day Creative Mode</a></li>
             <li><a href="#" id="toggle-tj">TJ's CSS Geese</a></li>
+            <li><a href="#" id="toggle-fast">Super Fast Geese Mode</a></li>
         </ul>
     </div>
 
@@ -171,6 +172,7 @@
             const toggleDark = document.getElementById('toggle-dark');
             const toggleEvil = document.getElementById('toggle-evil');
             const toggleTj = document.getElementById('toggle-tj');
+            const toggleFast = document.getElementById('toggle-fast');
             const body = document.body;
 
             // Load saved state
@@ -182,6 +184,8 @@
                 activateEvilMode();
             } else if (savedTheme === 'tj') {
                 body.classList.add('mode-tj');
+            } else if (savedTheme === 'fast') {
+                body.classList.add('mode-fast');
             }
 
             // Help Modal Logic
@@ -288,8 +292,20 @@
                 }
             });
 
+            toggleFast.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (body.classList.contains('mode-fast')) {
+                    body.classList.remove('mode-fast');
+                    localStorage.setItem('theme', 'default');
+                } else {
+                    resetModes();
+                    body.classList.add('mode-fast');
+                    localStorage.setItem('theme', 'fast');
+                }
+            });
+
             function resetModes() {
-                body.classList.remove('dark-mode', 'evil-mode', 'mode-tj');
+                body.classList.remove('dark-mode', 'evil-mode', 'mode-tj', 'mode-fast');
                 deactivateEvilMode();
             }
 

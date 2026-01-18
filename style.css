@@ -360,6 +360,68 @@ body.mode-tj .main-content {
     to { transform: translateY(-5px) rotate(5deg); }
 }
 
+/* Super Fast Geese Mode */
+body.mode-fast {
+    --bg-color: #000033;
+    --text-color: #ccffff;
+    --link-color: #00ffff;
+    overflow-x: hidden; 
+}
+
+body.mode-fast .main-content {
+    animation: speed-shake 0.1s infinite;
+    transform: skewX(-5deg);
+}
+
+body.mode-fast::before {
+    content: "🪿";
+    position: fixed;
+    top: 50%;
+    left: -100px;
+    font-size: 100px;
+    z-index: 99999;
+    filter: blur(2px);
+    animation: super-fast-fly 2s linear infinite;
+    pointer-events: none;
+}
+
+body.mode-fast::after {
+    content: "🪿";
+    position: fixed;
+    top: 20%;
+    left: -100px;
+    font-size: 50px;
+    z-index: 99999;
+    filter: blur(1px);
+    animation: super-fast-fly 1.5s linear infinite 0.5s;
+    pointer-events: none;
+}
+
+/* Extra flying geese for more chaos */
+body.mode-fast .sidebar::after {
+    content: "🪿";
+    position: fixed;
+    top: 80%;
+    left: -100px;
+    font-size: 80px;
+    z-index: 99999;
+    filter: blur(1px);
+    animation: super-fast-fly 1s linear infinite 0.2s;
+    pointer-events: none;
+}
+
+@keyframes super-fast-fly {
+    0% { left: -100px; transform: scaleX(1); }
+    50% { transform: scaleX(0.8) skewX(-20deg); }
+    100% { left: 120vw; transform: scaleX(1); }
+}
+
+@keyframes speed-shake {
+    0% { transform: translate(1px, 1px) skewX(-5deg); }
+    50% { transform: translate(-1px, -1px) skewX(-5deg); }
+    100% { transform: translate(1px, 1px) skewX(-5deg); }
+}
+
 /* Help Modal Styles for the Magical Page */
 .modal {
     display: none; /* Hidden by default */
