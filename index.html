@@ -30,6 +30,8 @@
                      <div class="dropdown-item" id="toggle-chicken">Chicken Mode</div>
                  </div>
             </li>
+            <!-- DevOps Link -->
+            <li><a href="index.html?page=devops" class="nav-link" title="DevOps Status">🔥</a></li>
             <!-- Rabbit Museum Link -->
             <li><a href="index.html?page=rabbits" class="nav-link" target="_blank" title="Rabbit Museum">🐇</a></li>
         </ul>
@@ -190,8 +192,66 @@
     <!-- Scripts -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // --- Rabbit Museum Logic ---
+            // --- Rabbit Museum Logic & DevOps Logic ---
             const urlParams = new URLSearchParams(window.location.search);
+
+            if (urlParams.get('page') === 'devops') {
+                document.title = "DevOps Status - Exploded";
+                
+                // Change Logo
+                const logo = document.querySelector('.logo');
+                if(logo) logo.textContent = "🔥 Goosepedia";
+
+                // Replace Main Content
+                const mainContent = document.querySelector('.main-content');
+                if (mainContent) mainContent.remove();
+
+                const devopsContent = document.createElement('main');
+                devopsContent.className = 'main-content devops-status';
+                devopsContent.innerHTML = `
+                    <header class="welcome-box" style="border-left-color: #ff0000; background: linear-gradient(to right, #3f0e0e, transparent);">
+                        <h2>🔥 ALERT: DEVOPS BRANCH EXPLOSION</h2>
+                        <p>We acknowledge the "small" explosion reported at the devops branch. The situation is being monitored.</p>
+                    </header>
+
+                    <h1>The Guy</h1>
+                    <div class="site-sub">We have sent the guy you requested.</div>
+
+                    <div class="ascii-art" style="color: #ff7b72;">
+         (  .      )
+       )           (              )
+     (  (       )   )           (
+   (    )     )              )    )
+    (    (      (           )   (     (
+   (          )     )     (         )  )
+   _______________________________________
+  /                                       \\
+ /       DEVOPS SERVER                     \\
+ \\_______________________________________/
+                    </div>
+
+                    <section>
+                        <h2>Incident Report</h2>
+                        <p>A small explosion was reported. A specialized technician ("The Guy") has been dispatched to the scene.</p>
+                    </section>
+                    
+                    <div class="ascii-art">
+       O
+      /|\\   <-- The Guy
+      / \\
+      
+    "I'm looking at it. It's on fire."
+                    </div>
+
+                    <p style="text-align:center; margin-top: 3rem;">
+                        <a href="index.html" class="magical-button" style="text-decoration:none;">Return to Safety</a>
+                    </p>
+                `;
+                
+                document.querySelector('.navbar').after(devopsContent);
+                return;
+            }
+
             if (urlParams.get('page') === 'rabbits') {
                 document.title = "The Rabbit Museum";
                 
@@ -215,10 +275,10 @@
                     <div class="site-sub">From the archives of soft things</div>
 
                     <div class="ascii-art">
-           \\
-           \\_
+           \\\\
+           \\\\_
         .--(')
-      o( )_-_\\_
+      o( )_-_\\\\_
       
       THE ANCIENT HOPPER
                     </div>
