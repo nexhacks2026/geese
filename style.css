@@ -306,8 +306,7 @@ h3 {
     padding: 2.5rem;
     border: 1px solid var(--border);
     border-radius: 12px;
-    width: 90%;
-    max-width: 500px;
+    width: 90%;\n    max-width: 500px;
     position: relative;
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
     text-align: center;
@@ -375,8 +374,7 @@ h3 {
 }
 
 @keyframes sparkle-anim {
-    0% { transform: translate(0, 0) scale(0); opacity: 1; }
-    100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
+    0% { transform: translate(0, 0) scale(0); opacity: 1; }\n    100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
 }
 
 @keyframes creature-pop {
@@ -489,6 +487,35 @@ body.mode-fast .main-content {
     100% { transform: translate(1px, 1px) skewX(-5deg); }
 }
 
+/* Moon Mode */
+body.mode-moon {
+    --bg-body: #050608;
+    --bg-sidebar: #0f111a;
+    --bg-card: #161b2e;
+    --text-main: #d0d6f5;
+    --text-muted: #8890b5;
+    --border: #2a3055;
+    --accent-primary: #809fff;
+    --accent-secondary: #ffffff;
+    --link: #a4b8ff;
+    
+    background-image: 
+        radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 3px),
+        radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 2px),
+        radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 3px);
+    background-size: 550px 550px, 350px 350px, 250px 250px;
+    background-position: 0 0, 40px 60px, 130px 270px;
+}
+
+body.mode-moon .main-content {
+    animation: moon-float 3s ease-in-out infinite;
+}
+
+@keyframes moon-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
     body {
@@ -515,7 +542,6 @@ body.mode-fast .main-content {
         margin: 1.5rem 0;
     }
     
-    h1 {
-        font-size: 2rem;
+    h1 {\n        font-size: 2rem;
     }
 }
