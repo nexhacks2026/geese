@@ -28,6 +28,14 @@
             <li><a href="#">About Goosepedia</a></li>
             <li><a href="#">Community portal</a></li>
         </ul>
+
+        <h3>Modes</h3>
+        <ul>
+            <li><a href="#" id="toggle-dark">Mega Geese Dark Mode</a></li>
+            <li><a href="#" id="toggle-evil">Evil Day Creative Mode</a></li>
+            <li><a href="#" id="toggle-tj">TJ's CSS Geese</a></li>
+            <li><a href="#" id="toggle-fast">Super Fast Geese Mode</a></li>
+        </ul>
     </nav>
 
     <main class="main-content">
@@ -102,6 +110,8 @@
                 document.body.classList.add('evil-mode');
             } else if (savedTheme === 'tj') {
                 document.body.classList.add('mode-tj');
+            } else if (savedTheme === 'fast') {
+                document.body.classList.add('mode-fast');
             }
 
             const container = document.getElementById('goose-container');
@@ -171,6 +181,73 @@
                         createCreature(e.clientX, e.clientY);
                     }
                 });
+            }
+
+            // Theme toggle functionality
+            const toggleDark = document.getElementById('toggle-dark');
+            const toggleEvil = document.getElementById('toggle-evil');
+            const toggleTj = document.getElementById('toggle-tj');
+            const toggleFast = document.getElementById('toggle-fast');
+            const body = document.body;
+
+            if (toggleDark) {
+                toggleDark.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (body.classList.contains('dark-mode')) {
+                        body.classList.remove('dark-mode');
+                        localStorage.setItem('theme', 'default');
+                    } else {
+                        resetModes();
+                        body.classList.add('dark-mode');
+                        localStorage.setItem('theme', 'dark');
+                    }
+                });
+            }
+
+            if (toggleEvil) {
+                toggleEvil.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (body.classList.contains('evil-mode')) {
+                        body.classList.remove('evil-mode');
+                        localStorage.setItem('theme', 'default');
+                    } else {
+                        resetModes();
+                        body.classList.add('evil-mode');
+                        localStorage.setItem('theme', 'evil');
+                    }
+                });
+            }
+
+            if (toggleTj) {
+                toggleTj.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (body.classList.contains('mode-tj')) {
+                        body.classList.remove('mode-tj');
+                        localStorage.setItem('theme', 'default');
+                    } else {
+                        resetModes();
+                        body.classList.add('mode-tj');
+                        localStorage.setItem('theme', 'tj');
+                    }
+                });
+            }
+
+            if (toggleFast) {
+                toggleFast.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (body.classList.contains('mode-fast')) {
+                        body.classList.remove('mode-fast');
+                        localStorage.setItem('theme', 'default');
+                    } else {
+                        resetModes();
+                        body.classList.add('mode-fast');
+                        localStorage.setItem('theme', 'fast');
+                    }
+                });
+            }
+
+            function resetModes() {
+                body.classList.remove('dark-mode', 'evil-mode', 'mode-tj', 'mode-fast');
             }
 
             function createSparkle(x, y) {
