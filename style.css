@@ -359,3 +359,98 @@ body.mode-tj .main-content {
     from { transform: translateY(0) rotate(-5deg); }
     to { transform: translateY(-5px) rotate(5deg); }
 }
+
+/* Help Modal Styles for the Magical Page */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; 
+    z-index: 20000; /* On top of everything */
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.8); 
+    backdrop-filter: blur(5px);
+}
+
+.modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: var(--content-bg);
+    margin: auto;
+    padding: 40px;
+    border: 2px solid var(--goose-orange);
+    width: 80%;
+    max-width: 600px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    position: relative;
+    text-align: center;
+    color: var(--text-color);
+}
+
+.close-button {
+    color: var(--goose-grey);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--goose-orange);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Magical Button */
+.magic-btn {
+    background: linear-gradient(45deg, var(--goose-orange), var(--link-color));
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.2rem;
+    margin: 20px 2px;
+    cursor: pointer;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    font-family: var(--font-family);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.magic-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(255, 85, 85, 0.5);
+    background: linear-gradient(45deg, var(--link-color), var(--goose-orange));
+}
+
+.magic-btn:active {
+    transform: translateY(1px);
+}
+
+.magic-sparkle {
+    position: absolute;
+    pointer-events: none;
+    animation: sparkle-anim 1s forwards;
+    font-size: 20px;
+}
+
+@keyframes sparkle-anim {
+    0% { transform: translate(0, 0) scale(0); opacity: 1; }
+    100% { transform: translate(var(--tx), var(--ty)) scale(1.5); opacity: 0; }
+}
