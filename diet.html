@@ -6,6 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Goose Diet - Goosepedia</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .fat-goose-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 9999;
+            overflow: hidden;
+        }
+    </style>
 </head>
 
 <body>
@@ -27,6 +39,13 @@
         <div class="site-sub">From Goosepedia, the free encyclopedia</div>
 
         <p>Geese are primarily herbivorous. They eat a variety of plant materials found in and around water bodies, as well as in fields and agricultural lands.</p>
+        
+        <div class="ascii-art">
+           (  (  (  o  )  )  )
+            \               /
+             \   FAT GOOSE /
+              \___________/
+        </div>
 
         <h2>Grazing</h2>
         <p>Unlike ducks, which largely feed in water, geese spend much of their time grazing on land. They eat grass, shoots, stems, and seeds. Their bills are adapted for shearing short grasses, making them effective grazers on lawns and pastures.</p>
@@ -42,10 +61,42 @@
 
         <h2>Human Interference</h2>
         <p>While often fed by humans, items like white bread are actually harmful to their health, causing a condition known as "angel wing." This nutritional deficiency causes the wings to develop incorrectly, preventing the bird from flying. Safe alternatives for feeding geese include cracked corn, oats, or chopped lettuce.</p>
+        
+        <h3>Optimum Fatness</h3>
+        <p>For a goose to be truly happy, it must consume immense quantities of food to achieve maximum fatness.</p>
 
         <p><a href="index.html">Return to Main Page</a></p>
     </div>
 
+    <div id="goose-container" class="fat-goose-bg"></div>
+
+    <script>
+        // Script to add even more fat geese to the diet page
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('goose-container');
+            const emoji = '🪿';
+            
+            // Add 300 geese
+            for (let i = 0; i < 300; i++) {
+                const el = document.createElement('div');
+                el.innerText = emoji;
+                el.style.position = 'absolute';
+                el.style.left = Math.random() * 100 + 'vw';
+                el.style.top = Math.random() * 100 + 'vh';
+                
+                // FAT GOOSE CALCULATION
+                // Scale X (width) is much larger than Scale Y (height)
+                const fatness = 2 + Math.random() * 3; // Very wide
+                const height = 0.5 + Math.random() * 0.5; // Squat
+                
+                el.style.transform = `scale(${fatness}, ${height})`;
+                el.style.fontSize = (15 + Math.random() * 30) + 'px';
+                el.style.opacity = Math.random() * 0.6 + 0.1; // varied opacity
+                
+                container.appendChild(el);
+            }
+        });
+    </script>
 </body>
 
 </html>
