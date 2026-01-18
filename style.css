@@ -11,6 +11,7 @@
     --goose-orange: #f28500; /* Accent color */
     --goose-green: #2e7d32;
     --goose-blue: #0277bd;
+    --goose-grey: #808080;
 }
 
 body {
@@ -26,6 +27,7 @@ body {
 .sidebar {
     width: 176px; /* Standard Wiki width */
     background-color: var(--sidebar-bg);
+    background: linear-gradient(180deg, var(--sidebar-bg) 0%, #b3e5fc 100%);
     padding: 1rem;
     min-height: 100vh;
     height: 100%;
@@ -37,7 +39,7 @@ body {
 .sidebar h3 {
     font-size: 0.85rem;
     color: var(--goose-blue);
-    border-bottom: 1px solid #b3e5fc;
+    border-bottom: 2px solid var(--goose-orange);
     margin-bottom: 0.5rem;
     padding-bottom: 0.25rem;
 }
@@ -56,11 +58,16 @@ body {
 .sidebar a {
     color: var(--link-color);
     text-decoration: none;
+    display: block;
+    padding: 2px 0;
 }
 
 .sidebar a:hover {
-    text-decoration: underline;
+    text-decoration: none;
     color: var(--goose-orange);
+    background-color: rgba(255, 255, 255, 0.5);
+    padding-left: 5px;
+    transition: padding 0.2s;
 }
 
 /* Main Content */
@@ -71,12 +78,13 @@ body {
     flex-grow: 1;
     background-color: var(--content-bg);
     min-height: 100vh;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.05);
 }
 
 h1 {
     font-family: 'Linux Libertine', 'Georgia', Times, serif;
     font-size: 2rem;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 2px solid var(--goose-green);
     padding-bottom: 0.5rem;
     margin-bottom: 1rem;
     font-weight: normal;
@@ -90,7 +98,12 @@ h2 {
     padding-bottom: 0.25rem;
     margin-top: 2rem;
     font-weight: normal;
+    color: var(--goose-orange); /* Changed from blue to orange for more color */
+}
+
+h3 {
     color: var(--goose-blue);
+    font-weight: bold;
 }
 
 p {
@@ -120,16 +133,19 @@ a:hover {
     margin-left: 1rem;
     width: 300px;
     font-size: 0.9rem;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
 }
 
 .infobox .placeholder {
-    height: 200px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #fff;
     font-weight: bold;
-    background-color: var(--goose-orange);
+    background-color: #fff;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    padding: 10px;
 }
 
 .infobox table {
@@ -147,6 +163,7 @@ a:hover {
     padding: 5px;
     color: #fff;
     font-weight: bold;
+    border-radius: 4px;
 }
 
 .infobox td {
@@ -161,15 +178,16 @@ a:hover {
     display: block;
     color: var(--goose-orange);
     text-align: center;
+    text-shadow: 1px 1px 0px #fff;
 }
 
 /* Welcome Section */
 .welcome-box {
     background-color: #e8f5e9;
     padding: 15px;
-    border: 1px solid #c8e6c9;
+    border: 2px solid #a5d6a7;
     margin-bottom: 20px;
-    border-radius: 4px;
+    border-radius: 8px;
 }
 
 .welcome-box h2 {
@@ -181,4 +199,20 @@ a:hover {
 
 .welcome-box p {
     margin-bottom: 0;
+}
+
+/* ASCII Art */
+.ascii-art {
+    font-family: 'Courier New', Courier, monospace;
+    white-space: pre;
+    line-height: 1.1;
+    color: var(--text-color);
+    background-color: #fafafa;
+    padding: 15px;
+    border-radius: 8px;
+    border: 2px dashed var(--goose-grey);
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    text-align: center;
+    font-weight: bold;
 }
