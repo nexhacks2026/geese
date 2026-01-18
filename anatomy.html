@@ -27,6 +27,7 @@
                      <div class="dropdown-item" id="toggle-evil">Evil Mode</div>
                      <div class="dropdown-item" id="toggle-tj">TJ Mode</div>
                      <div class="dropdown-item" id="toggle-fast">Fast Mode</div>
+                     <div class="dropdown-item" id="toggle-chicken">Chicken Mode</div>
                  </div>
             </li>
         </ul>
@@ -134,6 +135,8 @@
                 document.body.classList.add('evil-mode');
             } else if (savedTheme === 'tj') {
                 document.body.classList.add('mode-tj');
+            } else if (savedTheme === 'chicken') {
+                document.body.classList.add('mode-chicken');
             }
 
             // Mode toggles
@@ -141,11 +144,13 @@
             const toggleEvil = document.getElementById('toggle-evil');
             const toggleTj = document.getElementById('toggle-tj');
             const toggleFast = document.getElementById('toggle-fast');
+            const toggleChicken = document.getElementById('toggle-chicken');
 
             if (toggleDark) toggleDark.addEventListener('click', () => setTheme('dark'));
             if (toggleEvil) toggleEvil.addEventListener('click', () => setTheme('evil'));
             if (toggleTj) toggleTj.addEventListener('click', () => setTheme('tj'));
             if (toggleFast) toggleFast.addEventListener('click', () => setTheme('fast'));
+            if (toggleChicken) toggleChicken.addEventListener('click', () => setTheme('chicken'));
 
             function setTheme(mode) {
                 if (body.classList.contains('mode-' + mode) || (mode === 'dark' && body.classList.contains('dark-mode')) || (mode === 'evil' && body.classList.contains('evil-mode'))) {
