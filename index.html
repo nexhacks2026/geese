@@ -153,30 +153,47 @@
             const toggleEvil = document.getElementById('toggle-evil');
             const body = document.body;
 
+            // Load saved state
+            if (localStorage.getItem('theme') === 'dark') {
+                body.classList.add('dark-mode');
+            } else if (localStorage.getItem('theme') === 'evil') {
+                body.classList.add('evil-mode');
+                activateEvilMode();
+            }
+
             toggleDark.addEventListener('click', (e) => {
                 e.preventDefault();
-                body.classList.toggle('dark-mode');
-                if(body.classList.contains('dark-mode')) {
+                if (body.classList.contains('dark-mode')) {
+                    body.classList.remove('dark-mode');
+                    localStorage.setItem('theme', 'default');
+                } else {
+                    body.classList.add('dark-mode');
                     body.classList.remove('evil-mode');
                     deactivateEvilMode();
+                    localStorage.setItem('theme', 'dark');
                 }
             });
 
             toggleEvil.addEventListener('click', (e) => {
                 e.preventDefault();
-                body.classList.toggle('evil-mode');
-                if(body.classList.contains('evil-mode')) {
+                if (body.classList.contains('evil-mode')) {
+                    body.classList.remove('evil-mode');
+                    deactivateEvilMode();
+                    localStorage.setItem('theme', 'default');
+                } else {
+                    body.classList.add('evil-mode');
                     body.classList.remove('dark-mode');
                     activateEvilMode();
-                } else {
-                    deactivateEvilMode();
+                    localStorage.setItem('theme', 'evil');
                 }
             });
 
             function activateEvilMode() {
                 document.addEventListener('click', spawnEvilGooseHandler);
-                // Spawn one to start
-                spawnEvilGoose(window.innerWidth/2, window.innerHeight/2);
+                // Spawn one to start if none exist
+                if (document.querySelectorAll('.spawned-evil-goose').length === 0) {
+                     spawnEvilGoose(window.innerWidth/2, window.innerHeight/2);
+                }
             }
 
             function deactivateEvilMode() {
