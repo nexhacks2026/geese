@@ -286,6 +286,27 @@ footer {
     color: var(--text-main);
 }
 
+/* Geese Animation */
+#geese-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.goose {
+    position: absolute;
+    /* Opacity and positioning handled here instead of inline style injection */
+    opacity: 0.2;
+    /* Use transform for performant movement */
+    transform: translate3d(var(--x, 0), var(--y, 0), 0);
+    will-change: transform;
+}
+
 /* Mobile */
 @media (max-width: 700px) {
     .infobox {
